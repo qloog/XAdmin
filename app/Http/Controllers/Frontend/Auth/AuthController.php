@@ -4,6 +4,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 
 class AuthController extends Controller {
 
@@ -47,6 +49,13 @@ class AuthController extends Controller {
      */
     public function getLogin() {
         return view('frontend.auth.login');
+    }
+
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function postLogin() {
+        return redirect('admin/dashboard');
     }
 
 }

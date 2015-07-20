@@ -42,6 +42,10 @@ Route::group(['namespace' => 'Backend'], function ()
 //            //require_once(__DIR__ . "/Routes/Backend/Access.php");
 //        });
 
+            Route::get('login', 'AuthController@getLogin');
+            Route::post('login', 'AuthController@postLogin');
+            Route::get('logout', 'AuthController@getLogout');
+
             Route::get('/dashboard', 'DashboardController@index');
             Route::resource('materials/single', 'MaterialsController');
             Route::resource('materials/multi', 'MaterialsMultiController');
@@ -58,17 +62,4 @@ Route::group(['namespace' => 'Backend'], function ()
 //	//'password' => 'Auth\PasswordController',
 //]);
 //
-//Route::get('auth/login', 'Frontend\Auth\AuthController@getLogin');
-//Route::get('auth/register', 'Frontend\Auth\AuthController@getRegister');
-//Route::post('auth/login', 'Frontend\Auth\AuthController@postLogin');
-//Route::get('auth/logout', 'Frontend\Auth\AuthController@getLogout');
-//
-//Route::get('pages/{id}', 'PagesController@show');
-//Route::post('comment/store', 'CommentsController@store');
-//
-//Route::group(['prefix' => 'admin', 'namespace' => 'Backend', 'middleware' => 'auth'], function()
-//{
-//  Route::get('/', 'Backend\AdminHomeController@index');
-//  Route::resource('pages', 'PagesController');
-//  Route::resource('comments', 'CommentsController');
-//});
+
