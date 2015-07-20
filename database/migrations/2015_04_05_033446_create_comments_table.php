@@ -14,13 +14,13 @@ class CreateCommentsTable extends Migration {
 	{
 		Schema::create('comments', function(Blueprint $table)
 		{
-			$table->increments('id');
-            $table->string('nickname');
-            $table->string('email')->nullable();
-            $table->string('website')->nullable();
-            $table->text('content')->nullable();
-            $table->integer('page_id');
-			$table->timestamps();
+                $table->increments('id');
+                $table->string('nickname');
+                $table->string('email')->nullable();
+                $table->string('website')->nullable();
+                $table->text('content')->nullable();
+                $table->integer('page_id');
+                $table->timestamps();
 		});
 	}
 
