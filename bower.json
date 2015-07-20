@@ -1,0 +1,21 @@
+{
+  "name": "laravel5-wechat",
+  "version": "0.0.0",
+  "authors": [
+    "qloog <quanlongwang@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass-official": "~3.3.4",
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.4",
+    "fontawesome": "~4.3.0"
+  }
+}

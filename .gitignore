@@ -1,0 +1,7 @@
+/vendor
+/node_modules
+.env
+/config/wechat.php
+
+.idea
+.DS_Store
