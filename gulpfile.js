@@ -20,9 +20,9 @@ var elixir = require('laravel-elixir');
  */
 
 var paths = {
-    'jquery': '../bower/jquery/dist',
-    'bootstrap': '../bower/bootstrap',
-    'fontawesome': '../bower/fontawesome'
+    'jquery': 'resources/assets/bower/jquery/dist',
+    'bootstrap': 'resources/assets/bower/bootstrap',
+    'fontawesome': 'resources/assets/bower/fontawesome'
 };
 
 /**
@@ -53,21 +53,12 @@ elixir(function(mix) {
 
     // Combine scripts
     mix.scripts([
-            'js/jquery.js',
-            'js/bootstrap.js'
+            'jquery.js',
+            'bootstrap.js'
         ],
-        'public/js/admin.js',
-        'resources/assets'
+        'public/js/admin.js'
     );
 
     // Compile Less
-    mix.less('.less', 'public/css/admin.css');
+    //mix.less('.less', 'public/css/admin.css');
 });
-
-//elixir(function (mix) {
-//    mix .less('app.less')
-//        .scripts([
-//            paths.jquery + '/jquery.js',
-//            paths.bootstrap + '/js/bootstrap.js'
-//        ], 'public/js/app.js');
-//});
