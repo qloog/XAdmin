@@ -73,7 +73,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         $permissionsArray = [];
 
-        $permissions = $this->roles->load('permissions')->fetch('permissions')->toArray();
+        $permissions = $this->roles()->load('permissions')->fetch('permissions')->toArray();
 
         return array_map('strtolower', array_unique(array_flatten(array_map(function ($permission) {
 

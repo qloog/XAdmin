@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use Overtrue\Wechat\Media;
 
-use App\Repositories\Material\MaterialRepository as Material;
-use App\Repositories\Criteria\Material\TitleEqTest;
+//use App\Repositories\Material\MaterialRepository as Material;
+//use App\Repositories\Criteria\Material\TitleEqTest;
 
 class MaterialsController extends Controller
 {
@@ -17,10 +17,10 @@ class MaterialsController extends Controller
     private $material;
     private $_media = null;
 
-    public function __construct(Material $material)
+    public function __construct()
     {
-        $this->_media = new Media(Config::get('wechat.app_id'), Config::get('wechat.secret'));
-        $this->material = $material;
+        //$this->_media = new Media(Config::get('wechat.app_id'), Config::get('wechat.secret'));
+        $this->material = null;
     }
     /**
      * Display a listing of the resource.

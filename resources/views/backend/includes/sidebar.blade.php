@@ -43,7 +43,169 @@
                         <b class="arrow"></b>
                     </li>
 
-                    <li class="active open">
+                    <li class="">
+                        <a href="javascript:;" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-user"></i>
+                            <span class="menu-text">
+                                用户管理
+                            </span>
+
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+                        <b class="arrow"></b>
+                        <ul class="submenu">
+                            <li class="">
+                                <a href="/admin/user/index">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    用户列表
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="#" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-newspaper-o"></i>
+                            <span class="menu-text"> 新闻管理 </span>
+
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+
+                        <b class="arrow"></b>
+
+                        <ul class="submenu">
+                            <li class="">
+                                <a href="profile.html">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    分类管理
+                                </a>
+
+                                <b class="arrow"></b>
+                            </li>
+
+                            <li class="">
+                                <a href="inbox.html">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    新闻列表
+                                </a>
+
+                                <b class="arrow"></b>
+                            </li>
+
+                            <li class="">
+                                <a href="pricing.html">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    添加新闻
+                                </a>
+
+                                <b class="arrow"></b>
+                            </li>
+
+                            <li class="">
+                                <a href="invoice.html">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    标签管理
+                                </a>
+
+                                <b class="arrow"></b>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="javascript:;" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-file-text-o"></i>
+                            <span class="menu-text">
+                                单页管理
+                            </span>
+
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+                        <b class="arrow"></b>
+                        <ul class="submenu">
+                            <li class="">
+                                <a href="/admin/user/index">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    分类管理
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="">
+                                <a href="/admin/user/index">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    内容管理
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="javascript:;" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-photo"></i>
+                            <span class="menu-text">
+                                相册管理
+                            </span>
+
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+                        <b class="arrow"></b>
+                        <ul class="submenu">
+                            <li class="">
+                                <a href="/admin/user/index">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    相册列表
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="javascript:;" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-calendar"></i>
+                            <span class="menu-text">
+                                活动管理
+                            </span>
+
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+                        <b class="arrow"></b>
+                        <ul class="submenu">
+                            <li class="">
+                                <a href="/admin/user/index">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    活动列表
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="javascript:;" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-comment"></i>
+                            <span class="menu-text">
+                                评论管理
+                            </span>
+
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+                        <b class="arrow"></b>
+                        <ul class="submenu">
+                            <li class="">
+                                <a href="/admin/user/index">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    评论列表
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="">
                         <a href="javascript:;" class="dropdown-toggle">
                             <i class="menu-icon fa fa-desktop"></i>
                             <span class="menu-text">
@@ -200,56 +362,6 @@
                         </a>
 
                         <b class="arrow"></b>
-                    </li>
-
-                    <li class="">
-                        <a href="#" class="dropdown-toggle">
-                            <i class="menu-icon fa fa-tag"></i>
-                            <span class="menu-text"> 新闻管理 </span>
-
-                            <b class="arrow fa fa-angle-down"></b>
-                        </a>
-
-                        <b class="arrow"></b>
-
-                        <ul class="submenu">
-                            <li class="">
-                                <a href="profile.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    分类管理
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="inbox.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    新闻列表
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="pricing.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    添加新闻
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="invoice.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    标签管理
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                        </ul>
                     </li>
 
                     <li class="">

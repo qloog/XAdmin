@@ -14,7 +14,7 @@
 
         <!-- page specific plugin styles -->
         <link rel="stylesheet" href="{{ asset('css/jquery-ui.custom.min.css') }}" />
-        @yield('style')
+        @yield('styles')
 
         <!-- text fonts -->
         {{--<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300" />--}}
@@ -115,6 +115,6 @@
     <script src="{{ asset('js/ace.min.js') }}"></script>
 
     <!-- inline scripts related to this page -->
-    @yield('script')
+    @yield('scripts')
 </body>
 </html>

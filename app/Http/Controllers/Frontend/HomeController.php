@@ -1,11 +1,11 @@
 <?php namespace App\Http\Controllers\Frontend;
 
-use App\Models\Page;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
-class FrontendController extends Controller {
+class HomeController extends Controller {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -25,7 +25,7 @@ class FrontendController extends Controller {
 	 */
 	public function __construct()
 	{
-	//	$this->middleware('auth');
+		$this->middleware('auth');
 	}
 
 	/**
@@ -35,7 +35,10 @@ class FrontendController extends Controller {
 	 */
 	public function index()
 	{
-        return view('frontend.index');
+        echo 'id:' . Auth::user()->id . '<br>';
+        echo 'username:' . Auth::user()->username . '<br>';
+        dd(Auth::user());
+        //return view('frontend.index');
 	}
 
 }

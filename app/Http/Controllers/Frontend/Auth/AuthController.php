@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\User;
+use Validator;
 
 class AuthController extends Controller {
 
@@ -22,40 +24,63 @@ class AuthController extends Controller {
 
 	use AuthenticatesAndRegistersUsers;
 
-	/**
-	 * Create a new authentication controller instance.
-	 *
-	 * @param  \Illuminate\Contracts\Auth\Guard  $auth
-	 * @param  \Illuminate\Contracts\Auth\Registrar  $registrar
-	 * @return void
-	 */
-	public function __construct(Guard $auth, Registrar $registrar)
-	{
-		$this->auth = $auth;
-		$this->registrar = $registrar;
+    protected $redirectPath = '/home';
+    protected $redirectAfterLogout = '/auth/login';
 
+    /**
+     * Create a new authentication controller instance.
+     *
+     * @return \App\Http\Controllers\Frontend\Auth\AuthController
+     */
+	public function __construct()
+	{
 		$this->middleware('guest', ['except' => 'getLogout']);
 	}
 
     /**
      * @return \Illuminate\View\View
      */
-    public function getRegister() {
+    public function getRegister()
+    {
         return view('frontend.auth.register');
     }
 
     /**
      * @return \Illuminate\View\View
      */
-    public function getLogin() {
+    public function getLogin()
+    {
         return view('frontend.auth.login');
     }
 
     /**
-     * @return \Illuminate\View\View
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
      */
-    public function postLogin() {
-        return redirect('admin/dashboard');
+    public function validator(array $data)
+    {
+        return Validator::make($data, [
+                'username' => 'required|max:255',
+                'email' => 'required|email|max:255|unique:users',
+                'password' => 'required|confirmed|min:6',
+            ]);
+    }
+
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return User
+     */
+    public function create(array $data)
+    {
+        return User::create([
+                'username' => $data['username'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+            ]);
     }
 
 }

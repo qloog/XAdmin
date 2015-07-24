@@ -12,12 +12,12 @@ class Authenticate {
 	 */
 	protected $auth;
 
-	/**
-	 * Create a new filter instance.
-	 *
-	 * @param  Guard  $auth
-	 * @return void
-	 */
+    /**
+     * Create a new filter instance.
+     *
+     * @param  Guard $auth
+     * @return \App\Http\Middleware\Authenticate
+     */
 	public function __construct(Guard $auth)
 	{
 		$this->auth = $auth;

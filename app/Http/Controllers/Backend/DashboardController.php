@@ -1,12 +1,14 @@
-<?php namespace App\Http\Controllers\Backend;
+<?php
+
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
+use App\Http\Controllers\Backend\BaseController;
 use Illuminate\Http\Request;
 use App\Models\Page;
+use Auth;
 
-class DashboardController extends Controller {
+class DashboardController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.

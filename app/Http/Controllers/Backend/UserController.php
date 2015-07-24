@@ -5,18 +5,20 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use App\Repositories\Backend\User\UserRepository;
 
-class AuthController extends Controller
+class UserController extends BaseController
 {
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function getLogin()
+    public function index()
     {
-        return view('backend.auth.login');
+        $userRepository = new UserRepository();
+        $users = $userRepository->getUsersPaginated(10)->toArray();
+            print_r($users) . '<br>';
     }
 
     /**
@@ -24,7 +26,7 @@ class AuthController extends Controller
      *
      * @return Response
      */
-    public function postLogin()
+    public function create()
     {
         //
     }
@@ -34,7 +36,7 @@ class AuthController extends Controller
      *
      * @return Response
      */
-    public function getLogout()
+    public function store()
     {
         //
     }

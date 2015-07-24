@@ -17,49 +17,58 @@
  */
 Route::group(['namespace' => 'Frontend'], function ()
 {
-    require_once(__DIR__ . "/Routes/Frontend/Frontend.php");
-    //require_once(__DIR__ . "/Routes/Frontend/Access.php");
+    Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);
+//Route::get('/Welcome', 'WelcomeController@index');
+
+    Route::controllers([
+            'auth' => 'Auth\AuthController',
+            'password' => 'Auth\PasswordController',
+        ]);
+
+    Route::get('auth/login', 'Auth\AuthController@getLogin');
+    Route::get('auth/register', 'Auth\AuthController@getRegister');
+    Route::post('auth/login', 'Auth\AuthController@postLogin');
+    Route::get('auth/logout', 'Auth\AuthController@getLogout');
+//Route::get('password/email', 'Auth\PasswordController');
+
+    /**
+     * These frontend controllers require the user to be logged in
+     */
+    Route::group(['middleware' => 'auth'], function ()
+    {
+
+    });
 });
+
 /**
  * Backend Routes
  * Namespaces indicate folder structure
  */
 Route::group(['namespace' => 'Backend'], function ()
 {
-    Route::group(['prefix' => 'admin', /*'middleware' => 'auth'*/], function ()
+
+    // about login and logout
+    Route::group(['prefix' => 'admin'], function ()
     {
-//        /**
-//         * These routes need the Administrator Role
-//         */
-//        Route::group([
-//            'middleware' => 'access.routeNeedsRole',
-//            'role'       => ['Administrator'],
-//            'redirect'   => '/',
-//            'with'       => ['flash_danger', 'You do not have access to do that.']
-//        ], function ()
-//        {
-//            Route::get('dashboard', ['as' => 'backend.dashboard', 'uses' => 'DashboardController@index']);
-//            //require_once(__DIR__ . "/Routes/Backend/Access.php");
-//        });
+        Route::get('login', 'Auth\AuthController@getLogin');
+        Route::post('login', 'Auth\AuthController@postLogin');
+        Route::get('logout', 'Auth\AuthController@getLogout');
+    });
 
-            Route::get('login', 'AuthController@getLogin');
-            Route::post('login', 'AuthController@postLogin');
-            Route::get('logout', 'AuthController@getLogout');
+    // need to auth controller
+    Route::group(['prefix' => 'admin', 'middleware' => 'auth.admin'], function ()
+    {
+        //dashboard
+        Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
+        //user
+        Route::get('user/index', 'UserController@index');
+//        Route::resource('user/profile', 'ProfileController@index');
+//        Route::resource('user/setting', 'SettingController@index');
 
-            Route::get('/dashboard', 'DashboardController@index');
-            Route::resource('materials/single', 'MaterialsController');
-            Route::resource('materials/multi', 'MaterialsMultiController');
-            Route::resource('materials/audio', 'MaterialsAudioController');
+        //material
+        Route::resource('materials/single', 'MaterialsController');
+//        Route::resource('materials/multi', 'MaterialsMultiController');
+//        Route::resource('materials/audio', 'MaterialsAudioController');
     });
 });
-
-//Route::get('/', 'Frontend\HomeController@index');
-//
-////Route::get('home', 'HomeController@index');
-//
-//Route::controllers([
-//	//'auth' => 'Auth\AuthController',
-//	//'password' => 'Auth\PasswordController',
-//]);
-//
 

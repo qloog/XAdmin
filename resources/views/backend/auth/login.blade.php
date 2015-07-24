@@ -70,37 +70,32 @@
         											</h4>
 
         											<div class="space-6"></div>
-
-        											<form>
+        											<form method="POST" action="{{ url('/admin/login') }}">
+        											<input type="hidden" name="_token" value="{{ csrf_token() }}">
         												<fieldset>
         													<label class="block clearfix">
         														<span class="block input-icon input-icon-right">
-        															<input type="text" class="form-control" placeholder="Username" />
+        															<input type="email" class="form-control" name="email" placeholder="邮箱" />
         															<i class="ace-icon fa fa-user"></i>
         														</span>
         													</label>
-
         													<label class="block clearfix">
         														<span class="block input-icon input-icon-right">
-        															<input type="password" class="form-control" placeholder="Password" />
+        															<input type="password" class="form-control" name="password" placeholder="密码" />
         															<i class="ace-icon fa fa-lock"></i>
         														</span>
         													</label>
-
         													<div class="space"></div>
-
         													<div class="clearfix">
         														<label class="inline">
-        															<input type="checkbox" class="ace" />
-        															<span class="lbl"> Remember Me</span>
+        															<input type="checkbox" class="ace" name="remember"/>
+        															<span class="lbl"> 记住我</span>
         														</label>
-
-        														<button type="button" class="width-35 pull-right btn btn-sm btn-primary">
+        														<button type="submit" class="width-35 pull-right btn btn-sm btn-primary">
         															<i class="ace-icon fa fa-key"></i>
-        															<span class="bigger-110">Login</span>
+        															<span class="bigger-110">登录</span>
         														</button>
         													</div>
-
         													<div class="space-4"></div>
         												</fieldset>
         											</form>
@@ -298,44 +293,44 @@
     <script src="{{ asset('js/ace.min.js') }}"></script>
 
     <!-- inline scripts related to this page -->
-        		<script type="text/javascript">
-        			jQuery(function($) {
-        			 $(document).on('click', '.toolbar a[data-target]', function(e) {
-        				e.preventDefault();
-        				var target = $(this).data('target');
-        				$('.widget-box.visible').removeClass('visible');//hide others
-        				$(target).addClass('visible');//show target
-        			 });
-        			});
+    <script type="text/javascript">
+        jQuery(function($) {
+         $(document).on('click', '.toolbar a[data-target]', function(e) {
+            e.preventDefault();
+            var target = $(this).data('target');
+            $('.widget-box.visible').removeClass('visible');//hide others
+            $(target).addClass('visible');//show target
+         });
+        });
 
 
 
-        			//you don't need this, just used for changing background
-        			jQuery(function($) {
-        			 $('#btn-login-dark').on('click', function(e) {
-        				$('body').attr('class', 'login-layout');
-        				$('#id-text2').attr('class', 'white');
-        				$('#id-company-text').attr('class', 'blue');
+        //you don't need this, just used for changing background
+        jQuery(function($) {
+         $('#btn-login-dark').on('click', function(e) {
+            $('body').attr('class', 'login-layout');
+            $('#id-text2').attr('class', 'white');
+            $('#id-company-text').attr('class', 'blue');
 
-        				e.preventDefault();
-        			 });
-        			 $('#btn-login-light').on('click', function(e) {
-        				$('body').attr('class', 'login-layout light-login');
-        				$('#id-text2').attr('class', 'grey');
-        				$('#id-company-text').attr('class', 'blue');
+            e.preventDefault();
+         });
+         $('#btn-login-light').on('click', function(e) {
+            $('body').attr('class', 'login-layout light-login');
+            $('#id-text2').attr('class', 'grey');
+            $('#id-company-text').attr('class', 'blue');
 
-        				e.preventDefault();
-        			 });
-        			 $('#btn-login-blur').on('click', function(e) {
-        				$('body').attr('class', 'login-layout blur-login');
-        				$('#id-text2').attr('class', 'white');
-        				$('#id-company-text').attr('class', 'light-blue');
+            e.preventDefault();
+         });
+         $('#btn-login-blur').on('click', function(e) {
+            $('body').attr('class', 'login-layout blur-login');
+            $('#id-text2').attr('class', 'white');
+            $('#id-company-text').attr('class', 'light-blue');
 
-        				e.preventDefault();
-        			 });
+            e.preventDefault();
+         });
 
-        			});
-        		</script>
+        });
+    </script>
 
 </body>
 </html>

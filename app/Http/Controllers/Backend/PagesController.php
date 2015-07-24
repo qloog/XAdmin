@@ -1,7 +1,6 @@
 <?php namespace App\Http\Controllers\Backend;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
@@ -9,7 +8,7 @@ use App\Models\Page;
 
 use Redirect, Input, Auth;
 
-class PagesController extends Controller
+class PagesController extends baseController
 {
 
     public function __construct()

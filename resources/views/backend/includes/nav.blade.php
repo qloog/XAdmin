@@ -285,7 +285,7 @@
                                 <img class="nav-user-photo" src="/avatars/user.jpg" alt="Jason's Photo">
                                 <span class="user-info">
                                     <small>Welcome,</small>
-                                    Jason
+                                    {{ Auth::user()->username }}
                                 </span>
 
                                 <i class="ace-icon fa fa-caret-down"></i>
@@ -293,25 +293,25 @@
 
                             <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                                 <li>
-                                    <a href="#">
+                                    <a href="{{ url('admin/user/setting') }}">
                                         <i class="ace-icon fa fa-cog"></i>
-                                        Settings
+                                        设置
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="profile.html">
+                                    <a href="{{ url('admin/user/profile') }}">
                                         <i class="ace-icon fa fa-user"></i>
-                                        Profile
+                                        个人资料
                                     </a>
                                 </li>
 
                                 <li class="divider"></li>
 
                                 <li>
-                                    <a href="#">
+                                    <a href="{{ url('admin/logout') }}">
                                         <i class="ace-icon fa fa-power-off"></i>
-                                        Logout
+                                        退出
                                     </a>
                                 </li>
                             </ul>
