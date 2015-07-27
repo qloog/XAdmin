@@ -65,6 +65,16 @@ Route::group(['namespace' => 'Backend'], function ()
 //        Route::resource('user/profile', 'ProfileController@index');
 //        Route::resource('user/setting', 'SettingController@index');
 
+        //upload
+        // After the line that reads
+        Route::get('upload', 'UploadController@index');
+
+        // Add the following routes
+        Route::post('upload/file', 'UploadController@uploadFile');
+        Route::delete('upload/file', 'UploadController@deleteFile');
+        Route::post('upload/folder', 'UploadController@createFolder');
+        Route::delete('upload/folder', 'UploadController@deleteFolder');
+
         //material
         Route::resource('materials/single', 'MaterialsController');
 //        Route::resource('materials/multi', 'MaterialsMultiController');

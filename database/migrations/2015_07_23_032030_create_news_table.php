@@ -12,8 +12,15 @@ class CreateNewsTable extends Migration
      */
     public function up()
     {
-        Schema::table('news', function (Blueprint $table) {
-            //
+        Schema::create('news', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('title');
+                $table->string('page_image')->default('');
+                $table->text('content')->nullable();
+                $table->string('meta_description')->default('');
+                $table->integer('user_id')->default(0);
+                $table->tinyInteger('status')->default(1);
+                $table->timestamps();
         });
     }
 
@@ -24,8 +31,6 @@ class CreateNewsTable extends Migration
      */
     public function down()
     {
-        Schema::table('news', function (Blueprint $table) {
-            //
-        });
+        Schema::drop('news');
     }
 }

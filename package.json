@@ -3,5 +3,8 @@
   "devDependencies": {
     "gulp": "^3.8.8",
     "laravel-elixir": "^1.0.0"
+  },
+  "dependencies": {
+    "gulp-rename": "^1.2.2"
   }
 }

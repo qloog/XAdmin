@@ -287,7 +287,6 @@
                                     <small>Welcome,</small>
                                     {{ Auth::user()->username }}
                                 </span>
-
                                 <i class="ace-icon fa fa-caret-down"></i>
                             </a>
 

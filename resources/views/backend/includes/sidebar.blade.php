@@ -356,9 +356,9 @@
                     </li>
 
                     <li class="">
-                        <a href="javascript:;">
-                            <i class="menu-icon fa fa-picture-o"></i>
-                            <span class="menu-text"> 图片管理 </span>
+                        <a href="/admin/upload">
+                            <i class="menu-icon fa fa-file"></i>
+                            <span class="menu-text"> 文件管理 </span>
                         </a>
 
                         <b class="arrow"></b>
