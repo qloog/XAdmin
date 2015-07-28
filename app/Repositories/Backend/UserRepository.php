@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Backend\User;
+namespace App\Repositories\Backend;
 
 use App\Models\User;
 use App\Services\Registrar;
@@ -9,10 +9,10 @@ use App\Exceptions\GeneralException;
 //use App\Exceptions\Backend\Access\User\UserNeedsRolesException;
 
 /**
- * Class EloquentUserRepository
- * @package App\Repositories\User
+ * Class UserRepository
+ * @package App\Repositories\Backend
  */
-class UserRepository implements UserContract {
+class UserRepository {
     /**
      * @var RoleRepositoryContract
      */

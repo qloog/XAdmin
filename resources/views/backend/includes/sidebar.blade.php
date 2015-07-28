@@ -43,7 +43,7 @@
                         <b class="arrow"></b>
                     </li>
 
-                    <li class="">
+                    <li @if(Request::is('admin/user/*')) class="active open" @endif>
                         <a href="javascript:;" class="dropdown-toggle">
                             <i class="menu-icon fa fa-user"></i>
                             <span class="menu-text">
@@ -54,7 +54,7 @@
                         </a>
                         <b class="arrow"></b>
                         <ul class="submenu">
-                            <li class="">
+                            <li @if(Request::is('admin/user/index')) class="active" @endif>
                                 <a href="/admin/user/index">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     用户列表
@@ -64,8 +64,8 @@
                         </ul>
                     </li>
 
-                    <li @if(Request::is('admin/news')) class="active" @endif>
-                        <a href="{{ url('admin/news') }}" class="dropdown-toggle">
+                    <li @if(Request::is('admin/news/*')) class="active open" @endif>
+                        <a href="javascript:;" class="dropdown-toggle">
                             <i class="menu-icon fa fa-newspaper-o"></i>
                             <span class="menu-text"> 新闻管理 </span>
                             <b class="arrow fa fa-angle-down"></b>
@@ -74,8 +74,8 @@
                         <b class="arrow"></b>
 
                         <ul class="submenu">
-                            <li class="">
-                                <a href="inbox.html">
+                            <li @if(Request::is('admin/news/index')) class="active" @endif>
+                                <a href="{{ url('admin/news/index') }}">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     新闻列表
                                 </a>

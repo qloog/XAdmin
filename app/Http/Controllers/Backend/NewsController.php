@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use App\Repositories\Backend\NewsRepository;
 
-class NewsController extends Controller
+class NewsController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,10 @@ class NewsController extends Controller
      */
     public function index()
     {
-        echo 11111111;
+        $newsRepository = new NewsRepository();
+        $news = $newsRepository->getNewsPaginated(config('custom.per_page'), 1, 'id', 'desc');
+
+        return view('backend.news.index', ['news' => $news]);
     }
 
     /**

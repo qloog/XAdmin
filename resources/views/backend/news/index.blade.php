@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 
-@section('title', '用户管理')
+@section('title', '新闻管理')
 
 @section('breadcrumb')
         <li>
@@ -8,7 +8,7 @@
             <a href="/admin/dashboard">主页</a>
         </li>
         <li>
-            <a>用户管理</a>
+            <a>新闻管理</a>
         </li>
         <li>
             列表
@@ -20,9 +20,9 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>用户名</th>
-                <th>姓名</th>
-                <th>Email</th>
+                <th>标题</th>
+                <th>页面缩略图</th>
+                <th>内容</th>
                 <th>创建时间</th>
                 <th>更新时间</th>
                 <th>状态</th>
@@ -30,15 +30,15 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($users as $user)
+            @foreach ($news as $item)
             <tr>
-                <th>{{ $user->id }}</th>
-                <th>{{ $user->username }}</th>
-                <th>{{ $user->realname }}</th>
-                <th>{{ $user->email }}</th>
-                <th>{{ $user->created_at }}</th>
-                <th>{{ $user->updated_at }}</th>
-                <th>{{ $user->status }}</th>
+                <th>{{ $item->id }}</th>
+                <th>{{ $item->title }}</th>
+                <th>{{ $item->page_image }}</th>
+                <th>{{ $item->content }}</th>
+                <th>{{ $item->created_at }}</th>
+                <th>{{ $item->updated_at }}</th>
+                <th>{{ $item->status }}</th>
                 <th>
                     <div class="hidden-sm hidden-xs action-buttons">
                         <a class="blue" href="#">
@@ -56,6 +56,6 @@
             @endforeach
         </tbody>
     </table>
-    {!! $users->render() !!}
+    {!! $news->render() !!}
 @endsection
 
