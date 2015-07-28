@@ -98,4 +98,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->belongsToMany('App\Models\Role');
     }
 
+    public function getStatusAttribute($value)
+    {
+        return $value == 1 ? '正常' : '已删除';
+    }
+
 }

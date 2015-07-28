@@ -34,7 +34,7 @@
                 </div><!-- /.sidebar-shortcuts -->
 
                 <ul class="nav nav-list" style="top: 0px;">
-                    <li class="">
+                    <li @if(Request::is('admin/dashboard')) class="active" @endif>
                         <a href="/admin/dashboard">
                             <i class="menu-icon fa fa-tachometer"></i>
                             <span class="menu-text"> 仪表板 </span>
@@ -64,11 +64,10 @@
                         </ul>
                     </li>
 
-                    <li class="">
-                        <a href="#" class="dropdown-toggle">
+                    <li @if(Request::is('admin/news')) class="active" @endif>
+                        <a href="{{ url('admin/news') }}" class="dropdown-toggle">
                             <i class="menu-icon fa fa-newspaper-o"></i>
                             <span class="menu-text"> 新闻管理 </span>
-
                             <b class="arrow fa fa-angle-down"></b>
                         </a>
 
@@ -76,23 +75,19 @@
 
                         <ul class="submenu">
                             <li class="">
-                                <a href="profile.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    分类管理
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
                                 <a href="inbox.html">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     新闻列表
                                 </a>
-
                                 <b class="arrow"></b>
                             </li>
-
+                            <li class="">
+                                <a href="profile.html">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    分类管理
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
                             <li class="">
                                 <a href="pricing.html">
                                     <i class="menu-icon fa fa-caret-right"></i>
@@ -355,7 +350,7 @@
                         <b class="arrow"></b>
                     </li>
 
-                    <li class="">
+                    <li @if(Request::is('admin/upload')) class="active" @endif>
                         <a href="/admin/upload">
                             <i class="menu-icon fa fa-file"></i>
                             <span class="menu-text"> 文件管理 </span>

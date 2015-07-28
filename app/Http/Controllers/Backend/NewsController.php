@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Repositories\Backend\User\UserRepository;
+use App\Http\Controllers\Controller;
 
-class UserController extends BaseController
+class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +16,7 @@ class UserController extends BaseController
      */
     public function index()
     {
-        $userRepository = new UserRepository();
-        $users = $userRepository->getUsersPaginated(config('custom.per_page'));
-
-        return view('backend.user.index', ['users' => $users]);
+        echo 11111111;
     }
 
     /**

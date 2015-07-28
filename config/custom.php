@@ -1,7 +1,7 @@
 <?php
 return [
-    'title' => 'My Blog',
-    'posts_per_page' => 5,
+    'site_title' => '后台管理系统',
+    'per_page' => 10,
     'uploads' => [
         'storage' => 'local',
         'webpath' => '/uploads',
