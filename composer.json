@@ -11,7 +11,9 @@
 		"barryvdh/laravel-debugbar": "^2.0",
 		"bosnadev/repositories": "0.8",
 		"guzzlehttp/guzzle": "^6.0",
-		"dflydev/apache-mime-types": "^1.0"
+		"dflydev/apache-mime-types": "^1.0",
+		"ender/laravel-ueditor": "0.8.*",
+		"intervention/image": "^2.3"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
@@ -51,5 +53,14 @@
 	},
 	"config": {
 		"preferred-install": "dist"
-	}
+	},
+    "repositories": [
+        {   
+            "packagist": false
+        },  
+        {   
+            "type": "composer", 
+            "url": "https://toran.reimu.io/repo/packagist/"
+        }   
+    ]
 }

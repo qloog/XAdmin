@@ -152,6 +152,8 @@ return [
         'App\Providers\AccessServiceProvider',
         'Overtrue\LaravelWechat\ServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
+        'Ender\UEditor\UEditorServiceProvider',
+        'Intervention\Image\ImageServiceProvider'
 
 	],
 
@@ -205,7 +207,9 @@ return [
          * custom alias
          */
         'Wechat'    => 'Overtrue\LaravelWechat\Facade',
-        'Debugbar' => 'Barryvdh\Debugbar\Facade',
+        'Debugbar'  => 'Barryvdh\Debugbar\Facade',
+        'UEditor'   => 'Ender\UEditor\UEditor',
+        'Image' => 'Intervention\Image\Facades\Image'
 
 	],
 

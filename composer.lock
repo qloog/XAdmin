@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4049dfdd4b1ed60a2c137be6a07ed2e2",
+    "hash": "6d7b4e87ddbcd863740be105a7bca305",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -373,6 +373,66 @@
             "time": "2014-12-20 21:24:13"
         },
         {
+            "name": "ender/laravel-ueditor",
+            "version": "v0.8.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/argb/laravel-ueditor.git",
+                "reference": "de6e12d80cc21cce12fb947cdcf4d7b935cae9a2",
+                "mirrors": [
+                    {
+                        "url": "/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/argb/laravel-ueditor/zipball/de6e12d80cc21cce12fb947cdcf4d7b935cae9a2",
+                "reference": "de6e12d80cc21cce12fb947cdcf4d7b935cae9a2",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://toran.reimu.io/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "illuminate/config": "~5.0",
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ender\\UEditor\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ender",
+                    "email": "ender0421@gmail.com"
+                }
+            ],
+            "description": "A laravel package of ueditor,which is baidu's open source WYSIWYG editor",
+            "homepage": "https://www.bigfeettrip.com",
+            "keywords": [
+                "editor",
+                "laravel",
+                "ueditor",
+                "wysiwyg"
+            ],
+            "time": "2015-06-06 16:36:13"
+        },
+        {
             "name": "guzzlehttp/guzzle",
             "version": "6.0.2",
             "source": {
@@ -542,6 +602,80 @@
                 "uri"
             ],
             "time": "2015-06-24 19:55:15"
+        },
+        {
+            "name": "intervention/image",
+            "version": "2.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Intervention/image.git",
+                "reference": "156f9d6f8a186c68b92f0c50084718f02dae1b5f",
+                "mirrors": [
+                    {
+                        "url": "/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/156f9d6f8a186c68b92f0c50084718f02dae1b5f",
+                "reference": "156f9d6f8a186c68b92f0c50084718f02dae1b5f",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://toran.reimu.io/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "guzzlehttp/psr7": "~1.1",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9.2",
+                "phpunit/phpunit": "3.*"
+            },
+            "suggest": {
+                "ext-gd": "to use GD library based image processing.",
+                "ext-imagick": "to use Imagick based image processing.",
+                "intervention/imagecache": "Caching extension for the Intervention Image library"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Intervention\\Image\\": "src/Intervention/Image"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oliver Vogel",
+                    "email": "oliver@olivervogel.net",
+                    "homepage": "http://olivervogel.net/"
+                }
+            ],
+            "description": "Image handling and manipulation library with support for Laravel integration",
+            "homepage": "http://image.intervention.io/",
+            "keywords": [
+                "gd",
+                "image",
+                "imagick",
+                "laravel",
+                "thumbnail",
+                "watermark"
+            ],
+            "time": "2015-07-10 15:03:58"
         },
         {
             "name": "jakub-onderka/php-console-color",
