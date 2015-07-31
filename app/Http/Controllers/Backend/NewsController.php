@@ -29,7 +29,7 @@ class NewsController extends BaseController
      */
     public function create()
     {
-        //
+        return view('backend.news.create');
     }
 
     /**

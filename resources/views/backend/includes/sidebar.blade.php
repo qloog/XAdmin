@@ -64,7 +64,7 @@
                         </ul>
                     </li>
 
-                    <li @if(Request::is('admin/news/*')) class="active open" @endif>
+                    <li @if(Request::is('admin/news*')) class="active open" @endif>
                         <a href="javascript:;" class="dropdown-toggle">
                             <i class="menu-icon fa fa-newspaper-o"></i>
                             <span class="menu-text"> 新闻管理 </span>
@@ -74,8 +74,8 @@
                         <b class="arrow"></b>
 
                         <ul class="submenu">
-                            <li @if(Request::is('admin/news/index')) class="active" @endif>
-                                <a href="{{ url('admin/news/index') }}">
+                            <li @if(Request::is('admin/news')) class="active" @endif>
+                                <a href="{{ url('admin/news') }}">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     新闻列表
                                 </a>
@@ -88,8 +88,8 @@
                                 </a>
                                 <b class="arrow"></b>
                             </li>
-                            <li class="">
-                                <a href="pricing.html">
+                            <li @if(Request::is('admin/news/create')) class="active" @endif>
+                                <a href="{{ url('admin/news/create') }}">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     添加新闻
                                 </a>
