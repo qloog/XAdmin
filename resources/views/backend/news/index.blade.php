@@ -22,7 +22,7 @@
                 <th>ID</th>
                 <th>标题</th>
                 <th>页面缩略图</th>
-                <th>内容</th>
+                <th>meta_desc</th>
                 <th>创建时间</th>
                 <th>更新时间</th>
                 <th>状态</th>
@@ -35,19 +35,16 @@
                 <th>{{ $item->id }}</th>
                 <th>{{ $item->title }}</th>
                 <th>{{ $item->page_image }}</th>
-                <th>{{ $item->content }}</th>
+                <th>{{ $item->meta_description }}</th>
                 <th>{{ $item->created_at }}</th>
                 <th>{{ $item->updated_at }}</th>
                 <th>{{ $item->status }}</th>
                 <th>
                     <div class="hidden-sm hidden-xs action-buttons">
-                        <a class="blue" href="#">
-                            <i class="ace-icon fa fa-search-plus bigger-130"></i>
-                        </a>
-                        <a class="green" href="#">
+                        <a class="green" href="{{ url('admin/news/1111/edit') }}">
                             <i class="ace-icon fa fa-pencil bigger-130"></i>
                         </a>
-                        <a class="red" href="#">
+                        <a class="red" href="{{ url('admin/news/111') }}">
                             <i class="ace-icon fa fa-trash-o bigger-130"></i>
                         </a>
                     </div>

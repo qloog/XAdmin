@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Repositories\Backend;
+namespace App\Repositories\Backend\News;
 
 use App\Models\News;
 use App\Exceptions\GeneralException;
 
 /**
  * Class NewsRepository
- * @package App\Repositories\Backend
+ * @package App\Repositories\Backend\News
  */
 class NewsRepository
 {
@@ -48,27 +48,11 @@ class NewsRepository
     }
     /**
      * @param $input
-     * @param $roles
-     * @param $permissions
      * @return bool
-     * @throws GeneralException
-     * @throws UserNeedsRolesException
      */
-    public function create($input, $roles, $permissions) {
+    public function create($input) {
         $user = $this->createUserStub($input);
-        if ($user->save()) {
-            //User Created, Validate Roles
-            $this->validateRoleAmount($user, $roles['assignees_roles']);
-            //Attach new roles
-            $user->attachRoles($roles['assignees_roles']);
-            //Attach other permissions
-            $user->attachPermissions($permissions['permission_user']);
-            //Send confirmation email if requested
-            if (isset($input['confirmation_email']) && $user->confirmed == 0)
-                $this->registrar->resendConfirmationEmail($user->id);
-            return true;
-        }
-        throw new GeneralException('There was a problem creating this user. Please try again.');
+        return $user->save();
     }
     /**
      * @param $id
@@ -235,13 +219,13 @@ class NewsRepository
      */
     private function createUserStub($input)
     {
-        $user = new User;
-        $user->name = $input['name'];
-        $user->email = $input['email'];
-        $user->password = $input['password'];
-        $user->status = isset($input['status']) ? 1 : 0;
-        $user->confirmation_code = md5(uniqid(mt_rand(), true));
-        $user->confirmed = isset($input['confirmed']) ? 1 : 0;
-        return $user;
+        $news = new News;
+        $news->title = $input['title'];
+        $news->meta_description = $input['meta_description'];
+        //$news->page_image = $input['page_image'];
+        $news->content = $input['content'];
+        //$news->user_id = $input['user_id'];
+        //$news->status = isset($input['status']) ? 1 : 0;
+        return $news;
     }
 }
