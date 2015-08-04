@@ -34,7 +34,7 @@
             <tr>
                 <th>{{ $item->id }}</th>
                 <th>{{ $item->title }}</th>
-                <th>{{ $item->page_image }}</th>
+                <th><img src="{{ $item->page_image }}" height="100px" /></th>
                 <th>{{ $item->meta_description }}</th>
                 <th>{{ $item->created_at }}</th>
                 <th>{{ $item->updated_at }}</th>

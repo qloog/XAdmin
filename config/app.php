@@ -209,7 +209,7 @@ return [
         'Wechat'    => 'Overtrue\LaravelWechat\Facade',
         'Debugbar'  => 'Barryvdh\Debugbar\Facade',
         'UEditor'   => 'Ender\UEditor\UEditor',
-        'Image' => 'Intervention\Image\Facades\Image'
+        'Image'     => 'Intervention\Image\Facades\Image'
 
 	],
 

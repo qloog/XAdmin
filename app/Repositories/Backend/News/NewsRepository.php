@@ -222,7 +222,7 @@ class NewsRepository
         $news = new News;
         $news->title = $input['title'];
         $news->meta_description = $input['meta_description'];
-        //$news->page_image = $input['page_image'];
+        $news->page_image = $input['page_image'];
         $news->content = $input['content'];
         //$news->user_id = $input['user_id'];
         //$news->status = isset($input['status']) ? 1 : 0;

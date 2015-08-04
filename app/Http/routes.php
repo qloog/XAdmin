@@ -66,6 +66,7 @@ Route::group(['namespace' => 'Backend'], function ()
 //        Route::resource('user/setting', 'SettingController@index');
         //news
         Route::resource('news', 'NewsController');
+        Route::resource('news/category', 'NewsCategoryController');
 
 
         //upload

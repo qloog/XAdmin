@@ -5,21 +5,11 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Repositories\Backend\News\NewsRepository;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Redirect;
-use App\Http\Requests\Backend\NewsRequest;
-use App\Services\UploadsManager;
+use App\Http\Controllers\Controller;
+use App\Services\Category;
 
-class NewsController extends BaseController
+class NewsCategoryController extends Controller
 {
-
-    private $repository;
-
-    public function __construct(NewsRepository $repository)
-    {
-        $this->repository = $repository;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -27,9 +17,7 @@ class NewsController extends BaseController
      */
     public function index()
     {
-        $news = $this->repository->getNewsPaginated(config('custom.per_page'), 1, 'id', 'desc');
-
-        return view('backend.news.index', ['news' => $news]);
+       echo 'index...';
     }
 
     /**
@@ -39,30 +27,32 @@ class NewsController extends BaseController
      */
     public function create()
     {
-        return view('backend.news.create');
+        $cate = array(
+            array('id'=>1, 'name'=>'PHP', 'pid'=>0),
+            array('id'=>2, 'name'=>'JAVA', 'pid'=>0),
+            array('id'=>3, 'name'=>'NodeJs', 'pid'=>0),
+            array('id'=>4, 'name'=>'Laravel', 'pid'=>1),
+            array('id'=>5, 'name'=>'YII', 'pid'=>1),
+            array('id'=>6, 'name'=>'ExpressJs', 'pid'=>3),
+            array('id'=>7, 'name'=>'Symfony2', 'pid'=>1),
+            array('id'=>8, 'name'=>'JavaScript', 'pid'=>0),
+            array('id'=>9, 'name'=>'Solr', 'pid'=>2),
+            array('id'=>10, 'name'=>'Luence', 'pid'=>2),
+        );
+        $result = Category::unlimitedForLevel($cate);
+        echo "<pre>";
+        print_r($result);
+        exit;
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param NewsRequest    $request
-     * @param UploadsManager $manager
      * @return Response
      */
-    public function store(NewsRequest $request, UploadsManager $manager)
+    public function store()
     {
-        if ($file = Input::file('page_image')) {
-            $data['filename'] = $manager->uploadImage($file);
-        } else {
-            $data['error'] = 'Error while uploading file';
-        }
-
-        $input = Input::all();
-        $input['page_image'] = $data['filename'];
-        $ret = $this->repository->create($input);
-        if ($ret) {
-            return Redirect::to('admin/news');
-        }
+        //
     }
 
     /**

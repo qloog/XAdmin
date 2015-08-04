@@ -60,3 +60,8 @@ if ( ! function_exists('is_image')) {
         return starts_with($mimeType, 'image/');
     }
 }
+
+function getUserStaticDomain()
+{
+    return 'http://localhost:8000/';
+}

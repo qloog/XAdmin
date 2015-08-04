@@ -22,36 +22,62 @@
    <div class="row">
         <div class="col-xs-12">
             <!-- PAGE CONTENT BEGINS -->
-            <form class="form-horizontal" id="news_form" role="form" method="POST" action="{{ URL::to('admin/news') }}">
+            <form class="form-horizontal" id="news_form" role="form" method="POST" action="{{ URL::to('admin/news') }}" enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
-                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 新闻标题 </label>
-
-                    <div class="col-sm-9">
-                        <input type="text" name="title" id="form-field-1" placeholder="title" class="col-xs-10 col-sm-5">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 新闻标题 </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="title" id="form-field-1" placeholder="标题" class="col-xs-10 col-sm-5">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> 摘要 </label>
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 页面关键词 </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="meta_keyword" id="form-field-1" placeholder="蜘蛛侠、煎饼侠" class="col-xs-10 col-sm-5">
+                    </div>
+                </div>
 
-                    <div class="col-sm-9">
-                        <textarea name="meta_description" id="form-field-1-1" placeholder="Text Field" class="form-control"></textarea>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 页面描述 </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="meta_description" id="form-field-1" placeholder="蜘蛛侠大超人" class="col-xs-10 col-sm-5">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1"> 封面图 </label>
+                    <div class="col-sm-10">
+                        <input type="file" name="page_image" id="form-field-1-1" placeholder="简单描述" class="form-control"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1"> 摘要 </label>
+                    <div class="col-sm-10">
+                        <textarea name="summary" id="form-field-1-1" placeholder="简单描述" class="form-control"></textarea>
                     </div>
                 </div>
 
                 <div class="space-4"></div>
 
                 <div class="form-group">
-                    <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">正文</label>
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-tags">正文</label>
                     <input name="content" type="hidden" id="content">
-                    <div class="col-sm-9">
+                    <div class="col-sm-10">
                         {!! UEditor::content() !!}
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 浏览量 </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="views" id="form-field-1" placeholder="100" class="col-xs-10 col-sm-5">
+                    </div>
+                </div>
+
                 <div class="clearfix form-actions">
-                    <div class="col-md-offset-3 col-md-9">
+                    <div class="col-md-offset-3 col-md-10">
                         <button class="btn btn-info" type="button" onClick="uptext();">
                             <i class="ace-icon fa fa-check bigger-110"></i>
                             Submit
@@ -86,12 +112,8 @@
 
      //这段要放在文本编辑器的实例化之后
      function uptext(){
-         if (!ue.hasContents()){
-            alert('请先填写内容!');
-         }else{
-            $('#content').val(ue.getContent());
-            $('#news_form').submit();
-         }
+        $('#content').val(ue.getContent());
+        $('#news_form').submit();
      }
 </script>
 @endsection
