@@ -76,7 +76,7 @@
 
                     <div class="page-content">
                         {{--@include('backend.includes.setting_box')--}}
-
+                        @include('backend.includes.errors')
                         {{--<div class="page-header">--}}
                             {{--<h1>--}}
                                 {{--UI Elements--}}
