@@ -21,11 +21,12 @@
             <tr>
                 <th>ID</th>
                 <th>标题</th>
-                <th>页面缩略图</th>
+                <th>所属分类</th>
                 <th>meta_desc</th>
                 <th>创建时间</th>
                 <th>更新时间</th>
                 <th>状态</th>
+                <th>发布人</th>
                 <th>操作</th>
             </tr>
         </thead>
@@ -34,18 +35,16 @@
             <tr>
                 <th>{{ $item->id }}</th>
                 <th>{{ $item->title }}</th>
-                <th><img src="{{ $item->page_image }}" height="100px" /></th>
+                <th>{{ $item->category['name'] }}</th>
                 <th>{{ $item->meta_description }}</th>
                 <th>{{ $item->created_at }}</th>
                 <th>{{ $item->updated_at }}</th>
                 <th>{{ $item->status }}</th>
+                <th>{{ $item->user['username'] }}</th>
                 <th>
                     <div class="hidden-sm hidden-xs action-buttons">
-                        <a class="green" href="{{ url('admin/news/1111/edit') }}">
+                        <a class="green" href="{{ url('admin/news/'.$item->id.'/edit') }}">
                             <i class="ace-icon fa fa-pencil bigger-130"></i>
-                        </a>
-                        <a class="red" href="{{ url('admin/news/111') }}">
-                            <i class="ace-icon fa fa-trash-o bigger-130"></i>
                         </a>
                     </div>
                 </th>

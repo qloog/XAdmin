@@ -81,8 +81,8 @@
                                 </a>
                                 <b class="arrow"></b>
                             </li>
-                            <li class="">
-                                <a href="profile.html">
+                            <li @if(Request::is('admin/news/category')) class="active" @endif>
+                                <a href="{{ url('admin/news/category') }}">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     分类管理
                                 </a>

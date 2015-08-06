@@ -14,7 +14,7 @@ class Category {
      */
     public static function unlimitedForLevel($cate, $html = '--', $pid = 0, $level = 0) {
         $arr = array();
-        foreach($cate as $v) {
+        foreach($cate as $k => $v) {
             if ($v['pid'] == $pid) {
                 $v['level'] = $level + 1;
                 $v['html'] = str_repeat($html, $level);
@@ -46,8 +46,8 @@ class Category {
 	/**
 	 * 根据一个子分类id获取所有的父级分类
 	 * eg:  首页>衣服>女装>外套
-	 * @param int   $id		当前分类id
      * @param array $cate	分类数组
+     * @param int   $id		当前分类id
      * @return array
      */
 	public static function getParents($cate, $id) {
@@ -72,7 +72,7 @@ class Category {
 		foreach($cate as $v) {
 			if ($v['pid'] == $pid) {
 				$arr[] = $v;
-				$arr = array_merge($arr, self::getChildsId($cate, $v['id']));
+				$arr = array_merge($arr, self::getChilds($cate, $v['id']));
 			}
 		}
 		return $arr;

@@ -25,7 +25,7 @@ class NewsRequest extends Request
     {
         return [
             'title' => 'required|unique:news|max:255',
-            'content' => 'required'
+            'ueditor' => 'required'
         ];
     }
 

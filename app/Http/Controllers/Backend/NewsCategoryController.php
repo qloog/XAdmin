@@ -7,9 +7,20 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Services\Category;
+use App\Repositories\Backend\News\NewsRepository;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 
 class NewsCategoryController extends Controller
 {
+
+    private $repository;
+
+    public function __construct(NewsRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +28,9 @@ class NewsCategoryController extends Controller
      */
     public function index()
     {
-       echo 'index...';
+        $category = $this->repository->getNewsCategoryPaginated(config('custom.per_page'), 1, 'id', 'desc');
+        $selectedCategory = Category::unlimitedForLevel($category->toArray()['data']);
+        return view('backend.news.category', ['category' => $category, 'selectCategory' => $selectedCategory]);
     }
 
     /**
@@ -27,22 +40,7 @@ class NewsCategoryController extends Controller
      */
     public function create()
     {
-        $cate = array(
-            array('id'=>1, 'name'=>'PHP', 'pid'=>0),
-            array('id'=>2, 'name'=>'JAVA', 'pid'=>0),
-            array('id'=>3, 'name'=>'NodeJs', 'pid'=>0),
-            array('id'=>4, 'name'=>'Laravel', 'pid'=>1),
-            array('id'=>5, 'name'=>'YII', 'pid'=>1),
-            array('id'=>6, 'name'=>'ExpressJs', 'pid'=>3),
-            array('id'=>7, 'name'=>'Symfony2', 'pid'=>1),
-            array('id'=>8, 'name'=>'JavaScript', 'pid'=>0),
-            array('id'=>9, 'name'=>'Solr', 'pid'=>2),
-            array('id'=>10, 'name'=>'Luence', 'pid'=>2),
-        );
-        $result = Category::unlimitedForLevel($cate);
-        echo "<pre>";
-        print_r($result);
-        exit;
+        //
     }
 
     /**
@@ -52,7 +50,11 @@ class NewsCategoryController extends Controller
      */
     public function store()
     {
-        //
+        $input = Input::except(['_token']);
+        $ret = $this->repository->createCategory($input);
+        if ($ret) {
+            return Redirect::to('admin/news/category');
+        }
     }
 
     /**

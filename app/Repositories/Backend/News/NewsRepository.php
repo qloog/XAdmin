@@ -3,6 +3,8 @@
 namespace App\Repositories\Backend\News;
 
 use App\Models\News;
+use App\Models\NewsCategory;
+use App\Models\Tags;
 use App\Exceptions\GeneralException;
 
 /**
@@ -17,9 +19,9 @@ class NewsRepository
      * @throws GeneralException
      */
     public function findOrThrowException($id) {
-        $news = News::withTrashed()->find($id);
+        $news = News::find($id);
         if (! is_null($news)) return $news;
-        throw new GeneralException('That user does not exist.');
+        return array();
     }
     /**
      * @param $per_page
@@ -31,6 +33,18 @@ class NewsRepository
     public function getNewsPaginated($per_page, $status = 1, $order_by = 'id', $sort = 'asc') {
         return News::where('status', $status)->orderBy($order_by, $sort)->paginate($per_page);
     }
+
+    /**
+     * @param $per_page
+     * @param string $order_by
+     * @param string $sort
+     * @param int $status
+     * @return mixed
+     */
+    public function getNewsCategoryPaginated($per_page, $status = 1, $order_by = 'id', $sort = 'asc') {
+        return NewsCategory::orderBy($order_by, $sort)->paginate($per_page);
+    }
+
     /**
      * @param $per_page
      * @return \Illuminate\Pagination\Paginator
@@ -43,38 +57,29 @@ class NewsRepository
      * @param string $sort
      * @return mixed
      */
-    public function getAllUsers($order_by = 'id', $sort = 'asc') {
-        return User::orderBy($order_by, $sort)->get();
+    public function getAllCategory($order_by = 'id', $sort = 'asc') {
+        return NewsCategory::orderBy($order_by, $sort)->get();
     }
     /**
      * @param $input
      * @return bool
      */
     public function create($input) {
-        $user = $this->createUserStub($input);
-        return $user->save();
+        $news = $this->createNewsStub($input);
+
+        if ($news->save()) {
+            return $news;
+        }
+        return false;
     }
     /**
      * @param $id
      * @param $input
-     * @param $roles
      * @return bool
-     * @throws GeneralException
      */
-    public function update($id, $input, $roles, $permissions) {
-        $user = $this->findOrThrowException($id);
-        $this->checkUserByEmail($input, $user);
-        if ($user->update($input)) {
-            //For whatever reason this just wont work in the above call, so a second is needed for now
-            $user->status = isset($input['status']) ? 1 : 0;
-            $user->confirmed = isset($input['confirmed']) ? 1 : 0;
-            $user->save();
-            $this->checkUserRolesCount($roles);
-            $this->flushRoles($roles, $user);
-            $this->flushPermissions($permissions, $user);
-            return true;
-        }
-        throw new GeneralException('There was a problem updating this user. Please try again.');
+    public function update($id, $input) {
+        $news = $this->findOrThrowException($id);
+        return $news->update($input);
     }
     /**
      * @param $id
@@ -217,15 +222,38 @@ class NewsRepository
      * @param $input
      * @return mixed
      */
-    private function createUserStub($input)
+    private function createNewsStub($input)
     {
         $news = new News;
         $news->title = $input['title'];
+        $news->category_id = $input['category_id'];
         $news->meta_description = $input['meta_description'];
         $news->page_image = $input['page_image'];
         $news->content = $input['content'];
-        //$news->user_id = $input['user_id'];
-        //$news->status = isset($input['status']) ? 1 : 0;
+        $news->user_id = $input['user_id'];
+        $news->status = isset($input['status']) ?: 0;
         return $news;
+    }
+
+    /**
+     * @param $input
+     * @return bool
+     */
+    public function createCategory($input) {
+        $category = new NewsCategory;
+        $category->name = $input['name'];
+        $category->pid = $input['pid'];
+        return $category->save();
+    }
+
+    /**
+     * Sync tag relation adding new tags as needed
+     *
+     * @param array $tags
+     */
+    public function syncTags(array $tags)
+    {
+        $news = new News();
+        $news->syncTags($tags);
     }
 }

@@ -18,18 +18,18 @@
 Route::group(['namespace' => 'Frontend'], function ()
 {
     Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);
-//Route::get('/Welcome', 'WelcomeController@index');
+    //Route::get('/Welcome', 'WelcomeController@index');
 
     Route::controllers([
-            'auth' => 'Auth\AuthController',
-            'password' => 'Auth\PasswordController',
-        ]);
+        'auth' => 'Auth\AuthController',
+        'password' => 'Auth\PasswordController',
+    ]);
 
     Route::get('auth/login', 'Auth\AuthController@getLogin');
     Route::get('auth/register', 'Auth\AuthController@getRegister');
     Route::post('auth/login', 'Auth\AuthController@postLogin');
     Route::get('auth/logout', 'Auth\AuthController@getLogout');
-//Route::get('password/email', 'Auth\PasswordController');
+    //Route::get('password/email', 'Auth\PasswordController');
 
     /**
      * These frontend controllers require the user to be logged in
@@ -65,8 +65,8 @@ Route::group(['namespace' => 'Backend'], function ()
 //        Route::resource('user/profile', 'ProfileController@index');
 //        Route::resource('user/setting', 'SettingController@index');
         //news
-        Route::resource('news', 'NewsController');
         Route::resource('news/category', 'NewsCategoryController');
+        Route::resource('news', 'NewsController');
 
 
         //upload

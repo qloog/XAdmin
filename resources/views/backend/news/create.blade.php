@@ -32,6 +32,17 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 所属分类 </label>
+                    <div class="col-sm-10">
+                        <select name="category_id">
+                            @foreach ($selectCategory as $item)
+                            <option value="{{ $item['id'] }}">{{ $item['html'] }}{{ $item['name'] }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 页面关键词 </label>
                     <div class="col-sm-10">
                         <input type="text" name="meta_keyword" id="form-field-1" placeholder="蜘蛛侠、煎饼侠" class="col-xs-10 col-sm-5">
@@ -76,9 +87,29 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 标签 </label>
+                    <div class="col-sm-10">
+                        <div class="inline">
+                            <input type="text" name="tags" id="form-field-tags" value="" placeholder="Enter tags ..." style="display: none;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 发布状态 </label>
+                    <div class="col-sm-10">
+                        <select name="status">
+                            @foreach ($status as $key => $item)
+                            <option value="{{ $key }}">{{ $item }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
                 <div class="clearfix form-actions">
                     <div class="col-md-offset-3 col-md-10">
-                        <button class="btn btn-info" type="button" onClick="uptext();">
+                        <button class="btn btn-info" type="submit">
                             <i class="ace-icon fa fa-check bigger-110"></i>
                             Submit
                         </button>
@@ -96,6 +127,7 @@
 
 @section('scripts')
 {!! UEditor::js() !!}
+<script src="{{ asset('js/bootstrap-tag.min.js') }}"></script>
 <script type="text/javascript">
 
     var ue = UE.getEditor('ueditor'); //用辅助方法生成的话默认id是ueditor
@@ -110,11 +142,34 @@
         ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');
     });
 
-     //这段要放在文本编辑器的实例化之后
-     function uptext(){
-        $('#content').val(ue.getContent());
-        $('#news_form').submit();
-     }
+     var tag_input = $('#form-field-tags');
+             try{
+                 tag_input.tag(
+                   {
+                     placeholder:tag_input.attr('placeholder'),
+                     //enable typeahead by specifying the source array
+                     source: {}//defined in ace.js >> ace.enable_search_ahead
+                     /**
+                     //or fetch data from database, fetch those that match "query"
+                     source: function(query, process) {
+                       $.ajax({url: 'remote_source.php?q='+encodeURIComponent(query)})
+                       .done(function(result_items){
+                         process(result_items);
+                       });
+                     }
+                     */
+                   }
+                 )
+
+                 //programmatically add a new
+                 var $tag_obj = $('#form-field-tags').data('tag');
+                 $tag_obj.add('这里写标签');
+             }
+             catch(e) {
+                 //display a textarea for old IE, because it doesn't support this plugin or another one I tried!
+                 tag_input.after('<textarea id="'+tag_input.attr('id')+'" name="'+tag_input.attr('name')+'" rows="3">'+tag_input.val()+'</textarea>').remove();
+                 //$('#form-field-tags').autosize({append: "\n"});
+             }
 </script>
 @endsection
 

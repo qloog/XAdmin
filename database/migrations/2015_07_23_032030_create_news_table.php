@@ -15,6 +15,7 @@ class CreateNewsTable extends Migration
         Schema::dropIfExists('news');
         Schema::create('news', function (Blueprint $table) {
                 $table->increments('id');
+                $table->integer('category_id')->default(0)->comment = '所属分类id';
                 $table->string('title')->comment = '新闻标题';
                 $table->string('meta_keyword')->default('')->comment = '页面关键词';
                 $table->string('meta_description')->default('')->comment = '页面描述';
