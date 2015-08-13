@@ -9,7 +9,9 @@ use App\Http\Controllers\Controller;
 use App\Services\UploadsManager;
 use App\Http\Requests\Backend\UploadFileRequest;
 use App\Http\Requests\Backend\UploadNewFolderRequest;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Input;
 
 class UploadController extends Controller
 {
@@ -135,13 +137,14 @@ class UploadController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * common upload image with js
      *
      * @return Response
      */
-    public function create()
+    public function uploadImage()
     {
-        //
+        $imageFileWithPath = $this->manager->uploadImage(Input::file('file'));
+        return Response()->json(['error' => 0, 'msg' => 'ok', 'image' => $imageFileWithPath]);
     }
 
     /**

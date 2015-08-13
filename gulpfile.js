@@ -26,7 +26,8 @@ var paths = {
     'bootstrap': 'resources/assets/bower/bootstrap',
     'fontawesome': 'resources/assets/bower/fontawesome',
     'datatables': 'resources/assets/bower/datatables',
-    'datatables_plugins': 'resources/assets/bower/datatables-plugins'
+    'datatables_plugins': 'resources/assets/bower/datatables-plugins',
+    'jquery_file_upload': 'resources/assets/bower/jquery-file-upload'
 };
 
 /**
@@ -68,6 +69,17 @@ gulp.task("copyfiles", function() {
     gulp.src(dtDir + 'bootstrap/3/dataTables.bootstrap.js')
         .pipe(gulp.dest('resources/assets/js/'));
 
+    //copy jquery-file-upload
+    gulp.src(paths.jquery_file_upload + '/js/**')
+        .pipe(gulp.dest('public/js/jquery-file-upload'));
+
+    gulp.src(paths.jquery_file_upload + '/css/**')
+        .pipe(gulp.dest('public/css/jquery-file-upload'));
+
+    gulp.src(paths.jquery_file_upload + '/img/**')
+        .pipe(gulp.dest('public/img/'));
+
+
 });
 
 /**
@@ -87,4 +99,9 @@ elixir(function(mix) {
 
     // Compile Less, default to public/css/app.css
     mix.less('app.less');
+
+    //copy file: from resources/assets/js to public/js
+    //All operations are relative to the project's root directory
+    //mix.copy('resources/assets/js/jquery.fileupload.js', 'public/js/jquery.fileupload.js');
+
 });

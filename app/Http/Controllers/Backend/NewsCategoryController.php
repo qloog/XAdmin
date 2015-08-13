@@ -28,7 +28,7 @@ class NewsCategoryController extends Controller
      */
     public function index()
     {
-        $category = $this->repository->getNewsCategoryPaginated(config('custom.per_page'), 1, 'id', 'desc');
+        $category = $this->repository->getNewsCategoryPaginated(config('custom.per_page'), 'id', 'desc');
         $selectedCategory = Category::unlimitedForLevel($category->toArray()['data']);
         return view('backend.news.category', ['category' => $category, 'selectCategory' => $selectedCategory]);
     }

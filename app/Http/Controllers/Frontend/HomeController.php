@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller {
 
@@ -25,20 +26,36 @@ class HomeController extends Controller {
 	 */
 	public function __construct()
 	{
-		$this->middleware('auth');
+		//$this->middleware('auth');
 	}
 
-	/**
-	 * Show the application dashboard to the user.
-	 *
-	 * @return Response
-	 */
-	public function index()
+    /**
+     * 获取题目对应答案的数目
+     * @param $t_id
+     * @return array
+     */
+    function index()
 	{
-        echo 'id:' . Auth::user()->id . '<br>';
-        echo 'username:' . Auth::user()->username . '<br>';
-        dd(Auth::user());
-        //return view('frontend.index');
+        $r = DB::table('user_data_record')->insert(array('t_id'=>2,'d_id'=>'test2'));
+        print_r($r);
+//        $result = array();
+//        if (empty($t_id)) {
+//            return $result;
+//        }
+//        $data = DB::table('user_data_record')
+//            ->select(DB::raw('count(d_id) as num'), 'd_id')
+//            ->where('t_id', '=', $t_id)
+//            ->groupBy('d_id')
+//            ->get();
+//        $result = array();
+//        foreach($data as $item){
+//            $result[$item->d_id] = $item->num;
+//        }
+//        /**
+//         * 举例： 东、西、南、北为某一个题目的答案，value为对应的数量
+//         * Array ( [东] => 9 [北] => 10 [南] => 5 [西] => 1 )
+//         */
+//        return $result;
 	}
 
 }

@@ -1,11 +1,8 @@
 <?php namespace App\Http\Controllers\Backend;
 
 use App\Http\Requests;
-
 use Illuminate\Http\Request;
-
 use App\Models\Page;
-
 use Redirect, Input, Auth;
 
 class PagesController extends baseController
@@ -23,8 +20,10 @@ class PagesController extends baseController
 	 */
 	public function index()
 	{
-        $pages = Page::all();
-        dd($pages);
+        $page = Page::where('slug', '=', 'overview')->first();
+        $gallery = Page::where('slug', '=', 'gallery')->first();
+        $images = explode(',', $gallery->content);
+        return view('backend.pages.index', ['page' => $page, 'gallery' => $gallery, 'images' => $images]);
 	}
 
 	/**
@@ -47,17 +46,16 @@ class PagesController extends baseController
 	{
 		//
         $this->validate($request, [
-            'title' => 'required|unique:pages|max:255',
-            'body' => 'required',
+            'ueditor' => 'required',
         ]);
 
+
         $page = new Page;
-        $page->title = Input::get('title');
-        $page->body = Input::get('body');
-        $page->user_id = 1;//Auth::user()->id;
+        $page->content = Input::get('editor');
+        $page->user_id = Auth::user()->id;
 
         if ($page->save()) {
-            return Redirect::to('admin');
+            return Redirect::to('admin/page');
         } else {
             return Redirect::back()->withInput()->withErrors('保存失败！');
         }
@@ -71,8 +69,7 @@ class PagesController extends baseController
 	 */
 	public function show($id)
 	{
-        dd(Page::find($id)->hasManyComments);exit;
-        return view('admin.pages.edit')->withPage(Page::find($id));
+        //
 	}
 
 	/**
@@ -97,17 +94,15 @@ class PagesController extends baseController
 	{
 		//
         $this->validate($request, [
-            'title' => 'required|unique:pages,title,'.$id.'|max:255',
-            'body' => 'required',
+            'ueditor' => 'required',
         ]);
 
         $page = Page::find($id);
-        $page->title = Input::get('title');
-        $page->body = Input::get('body');
-        $page->user_id = 1;//Auth::user()->id;
+        $page->content = Input::get('ueditor');
+        $page->user_id = Auth::user()->id;
 
         if ($page->save()) {
-            return Redirect::to('admin');
+            return Redirect::to('admin/page');
         } else {
             return Redirect::back()->withInput()->withErrors('保存失败！');
         }
@@ -125,7 +120,7 @@ class PagesController extends baseController
         $page = Page::find($id);
         $page->delete();
 
-        return Redirect::to('admin');
+        return Redirect::to('admin/page');
 	}
 
 }

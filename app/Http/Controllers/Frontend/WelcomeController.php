@@ -1,4 +1,9 @@
-<?php namespace App\Http\Controllers;
+<?php
+
+namespace App\Http\Controllers\Frontend;
+
+use App\Http\Controllers\Controller;
+use App\Models\Page;
 
 class WelcomeController extends Controller {
 
@@ -30,7 +35,10 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('welcome');
+        $gallery = Page::where('slug', '=', 'gallery')->first();
+        $images = explode(',', $gallery->content);
+        $images = array_slice($images, 0, 16);
+		return view('frontend.index', ['images' => $images]);
 	}
 
 }

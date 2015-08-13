@@ -22,7 +22,7 @@
                 <th>ID</th>
                 <th>标题</th>
                 <th>所属分类</th>
-                <th>meta_desc</th>
+                <th>浏览量</th>
                 <th>创建时间</th>
                 <th>更新时间</th>
                 <th>状态</th>
@@ -36,7 +36,7 @@
                 <th>{{ $item->id }}</th>
                 <th>{{ $item->title }}</th>
                 <th>{{ $item->category['name'] }}</th>
-                <th>{{ $item->meta_description }}</th>
+                <th>{{ $item->views }}</th>
                 <th>{{ $item->created_at }}</th>
                 <th>{{ $item->updated_at }}</th>
                 <th>{{ $item->status }}</th>

@@ -18,7 +18,20 @@ class News extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'page_image', 'content', 'meta_description', 'user_id', 'status', 'created_at', 'updated_at'];
+    protected $fillable = [
+        'title',
+        'category_id',
+        'page_image',
+        'content',
+        'meta_keyword',
+        'meta_description',
+        'summary',
+        'views',
+        'user_id',
+        'status',
+        'created_at',
+        'updated_at'
+    ];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -75,9 +88,9 @@ class News extends Model
         $this->tags()->detach();
     }
 
-    public function getStatusAttribute($value)
-    {
-        return $value == 1 ? '正常' : '已删除';
-    }
+//    public function getStatusAttribute($value)
+//    {
+//        return $value == 1 ? '正常' : '已删除';
+//    }
 
 }

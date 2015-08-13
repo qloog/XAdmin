@@ -18,6 +18,7 @@
     "bootstrap": "~3.3.4",
     "fontawesome": "~4.3.0",
     "datatables": "~1.10.7",
-    "datatables-plugins": "~1.10.7"
+    "datatables-plugins": "~1.10.7",
+    "jquery-file-upload": "~9.10.7"
   }
 }

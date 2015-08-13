@@ -1,0 +1,92 @@
+a:focus, 
+a:hover, #navigation .navbar-right .dropdown-menu-large li a:hover, 
+#navigation .navbar-right .dropdown-menu-large li a:active, .service-content i, #parallax-one .nav-tabs li a i, .project-filter .active, .necessary i, .post:hover a.entry-title, .post:hover a.entry-title h2, .entry-meta span a:hover, .contact-info i, .contact-info a:hover, .contact-widget i, .twitter-widget i, .social li a:hover, #countdown ul li p, #countdown .socials li a:hover, .coming-soon .copyright a, .widget-area .widget_search button.btn:hover i, .widget.tab_widget ul li.active a, .widget ul li a:hover, .post-comment a.btn-reply:hover, .pagination>li>a:hover, 
+.pagination>li>a.active, 
+.pagination>li>span:hover, 
+.pagination>li>a:focus, 
+.pagination>li>span:focus {
+	color:#37B878;
+}
+
+
+.section-title h1:after, .btn, .btn:hover, .btn:focus, #navigation .navbar-right li a.active, 
+#navigation .navbar-right li a:hover,
+#navigation .navbar-right li.active> a, 
+.bottom-socials ul li a:hover, 
+#navigation .navbar-right li i:hover, 
+.nav>li>a:hover, #navigation .navbar-right .dropdown-menu li a:hover, 
+#navigation .navbar-right .dropdown-menu li a:active, #main-slider .slider-inner .btn:hover, #our-services .col-sm-6.col-md-3:nth-of-type(1):before,
+#our-services .col-sm-6.col-md-3:nth-of-type(2):before,
+#our-services .col-sm-6.col-md-3:nth-of-type(3):before, #parallax-one .nav-tabs li.active a, ul.filter li a:hover, ul.filter li a.active, .post-time, .entry-meta span:before, #testimonial .carousel-inner, .footer-widget h1:after, .footer-bottom, .single-table.featured-table h2, .single-table.featured-table .btn.btn-primary, 
+.single-table:hover .btn.btn-primary:hover, .pricing-table-one .single-table .btn.btn-primary, .contact-wrap .btn.btn-primary:before, 
+#comment-form  .btn.btn-primary:before,  
+.contact-wrap .btn.btn-primary:after, 
+#comment-form  .btn.btn-primary:after, .post-content.media .post-format i, .widget.tab_widget .nav, .widget.tag-cloud ul li a:hover, .footer-widget-wrapper:before, .pricing-table-one .price    {
+	background-color: #37B878;
+}
+
+#navigation .header-section, #main-slider .owl-prev:hover,
+#main-slider .owl-next:hover {
+	background-color:#2c905e;
+}
+
+.portfolio-item a:hover{
+	color:#2c905e
+}
+
+.navbar-right .dropdown-menu, .search-form {
+	background-color:rgba(44, 144, 94, 0.95);
+}
+
+.portfolio-item .overlay, .instagram li a:before, .member .overlay {
+	background-color: rgba(55,184,120,0.8);
+}
+
+
+.btn:hover, 
+.btn:focus, .form-control:focus, 
+#contact-form input:focus,
+#contact-form textarea:focus, .form-control:focus, .widget-area .widget_search .form-control:focus, .widget ul li a:hover {	
+	border-color:#37B878;
+}
+
+#main-slider .slider-inner .btn {
+	border: 1px solid #37B878;
+}
+a.read-more span {
+	border-bottom: 48px solid #37B878;
+}
+
+#testimonial .carousel-indicators li.active:before {
+	border-top: 13px solid #37B878;
+}
+.footer-logo {
+	background-image:url(../../images/logo/footer-logo5.png);
+}
+#navigation .navbar-fixed-top {
+	background-color:#2c905e!important;
+}
+
+.single-table.featured-table .price, .pricing-table-one  .single-table h2, .pricing-table-one .single-table.featured-table .btn.btn-primary {
+	background-color: #1ea160;
+}
+
+#main-slider .item.item-one{
+	background-image: url(../../images/slider/green/3.jpg);
+}
+
+#main-slider .item.item-two{
+	background-image: url(../../images/slider/green/4.jpg);
+}
+
+#main-slider.content-slider2 {
+	background-image: url(../../images/slider/green/3.jpg);
+}
+
+#main-slider.content-slider {
+	background-image: url(../../images/slider/green/4.jpg)
+}
+
+#sub-page  #navigation{
+	background: url(../../images/slider/green/header-bg.jpg);
+}

@@ -27,21 +27,19 @@ class NewsRepository
      * @param $per_page
      * @param string $order_by
      * @param string $sort
-     * @param int $status
      * @return mixed
      */
-    public function getNewsPaginated($per_page, $status = 1, $order_by = 'id', $sort = 'asc') {
-        return News::where('status', $status)->orderBy($order_by, $sort)->paginate($per_page);
+    public function getNewsPaginated($per_page, $order_by = 'id', $sort = 'asc') {
+        return News::orderBy($order_by, $sort)->paginate($per_page);
     }
 
     /**
      * @param $per_page
      * @param string $order_by
      * @param string $sort
-     * @param int $status
      * @return mixed
      */
-    public function getNewsCategoryPaginated($per_page, $status = 1, $order_by = 'id', $sort = 'asc') {
+    public function getNewsCategoryPaginated($per_page, $order_by = 'id', $sort = 'asc') {
         return NewsCategory::orderBy($order_by, $sort)->paginate($per_page);
     }
 
@@ -65,7 +63,7 @@ class NewsRepository
      * @return bool
      */
     public function create($input) {
-        $news = $this->createNewsStub($input);
+        $news = News::create($input);
 
         if ($news->save()) {
             return $news;
@@ -218,6 +216,7 @@ class NewsRepository
         if (count($roles['assignees_roles']) == 0)
             throw new GeneralException('You must choose at least one role.');
     }
+
     /**
      * @param $input
      * @return mixed

@@ -24,7 +24,7 @@ class AuthController extends Controller {
 
 	use AuthenticatesAndRegistersUsers;
 
-    protected $redirectPath = '/home';
+    protected $redirectPath = '/';
     protected $redirectAfterLogout = '/auth/login';
 
     /**

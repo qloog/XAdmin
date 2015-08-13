@@ -227,7 +227,7 @@ class UploadsManager
     }
 
     /**
-     * 上传图片
+     * 上传图片,返回图片的相对路径
      * @param      $file
      * @param int  $width
      * @param null $height

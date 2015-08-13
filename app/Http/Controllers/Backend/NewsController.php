@@ -13,6 +13,9 @@ use App\Services\UploadsManager;
 use App\Services\Category;
 use App\Models\News;
 use Auth, Log;
+use App\Jobs\NewsFormFields;
+use App\Http\Requests\Backend\NewsCreateRequest;
+use App\Http\Requests\Backend\NewsUpdateRequest;
 
 class NewsController extends BaseController
 {
@@ -30,7 +33,7 @@ class NewsController extends BaseController
      */
     public function index()
     {
-        $news = $this->repository->getNewsPaginated(config('custom.per_page'), 1, 'id', 'desc');
+        $news = $this->repository->getNewsPaginated(config('custom.per_page'), 'id', 'desc');
         return view('backend.news.index', ['news' => $news]);
     }
 
@@ -41,35 +44,22 @@ class NewsController extends BaseController
      */
     public function create()
     {
+        $data = $this->dispatch(new NewsFormFields());
         $category = $this->repository->getAllCategory();
-        $selectedCategory = Category::unlimitedForLevel($category->toArray());
-        $status = array(
-            '1' => '已发布',
-            '2' => '草稿',
-            '3' => '已删除'
-        );
-        return view('backend.news.create', ['selectCategory' => $selectedCategory, 'status' => $status]);
+        $data['selectCategory'] = Category::unlimitedForLevel($category->toArray());
+
+        return view('backend.news.create', $data);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param NewsRequest    $request
-     * @param UploadsManager $manager
+     * @param NewsCreateRequest    $request
      * @return Response
      */
-    public function store(NewsRequest $request, UploadsManager $manager)
+    public function store(NewsCreateRequest $request)
     {
-        if ($file = Input::file('page_image')) {
-            $data['filename'] = $manager->uploadImage($file);
-        } else {
-            $data['error'] = 'Error while uploading file';
-        }
-
-        $input = Input::all();
-        $input['page_image'] = $data['filename'];
-        $input['user_id'] = Auth::user()->id;
-        if ($news = $this->repository->create($input)) {
+        if ($news = $this->repository->create($request->newsFillData())) {
             trim(Input::get('tags')) &&  $news->syncTags(array_map('trim', explode(',', Input::get('tags'))));
             return Redirect::to('admin/news');
         } else {
@@ -86,7 +76,6 @@ class NewsController extends BaseController
     public function show($id)
     {
         $news = $this->repository->findOrThrowException($id);
-
         print_r($news->category->name);exit;
     }
 
@@ -98,28 +87,30 @@ class NewsController extends BaseController
      */
     public function edit($id)
     {
-        $news = $this->repository->findOrThrowException($id);
-        return view('backend.news.edit', ['news' => $news]);
+        $data = $this->dispatch(new NewsFormFields($id));
+        $category = $this->repository->getAllCategory();
+        $data['selectCategory'] = Category::unlimitedForLevel($category->toArray());
+        //print_r($data);exit;
+        return view('backend.news.edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      *
+     * @param NewsUpdateRequest $request
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(NewsUpdateRequest $request, $id)
     {
-        $input = Input::all();
-        $input['content'] = Input::get('ueditor');
         $news = News::findOrNew($id);
-        if ($this->repository->update($id, $input)) {
+        if ($this->repository->update($id, $request->newsFillData())) {
             Log::info('update...'. Input::get('tags'));
             $tags = Input::get('tags') ? array_map('trim', explode(',', Input::get('tags'))) : [];
             $news->syncTags($tags);
             return Redirect::to('admin/news');
         } else {
-            return Redirect::back()->withInput()->withErrors('保存失败！');
+            //return Redirect::back()->withInput()->withErrors('保存失败！');
         }
 
     }

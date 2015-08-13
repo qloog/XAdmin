@@ -120,15 +120,8 @@
                         </a>
                         <b class="arrow"></b>
                         <ul class="submenu">
-                            <li class="">
-                                <a href="/admin/user/index">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    分类管理
-                                </a>
-                                <b class="arrow"></b>
-                            </li>
-                            <li class="">
-                                <a href="/admin/user/index">
+                            <li @if(Request::is('admin/page')) class="active" @endif>
+                                <a href="{{ url('admin/page') }}">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     内容管理
                                 </a>

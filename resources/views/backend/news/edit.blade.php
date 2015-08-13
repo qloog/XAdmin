@@ -22,70 +22,11 @@
    <div class="row">
         <div class="col-xs-12">
             <!-- PAGE CONTENT BEGINS -->
-            <form class="form-horizontal" id="news_form" role="form" method="POST" action="{{ URL::to('admin/news/' . $news->id) }}" enctype="multipart/form-data">
+            <form class="form-horizontal" id="news_form" role="form" method="POST" action="{{ URL::to('admin/news/' . $id) }}" enctype="multipart/form-data">
                 <input name="_method" type="hidden" value="PUT">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 新闻标题 </label>
-                    <div class="col-sm-10">
-                        <input type="text" name="title" id="form-field-1" placeholder="标题" class="col-xs-10 col-sm-5" value="{{ $news->title }}">
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 页面关键词 </label>
-                    <div class="col-sm-10">
-                        <input type="text" name="meta_keyword" id="form-field-1" placeholder="蜘蛛侠、煎饼侠" class="col-xs-10 col-sm-5" value="{{ $news->meta_keyword }}">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 页面描述 </label>
-                    <div class="col-sm-10">
-                        <input type="text" name="meta_description" id="form-field-1" placeholder="蜘蛛侠大超人" class="col-xs-10 col-sm-5" value="{{ $news->meta_description }}">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1"> 封面图 </label>
-                    <div class="col-sm-10">
-                        <input type="file" name="page_image" id="form-field-1-1" placeholder="简单描述" class="form-control" />
-                        <img src="{{ $news->page_image }}" width="200px" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1"> 摘要 </label>
-                    <div class="col-sm-10">
-                        <textarea name="summary" id="form-field-1-1" placeholder="简单描述" class="form-control">{{ $news->summary }}</textarea>
-                    </div>
-                </div>
-
-                <div class="space-4"></div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right" for="form-field-tags">正文</label>
-                    <input name="content" type="hidden" id="content">
-                    <div class="col-sm-10">
-                        {!! UEditor::content($news->content) !!}
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 浏览量 </label>
-                    <div class="col-sm-10">
-                        <input type="text" name="views" id="form-field-1" placeholder="100" class="col-xs-10 col-sm-5">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 标签 </label>
-                    <div class="col-sm-10">
-                        <div class="inline">
-                            <input type="text" name="tags" id="form-field-tags" value="" placeholder="请输入标签名，回车即可" style="display: none;">
-                    	</div>
-                    </div>
-                </div>
+                @include('backend.news._form')
 
                 <div class="clearfix form-actions">
                     <div class="col-md-offset-3 col-md-10">
@@ -124,7 +65,7 @@
                 </p>
               </div>
               <div class="modal-footer">
-                <form method="POST" action="{{ route('admin.news.destroy', $news->id) }}">
+                <form method="POST" action="{{ route('admin.news.destroy', $id) }}">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                   <input type="hidden" name="_method" value="DELETE">
                   <button type="button" class="btn btn-default"
@@ -142,11 +83,24 @@
 
 @section('scripts')
 {!! UEditor::js() !!}
+<script src="{{ asset('js/jquery-file-upload/vendor/jquery.ui.widget.js') }}"></script>
+<script src="{{ asset('js/jquery-file-upload/jquery.iframe-transport.js') }}"></script>
+<script src="{{ asset('js/jquery-file-upload/jquery.fileupload.js') }}"></script>
 <script src="{{ asset('js/bootstrap-tag.min.js') }}"></script>
 <script type="text/javascript">
+    $(function () {
+        $('#file').fileupload({
+            url: '/admin/upload/image',
+            type: 'POST',
+            dataType: 'json',
+            done: function (e, data) {
+                $('#upload_image_preview').attr('src', data.result.image);
+                $('#page_image').val(data.result.image);
+            }
+        });
+    });
 
     var ue = UE.getEditor('ueditor'); //用辅助方法生成的话默认id是ueditor
-
     /* 自定义路由 */
     /*
     var serverUrl=UE.getOrigin()+'/ueditor/test'; //你的自定义上传路由
@@ -178,8 +132,8 @@
 
             //programmatically add a new
             var $tag_obj = $('#form-field-tags').data('tag');
-            @foreach($news->tags as $tag)
-            $tag_obj.add('{{ $tag->tag }}');
+            @foreach($tags as $item)
+            $tag_obj.add('{{ $item }}');
             @endforeach
         }
         catch(e) {

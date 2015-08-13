@@ -18,7 +18,11 @@
 Route::group(['namespace' => 'Frontend'], function ()
 {
     Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);
-    //Route::get('/Welcome', 'WelcomeController@index');
+    Route::get('/', ['as' => 'welcome', 'uses' => 'WelcomeController@index']);
+    Route::get('/overview', ['as' => 'overview', 'uses' => 'PagesController@overview']);
+    Route::get('/video', ['as' => 'video', 'uses' => 'PagesController@video']);
+    Route::get('/gallery', ['as' => 'gallery', 'uses' => 'PagesController@gallery']);
+    Route::get('/route', ['as' => 'route', 'uses' => 'PagesController@route']);
 
     Route::controllers([
         'auth' => 'Auth\AuthController',
@@ -68,6 +72,9 @@ Route::group(['namespace' => 'Backend'], function ()
         Route::resource('news/category', 'NewsCategoryController');
         Route::resource('news', 'NewsController');
 
+        //page
+        Route::resource('page', 'PagesController');
+
 
         //upload
         // After the line that reads
@@ -78,6 +85,7 @@ Route::group(['namespace' => 'Backend'], function ()
         Route::delete('upload/file', 'UploadController@deleteFile');
         Route::post('upload/folder', 'UploadController@createFolder');
         Route::delete('upload/folder', 'UploadController@deleteFolder');
+        Route::any('upload/image', 'UploadController@uploadImage');
 
         //material
         Route::resource('materials/single', 'MaterialsController');
