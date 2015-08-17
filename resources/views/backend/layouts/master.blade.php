@@ -44,14 +44,14 @@
 </head>
 
 <body class="no-skin">
-        @include('backend.includes.nav')
+        @include('backend.partials.nav')
 
         <div class="main-container" id="main-container">
             <script type="text/javascript">
                 try{ace.settings.check('main-container' , 'fixed')}catch(e){}
             </script>
 
-            @include('backend.includes.sidebar')
+            @include('backend.partials.sidebar')
 
             <div class="main-content">
                 <div class="main-content-inner">
@@ -76,7 +76,8 @@
 
                     <div class="page-content">
                         {{--@include('backend.includes.setting_box')--}}
-                        @include('backend.includes.errors')
+                        @include('backend.partials.errors')
+                        @include('backend.partials.success')
                         {{--<div class="page-header">--}}
                             {{--<h1>--}}
                                 {{--UI Elements--}}
@@ -93,7 +94,7 @@
                 </div>
             </div><!-- /.main-content -->
 
-            @include('backend.includes.footer')
+            @include('backend.partials.footer')
 
             <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
                 <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>

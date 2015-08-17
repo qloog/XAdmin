@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTagsTable extends Migration
+class CreateEventUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,10 @@ class CreateTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('event_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('tag')->comment = 'tag名称';
-            $table->integer('news_id')->default(0)->comment = '新闻id';
-            $table->string('tag_id')->default(0)->comment = '标签名';
+            $table->integer('event_id')->default(0)->comment = '活动id';
+            $table->integer('user_id')->default(0)->comment = '参与者id';
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateTagsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tags');
+        Schema::drop('event_user');
     }
 }

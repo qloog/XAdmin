@@ -72,9 +72,11 @@ Route::group(['namespace' => 'Backend'], function ()
         Route::resource('news/category', 'NewsCategoryController');
         Route::resource('news', 'NewsController');
 
+        //event
+        Route::resource('event', 'EventController');
+
         //page
         Route::resource('page', 'PagesController');
-
 
         //upload
         // After the line that reads

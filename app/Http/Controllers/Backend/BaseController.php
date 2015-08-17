@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 
 class BaseController extends Controller {
 
-    const PER_PAGE_NUM = 20;
+
+    protected  $repository;
 
     public function __construct()
     {

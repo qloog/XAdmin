@@ -48,36 +48,36 @@
             </form>
     </div>
 
-        {{-- Confirm Delete --}}
-        <div class="modal fade" id="modal-delete" tabIndex="-1">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                  ×
-                </button>
-                <h4 class="modal-title">Please Confirm</h4>
-              </div>
-              <div class="modal-body">
-                <p class="lead">
-                  <i class="fa fa-question-circle fa-lg"></i>
-                  Are you sure you want to delete this post?
-                </p>
-              </div>
-              <div class="modal-footer">
-                <form method="POST" action="{{ route('admin.news.destroy', $id) }}">
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                  <input type="hidden" name="_method" value="DELETE">
-                  <button type="button" class="btn btn-default"
-                          data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-danger">
-                    <i class="fa fa-times-circle"></i> Yes
-                  </button>
-                </form>
-              </div>
-            </div>
+    {{-- Confirm Delete --}}
+    <div class="modal fade" id="modal-delete" tabIndex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              ×
+            </button>
+            <h4 class="modal-title">Please Confirm</h4>
+          </div>
+          <div class="modal-body">
+            <p class="lead">
+              <i class="fa fa-question-circle fa-lg"></i>
+              Are you sure you want to delete this post?
+            </p>
+          </div>
+          <div class="modal-footer">
+            <form method="POST" action="{{ route('admin.news.destroy', $id) }}">
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              <input type="hidden" name="_method" value="DELETE">
+              <button type="button" class="btn btn-default"
+                      data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-danger">
+                <i class="fa fa-times-circle"></i> Yes
+              </button>
+            </form>
           </div>
         </div>
+      </div>
+    </div>
    </div>
 @endsection
 
@@ -101,12 +101,6 @@
     });
 
     var ue = UE.getEditor('ueditor'); //用辅助方法生成的话默认id是ueditor
-    /* 自定义路由 */
-    /*
-    var serverUrl=UE.getOrigin()+'/ueditor/test'; //你的自定义上传路由
-    var ue = UE.getEditor('ueditor',{'serverUrl':serverUrl}); //如果不使用默认路由，就需要在初始化就设定这个值
-    */
-
     ue.ready(function() {
         ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');
     });
@@ -118,15 +112,6 @@
                 placeholder:tag_input.attr('placeholder'),
                 //enable typeahead by specifying the source array
                 source: {}//defined in ace.js >> ace.enable_search_ahead
-                /**
-                //or fetch data from database, fetch those that match "query"
-                source: function(query, process) {
-                  $.ajax({url: 'remote_source.php?q='+encodeURIComponent(query)})
-                  .done(function(result_items){
-                    process(result_items);
-                  });
-                }
-                */
               }
             )
 

@@ -9,7 +9,6 @@ use App\Repositories\Backend\News\NewsRepository;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\Backend\NewsRequest;
-use App\Services\UploadsManager;
 use App\Services\Category;
 use App\Models\News;
 use Auth, Log;
@@ -19,8 +18,6 @@ use App\Http\Requests\Backend\NewsUpdateRequest;
 
 class NewsController extends BaseController
 {
-
-    private $repository;
 
     public function __construct(NewsRepository $repository)
     {

@@ -151,7 +151,7 @@
                         </ul>
                     </li>
 
-                    <li class="">
+                    <li @if(Request::is('admin/event*')) class="active open" @endif>
                         <a href="javascript:;" class="dropdown-toggle">
                             <i class="menu-icon fa fa-calendar"></i>
                             <span class="menu-text">
@@ -162,8 +162,8 @@
                         </a>
                         <b class="arrow"></b>
                         <ul class="submenu">
-                            <li class="">
-                                <a href="/admin/user/index">
+                            <li @if(Request::is('admin/event')) class="active" @endif>
+                                <a href="{{ url('admin/event') }}">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     活动列表
                                 </a>

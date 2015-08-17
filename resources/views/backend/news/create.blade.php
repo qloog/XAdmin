@@ -31,13 +31,13 @@
                     <div class="col-md-offset-3 col-md-10">
                         <button class="btn btn-info" type="submit">
                             <i class="ace-icon fa fa-check bigger-110"></i>
-                            Submit
+                            保存
                         </button>
 
                         &nbsp; &nbsp; &nbsp;
                         <button class="btn" type="reset">
                             <i class="ace-icon fa fa-undo bigger-110"></i>
-                            Reset
+                            重置
                         </button>
                     </div>
                 </div>
@@ -51,9 +51,13 @@
 <script src="{{ asset('js/jquery-file-upload/jquery.iframe-transport.js') }}"></script>
 <script src="{{ asset('js/jquery-file-upload/jquery.fileupload.js') }}"></script>
 <script src="{{ asset('js/bootstrap-tag.min.js') }}"></script>
+<script src="{{ asset('js/jquery-validate/jquery.validate.js') }}"></script>
+<script src="{{ asset('js/jquery-validate/additional-methods.js') }}"></script>
+<script src="{{ asset('js/jquery-validate/messages_zh.js') }}"></script>
 
 <script type="text/javascript">
     $(function () {
+        //文件上传
         $('#file').fileupload({
             url: '/admin/upload/image',
             dataType: 'json',
@@ -62,13 +66,59 @@
                 $('#page_image').val(data.result.image);
             }
         });
+
+        //表单验证
+        $('#news_form').validate({
+            errorElement: 'div',
+            errorClass: 'help-block',
+            focusInvalid: false,
+            ignore: "",
+            rules: {
+                title: {
+                    required: true
+                },
+                category_id: {
+                    required: true
+                }
+            },
+
+            messages: {
+            },
+
+            highlight: function (e) {
+                $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+            },
+
+            success: function (e) {
+                $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+                $(e).remove();
+            },
+
+            errorPlacement: function (error, element) {
+                if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+                    var controls = element.closest('div[class*="col-"]');
+                    if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
+                    else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+                }
+                else if(element.is('.select2')) {
+                    error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+                }
+                else if(element.is('.chosen-select')) {
+                    error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+                }
+                else error.insertAfter(element.parent());
+            },
+
+            submitHandler: function (form) {
+                form.submit();
+            },
+            invalidHandler: function (form) {
+            }
+        });
+
     });
     var ue = UE.getEditor('ueditor'); //用辅助方法生成的话默认id是ueditor
-    /* 自定义路由 */
-    /*
-    var serverUrl=UE.getOrigin()+'/ueditor/test'; //你的自定义上传路由
-    var ue = UE.getEditor('ueditor',{'serverUrl':serverUrl}); //如果不使用默认路由，就需要在初始化就设定这个值
-    */
+
     ue.ready(function() {
         ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');
     });
@@ -79,15 +129,6 @@
                      placeholder:tag_input.attr('placeholder'),
                      //enable typeahead by specifying the source array
                      source: {}//defined in ace.js >> ace.enable_search_ahead
-                     /**
-                     //or fetch data from database, fetch those that match "query"
-                     source: function(query, process) {
-                       $.ajax({url: 'remote_source.php?q='+encodeURIComponent(query)})
-                       .done(function(result_items){
-                         process(result_items);
-                       });
-                     }
-                     */
                    }
                  )
                  //programmatically add a new

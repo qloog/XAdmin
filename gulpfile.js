@@ -27,11 +27,15 @@ var paths = {
     'fontawesome': 'resources/assets/bower/fontawesome',
     'datatables': 'resources/assets/bower/datatables',
     'datatables_plugins': 'resources/assets/bower/datatables-plugins',
-    'jquery_file_upload': 'resources/assets/bower/jquery-file-upload'
+    'jquery_file_upload': 'resources/assets/bower/jquery-file-upload',
+    'jquery_validate': 'resources/assets/bower/jquery-validate'
 };
 
 /**
  * Copy any needed files.
+ *
+ * 将resources/assets/bower 下的文件拷贝到 resources/assets/ 对应的目录下
+ * 方便elixir做文件合并压缩
  *
  * Do a 'gulp copyfiles' after bower updates
  */
@@ -79,7 +83,12 @@ gulp.task("copyfiles", function() {
     gulp.src(paths.jquery_file_upload + '/img/**')
         .pipe(gulp.dest('public/img/'));
 
+    //copy jquery-validate
+    gulp.src(paths.jquery_validate + '/dist/jquery.validate.js')
+        .pipe(gulp.dest('resources/assets/js/'));
 
+    gulp.src(paths.jquery_validate + '/dist/additional-methods.js')
+        .pipe(gulp.dest('resources/assets/js/'));
 });
 
 /**
@@ -103,5 +112,8 @@ elixir(function(mix) {
     //copy file: from resources/assets/js to public/js
     //All operations are relative to the project's root directory
     //mix.copy('resources/assets/js/jquery.fileupload.js', 'public/js/jquery.fileupload.js');
+    mix.copy('resources/assets/js/jquery.validate.js', 'public/js/jquery-validate/jquery.validate.js');
+    mix.copy('resources/assets/js/additional-methods.js', 'public/js/jquery-validate/additional-methods.js');
+    mix.copy('resources/assets/bower/jquery-validate/src/localization/messages_zh.js', 'public/js/jquery-validate/messages_zh.js');
 
 });

@@ -3,7 +3,7 @@
 .env
 /config/wechat.php
 /public/uploads
-/resources/assets/bower
+/resources/assets
 /resources/views/frontend
 
 .idea
