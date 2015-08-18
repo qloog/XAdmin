@@ -61,7 +61,31 @@ if ( ! function_exists('is_image')) {
     }
 }
 
-function getUserStaticDomain()
-{
-    return 'http://localhost:8000/';
+if ( ! function_exists('get_image_url')) {
+    /**
+     * get image path
+     * @param string $imageName
+     * @param bool   $fullUrl
+     * @return string
+     */
+    function get_image_url($imageName, $fullUrl = false)
+    {
+        $image =  \Illuminate\Support\Facades\DB::table('images')->where('image_name', '=', $imageName)->first();
+        $imagePath = $image ? $image->image_path : null;
+        if ($fullUrl) {
+            return $image ? getStaticDomain() . $imagePath : getStaticDomain() . config('custom.default_image');
+        }
+        return $image ? $imagePath : config('custom.default_image');
+    }
+}
+
+if ( ! function_exists('get_image_url')) {
+    /**
+     * get static domain
+     * @return string
+     */
+    function getStaticDomain()
+    {
+        return 'http://www.local.com/';
+    }
 }

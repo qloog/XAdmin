@@ -2,10 +2,11 @@
 
 namespace App\Services;
 
+use App\Models\Image;
 use Carbon\Carbon;
 use Dflydev\ApacheMimeTypes\PhpRepository;
 use Illuminate\Support\Facades\Storage;
-use Auth, Image;
+use Auth;
 
 class UploadsManager
 {
@@ -231,10 +232,9 @@ class UploadsManager
      * @param      $file
      * @param int  $width
      * @param null $height
-     * @param bool $fullPath
      * @return string
      */
-    public function uploadImage($file, $width=1440, $height=null, $fullPath=false)
+    public function uploadImage($file, $width=1440, $height=null)
     {
         if (!is_object($file)) {
             return '';
@@ -245,22 +245,25 @@ class UploadsManager
         }
         //$fileName        = $file->getClientOriginalName();
         $extension       = $file->getClientOriginalExtension() ?: 'png';
-        $folderName      = rtrim(config('custom.uploads.images'), '/') . '/' . date("Ym", time()) .'/'.date("d", time()) .'/'. Auth::User()->id;
+        $folderName      = rtrim(config('custom.uploads.images'), '/') . '/' . date("Ym", time()) .'/'.date("d", time());
         $destinationPath = public_path() . '/' . $folderName;
-        $safeName        = str_random(10) . '.' . $extension;
+        $safeNameWithoutExt = str_random(10);
+        $safeName        = $safeNameWithoutExt . '.' . $extension;
         $file->move($destinationPath, $safeName);
         // If is not gif file, we will try to reduse the file size
         if ($file->getClientOriginalExtension() != 'gif') {
             // open an image file
-            $img = Image::make($destinationPath . '/' . $safeName);
-            // prevent possible upsizing
-            $img->resize($width, $height, function ($constraint) {
-                    $constraint->aspectRatio();
-                    $constraint->upsize();
-                });
-            // finally we save the image as a new file
-            $img->save();
+//            $img = Image::make($destinationPath . '/' . $safeName);
+//            // prevent possible upsizing
+//            $img->resize($width, $height, function ($constraint) {
+//                    $constraint->aspectRatio();
+//                    $constraint->upsize();
+//                });
+//            // finally we save the image as a new file
+//            $img->save();
+            //save to db
+            Image::create(['image_name' => $safeNameWithoutExt, 'image_path' => $folderName .'/'. $safeName, 'user_id' => Auth::user()->id]);
         }
-        return $fullPath ? getUserStaticDomain() . $folderName .'/'. $safeName : $folderName .'/'. $safeName;
+        return $safeNameWithoutExt;
     }
 }

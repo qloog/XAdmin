@@ -66,7 +66,7 @@ class News extends Model
      */
     public function tags()
     {
-        return $this->belongsToMany('App\Models\Tags', 'news_tag_pivot');
+        return $this->belongsToMany('App\Models\Tag', 'news_tag_pivot');
     }
 
     /**
@@ -76,16 +76,21 @@ class News extends Model
      */
     public function syncTags(array $tags)
     {
-        Tags::addNeededTags($tags);
+        Tag::addNeededTags($tags);
 
         if (count($tags)) {
             $this->tags()->sync(
-                Tags::whereIn('tag', $tags)->lists('id')->all()
+                Tag::whereIn('tag', $tags)->lists('id')->all()
             );
             return;
         }
 
         $this->tags()->detach();
+    }
+
+    public function getPageImageAttribute($value)
+    {
+        return get_image_url($value);
     }
 
 //    public function getStatusAttribute($value)

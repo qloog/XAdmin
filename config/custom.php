@@ -7,4 +7,5 @@ return [
         'webpath' => '/uploads',
         'images'  => '/uploads/images'
     ],
+    'default_image' => '/uploads/images/default_image.jpg'
 ];

@@ -66,7 +66,7 @@
             type: 'POST',
             dataType: 'json',
             done: function (e, data) {
-                $('#upload_image_preview').attr('src', data.result.image);
+                $('#upload_image_preview').attr('src', data.result.image_url);
                 $('#page_image').val(data.result.image);
             }
         });

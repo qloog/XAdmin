@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Backend;
 
 use App\Jobs\EventFormFields;
 use App\Repositories\Backend\Event\EventRepository;
-use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Requests\Backend\EventCreateRequest;

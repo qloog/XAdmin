@@ -13,8 +13,8 @@ class EventRepository
      * @throws GeneralException
      */
     public function find($id) {
-        $event = Event::find($id);
-        if (! is_null($event)) return $event;
+        $obj = Event::find($id);
+        if (! is_null($obj)) return $obj;
         return array();
     }
 
@@ -52,11 +52,7 @@ class EventRepository
      */
     public function create($input) {
         $obj = Event::create($input);
-
-        if ($obj->save()) {
-            return $obj;
-        }
-        return false;
+        return $obj->save() ? $obj : false;
     }
     /**
      * @param $id
@@ -67,45 +63,16 @@ class EventRepository
         $obj = $this->find($id);
         return $obj->update($input);
     }
-    /**
-     * @param $id
-     * @param $input
-     * @return bool
-     * @throws GeneralException
-     */
-    public function updatePassword($id, $input) {
-        $user = $this->findOrThrowException($id);
-        //Passwords are hashed on the model
-        $user->password = $input['password'];
-        if ($user->save())
-            return true;
-        throw new GeneralException('There was a problem changing this users password. Please try again.');
-    }
-    /**
-     * @param $id
-     * @return bool
-     * @throws GeneralException
-     */
-    public function destroy($id) {
-        if (auth()->id() == $id)
-            throw new GeneralException("You can not delete yourself.");
-        $user = $this->findOrThrowException($id);
-        if ($user->delete())
-            return true;
-        throw new GeneralException("There was a problem deleting this user. Please try again.");
-    }
+
     /**
      * @param $id
      * @return boolean|null
      * @throws GeneralException
      */
     public function delete($id) {
-        $user = $this->findOrThrowException($id, true);
-        //Detach all roles & permissions
-        $user->detachRoles($user->roles);
-        $user->detachPermissions($user->permissions);
+        $obj = $this->find($id);
         try {
-            $user->forceDelete();
+            $obj->forceDelete();
         } catch (\Exception $e) {
             throw new GeneralException($e->getMessage());
         }
@@ -116,7 +83,7 @@ class EventRepository
      * @throws GeneralException
      */
     public function restore($id) {
-        $user = $this->findOrThrowException($id);
+        $user = $this->find($id);
         if ($user->restore())
             return true;
         throw new GeneralException("There was a problem restoring this user. Please try again.");

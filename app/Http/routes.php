@@ -74,6 +74,7 @@ Route::group(['namespace' => 'Backend'], function ()
 
         //event
         Route::resource('event', 'EventController');
+        Route::resource('album', 'AlbumController');
 
         //page
         Route::resource('page', 'PagesController');

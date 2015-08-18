@@ -72,7 +72,8 @@ class RepositoryMake extends Command
      */
     private function generateNamespace()
     {
-        return str_replace('/', '\\', $this->getAppNamespace().config('repoist.path').'/'.$this->argument('path').'/'.$this->argument('name'));
+        //return str_replace('/', '\\', $this->getAppNamespace().config('repoist.path').'/'.$this->argument('path').'/'.$this->argument('name'));
+        return str_replace('/', '\\', $this->getAppNamespace().config('repoist.path').'/'.$this->argument('path'));
     }
     /**
      * @return array

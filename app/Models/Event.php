@@ -47,6 +47,11 @@ class Event extends Model
         return $this->hasMany('App\Models\EventUser', 'event_id', 'id');
     }
 
+    public function getEventImageAttribute($value)
+    {
+        return get_image_url($value);
+    }
+
     public function getBeginTimeAttribute($value)
     {
         return date('Y-m-d', strtotime($value));

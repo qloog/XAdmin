@@ -143,8 +143,13 @@ class UploadController extends Controller
      */
     public function uploadImage()
     {
-        $imageFileWithPath = $this->manager->uploadImage(Input::file('file'));
-        return Response()->json(['error' => 0, 'msg' => 'ok', 'image' => $imageFileWithPath]);
+        $imageName = $this->manager->uploadImage(Input::file('file'));
+        return Response()->json([
+                'error' => 0,
+                'msg' => 'ok',
+                'image' => $imageName,
+                'image_url' => get_image_url($imageName)
+            ]);
     }
 
     /**
