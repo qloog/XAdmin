@@ -5,7 +5,7 @@ namespace App\Services;
 /**
 * 通用的树型类，可以生成任何树型结构
 */
-class Tree {
+class TreeService {
 	/**
 	* 生成树型结构所需要的2维数组
 	* @var array
