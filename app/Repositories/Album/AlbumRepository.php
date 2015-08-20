@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Backend\Album;
+namespace App\Repositories\Album;
 
 use App\Models\Album;
 

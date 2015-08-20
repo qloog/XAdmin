@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-class Category {
+class CategoryService {
 
     /**
      * 组合一维数组

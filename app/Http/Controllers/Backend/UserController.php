@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Repositories\Backend\User\UserRepository;
+use App\Repositories\User\UserRepository;
 
 class UserController extends BaseController
 {

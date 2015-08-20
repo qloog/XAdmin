@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Jobs\EventFormFields;
-use App\Repositories\Backend\Event\EventRepository;
+use App\Repositories\Event\EventRepository;
 
 use App\Http\Requests;
 use App\Http\Requests\Backend\EventCreateRequest;

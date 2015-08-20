@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Backend\Event;
+namespace App\Repositories\Event;
 
 use App\Models\Event;
 

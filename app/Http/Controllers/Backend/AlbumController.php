@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Repositories\Backend\Album\AlbumRepository;
+use App\Repositories\Album\AlbumRepository;
 
 class AlbumController extends BaseController
 {

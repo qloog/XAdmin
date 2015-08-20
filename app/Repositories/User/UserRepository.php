@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Backend\User;
+namespace App\Repositories\User;
 
 use App\Models\User;
 use App\Services\Registrar;
