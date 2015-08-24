@@ -154,7 +154,8 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Ender\UEditor\UEditorServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class
 
 	],
 
@@ -210,7 +211,8 @@ return [
         'Wechat'    => Overtrue\LaravelWechat\Facade::class,
         'Debugbar'  => Barryvdh\Debugbar\Facade::class,
         'UEditor'   => Ender\UEditor\UEditor::class,
-        'Image'     => Intervention\Image\Facades\Image::class
+        'Image'     => Intervention\Image\Facades\Image::class,
+        'Flash'     => Laracasts\Flash\Flash::class
 
 	],
 
