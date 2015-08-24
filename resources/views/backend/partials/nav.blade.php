@@ -18,7 +18,7 @@
                     <a href="#" class="navbar-brand">
                         <small>
                             <i class="fa fa-leaf"></i>
-                            Ace Admin
+                            X Admin
                         </small>
                     </a>
                 </div>

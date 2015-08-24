@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Services\Category;
+use App\Services\CategoryService;
 use App\Repositories\News\NewsRepository;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -29,7 +29,7 @@ class NewsCategoryController extends Controller
     public function index()
     {
         $category = $this->repository->getNewsCategoryPaginated(config('custom.per_page'), 'id', 'desc');
-        $selectedCategory = Category::unlimitedForLevel($category->toArray()['data']);
+        $selectedCategory = CategoryService::unlimitedForLevel($category->toArray()['data']);
         return view('backend.news.category', ['category' => $category, 'selectCategory' => $selectedCategory]);
     }
 

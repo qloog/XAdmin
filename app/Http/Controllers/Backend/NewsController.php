@@ -9,7 +9,7 @@ use App\Repositories\News\NewsRepository;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\Backend\NewsRequest;
-use App\Services\Category;
+use App\Services\CategoryService;
 use App\Models\News;
 use Auth, Log;
 use App\Jobs\NewsFormFields;
@@ -43,7 +43,7 @@ class NewsController extends BaseController
     {
         $data = $this->dispatch(new NewsFormFields());
         $category = $this->repository->getAllCategory();
-        $data['selectCategory'] = Category::unlimitedForLevel($category->toArray());
+        $data['selectCategory'] = CategoryService::unlimitedForLevel($category->toArray());
 
         return view('backend.news.create', $data);
     }
@@ -86,7 +86,7 @@ class NewsController extends BaseController
     {
         $data = $this->dispatch(new NewsFormFields($id));
         $category = $this->repository->getAllCategory();
-        $data['selectCategory'] = Category::unlimitedForLevel($category->toArray());
+        $data['selectCategory'] = CategoryService::unlimitedForLevel($category->toArray());
         //print_r($data);exit;
         return view('backend.news.edit', $data);
     }

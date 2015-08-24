@@ -1,12 +1,29 @@
-<?php namespace App\Repositories\Comment;
+<?php
+
+namespace App\Repositories\Comment;
 
 use App\Models\Comment;
+use App\Repositories\AbstractRepository;
 
-class CommentRepository implements CommentContract
+class CommentRepository extends AbstractRepository implements CommentContract
 {
-    
-    public function getAll()
+
+    /**
+     * Create a new CommentRepository instance.
+     * @param Comment $comment
+     */
+    public function __construct(Comment $comment)
     {
-        return Comment::all();
+        $this->model = $comment;
+    }
+
+    /**
+     * @param $per_page
+     * @param string $order_by
+     * @param string $sort
+     * @return mixed
+     */
+    public function getAll($per_page, $order_by = 'id', $sort = 'desc') {
+        return $this->model->orderBy($order_by, $sort)->paginate($per_page);
     }
 }

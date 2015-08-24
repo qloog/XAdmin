@@ -30,7 +30,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @inject('cate', 'App\Services\Category')
+                    @inject('cate', 'App\Services\CategoryService')
                     @foreach ($category as $item)
                     <tr>
                         <th>{{ $item->id }}</th>

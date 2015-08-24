@@ -2,11 +2,17 @@
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Redirect, Input;
 use App\Models\Comment;
+use App\Repositories\Comment\CommentRepository;
 
-class CommentsController extends Controller {
+class CommentController extends BaseController
+{
+
+    public function __construct(CommentRepository $repository)
+    {
+        $this->repository = $repository;
+    }
 
 	/**
 	 * Display a listing of the resource.
@@ -15,8 +21,8 @@ class CommentsController extends Controller {
 	 */
 	public function index()
 	{
-		//
-        return view('admin.comments.index')->withComments(Comment::all());
+		$comments = $this->repository->getAll(config('custom.per_page'));
+        return view('backend.comment.index')->withData($comments);
 	}
 
 	/**

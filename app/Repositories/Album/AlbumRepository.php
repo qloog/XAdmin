@@ -3,9 +3,19 @@
 namespace App\Repositories\Album;
 
 use App\Models\Album;
+use App\Repositories\AbstractRepository;
 
-class AlbumRepository
+class AlbumRepository extends AbstractRepository implements AlbumContract
 {
+
+    /**
+     * Create a new DbUserRepository instance.
+     * @param Album $album
+     */
+    public function __construct(Album $album)
+    {
+        $this->model = $album;
+    }
 
     /**
      * @param $id
@@ -13,7 +23,7 @@ class AlbumRepository
      * @throws GeneralException
      */
     public function find($id) {
-        $obj = Album::find($id);
+        $obj = $this->model->find($id);
         if (! is_null($obj)) return $obj;
         return array();
     }
@@ -25,7 +35,7 @@ class AlbumRepository
      * @return mixed
      */
     public function getAll($per_page, $order_by = 'id', $sort = 'desc') {
-        return Album::orderBy($order_by, $sort)->paginate($per_page);
+        return $this->model->orderBy($order_by, $sort)->paginate($per_page);
     }
 
     /**
@@ -33,7 +43,7 @@ class AlbumRepository
      * @return bool
      */
     public function create($input) {
-        $obj = Album::create($input);
+        $obj = $this->model->create($input);
         return $obj->save() ? $obj : false;
     }
     /**

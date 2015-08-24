@@ -15,11 +15,12 @@ class CreateCommentsTable extends Migration {
 		Schema::create('comments', function(Blueprint $table)
 		{
                 $table->increments('id');
-                $table->string('nickname');
-                $table->string('email')->nullable();
-                $table->string('website')->nullable();
-                $table->text('content')->nullable();
-                $table->integer('page_id');
+                $table->enum('type', ['news', 'photo'])->default('news')->comment = '评论所属类型';
+                $table->integer('relation_id')->default(0)->comment = '关联id';
+                $table->string('ip', 15)->default('')->comment = '评论者所在地ip';
+                $table->text('content')->comment = '评论内容';
+                $table->integer('user_id')->default(0)->comment = '评论者id';
+                $table->softDeletes();
                 $table->timestamps();
 		});
 	}

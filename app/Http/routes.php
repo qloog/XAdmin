@@ -62,6 +62,8 @@ Route::group(['namespace' => 'Backend'], function ()
     // need to auth controller
     Route::group(['prefix' => 'admin', 'middleware' => 'auth.admin'], function ()
     {
+        Route::get('/', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
+
         //dashboard
         Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
         //user
@@ -74,7 +76,10 @@ Route::group(['namespace' => 'Backend'], function ()
 
         //event
         Route::resource('event', 'EventController');
+        //album
         Route::resource('album', 'AlbumController');
+        //comment
+        Route::resource('comment', 'CommentController');
 
         //page
         Route::resource('page', 'PagesController');

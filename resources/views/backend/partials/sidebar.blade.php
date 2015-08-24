@@ -172,7 +172,7 @@
                         </ul>
                     </li>
 
-                    <li class="">
+                    <li @if(Request::is('admin/comment*')) class="active open" @endif>
                         <a href="javascript:;" class="dropdown-toggle">
                             <i class="menu-icon fa fa-comment"></i>
                             <span class="menu-text">
@@ -183,8 +183,8 @@
                         </a>
                         <b class="arrow"></b>
                         <ul class="submenu">
-                            <li class="">
-                                <a href="/admin/user/index">
+                            <li @if(Request::is('admin/comment')) class="active" @endif>
+                                <a href="{{ url('admin/comment') }}">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     评论列表
                                 </a>

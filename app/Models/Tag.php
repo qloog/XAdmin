@@ -24,7 +24,7 @@ class Tag extends Model
      */
     public function news()
     {
-        return $this->belongsToMany('App\Models\News', 'news_tag_pivot');
+        return $this->belongsToMany('App\Models\News', 'news_tags_pivot');
     }
 
     /**

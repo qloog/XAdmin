@@ -89,3 +89,30 @@ if ( ! function_exists('get_image_url')) {
         return 'http://www.local.com/';
     }
 }
+
+if ( ! function_exists('get_relation_title')) {
+    /**
+     * get static domain
+     * @param $type
+     * @param $relation_id
+     * @return string
+     */
+    function get_relation_title($type, $relation_id)
+    {
+        $title = '';
+        switch($type){
+            case 'news':
+                $obj = DB::table('news')->select('title')->where('id', '=', $relation_id)->first();
+                $title = $obj->title;
+                break;
+            case 'photo':
+                $obj = DB::table('album_photo')->select('photo_name')->where('id', '=', $relation_id)->first();
+                $title = $obj->album_photo;
+                break;
+            default:
+                $title = '没有对应的分类';
+                break;
+        }
+        return $title;
+    }
+}
