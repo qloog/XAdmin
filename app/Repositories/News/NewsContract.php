@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\Comment;
+namespace App\Repositories\News;
 
-interface CommentContract
+interface NewsContract
 {
 
     public function getAll($per_page, $order_by = 'id', $sort = 'desc');

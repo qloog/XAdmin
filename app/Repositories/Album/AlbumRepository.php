@@ -23,7 +23,7 @@ class AlbumRepository extends AbstractRepository implements AlbumContract
      * @throws GeneralException
      */
     public function find($id) {
-        $obj = $this->model->find($id);
+        $obj = $this->model->findOrNew($id);
         if (! is_null($obj)) return $obj;
         return array();
     }

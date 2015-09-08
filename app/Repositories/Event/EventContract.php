@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\Comment;
+namespace App\Repositories\Event;
 
-interface CommentContract
+interface EventContract
 {
 
     public function getAll($per_page, $order_by = 'id', $sort = 'desc');

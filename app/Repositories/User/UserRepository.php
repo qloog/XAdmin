@@ -3,8 +3,11 @@
 namespace App\Repositories\User;
 
 use App\Models\User;
+use App\Repositories\AbstractRepository;
+use App\Repositories\User\UserContract;
 use App\Services\Registrar;
 use App\Exceptions\GeneralException;
+use App\Exceptions\UserNotFoundException;
 //use App\Repositories\Backend\Role\RoleRepositoryContract;
 //use App\Exceptions\Backend\Access\User\UserNeedsRolesException;
 
@@ -12,7 +15,8 @@ use App\Exceptions\GeneralException;
  * Class UserRepository
  * @package App\Repositories\Backend
  */
-class UserRepository {
+class UserRepository extends AbstractRepository implements UserContract
+{
     /**
      * @var RoleRepositoryContract
      */
@@ -33,7 +37,7 @@ class UserRepository {
      * @param $id
      * @param bool $withRoles
      * @return mixed
-     * @throws GeneralException
+     * @throws UserNotFoundException
      */
     public function findOrThrowException($id, $withRoles = false) {
         if ($withRoles)
@@ -41,7 +45,7 @@ class UserRepository {
         else
             $user = User::withTrashed()->find($id);
         if (! is_null($user)) return $user;
-        throw new GeneralException('That user does not exist.');
+        throw new UserNotFoundException('That user does not exist.');
     }
     /**
      * @param $per_page

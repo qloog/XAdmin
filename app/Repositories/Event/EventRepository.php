@@ -3,17 +3,26 @@
 namespace App\Repositories\Event;
 
 use App\Models\Event;
+use App\Repositories\AbstractRepository;
 
-class EventRepository
+class EventRepository extends AbstractRepository implements EventContract
 {
+
+    /**
+     * Create a new EventRepository instance.
+     * @param Event $event
+     */
+    public function __construct(Event $event)
+    {
+        $this->model = $event;
+    }
 
     /**
      * @param $id
      * @return mixed
-     * @throws GeneralException
      */
     public function find($id) {
-        $obj = Event::find($id);
+        $obj = $this->model->findOrNew($id);
         if (! is_null($obj)) return $obj;
         return array();
     }
@@ -25,17 +34,7 @@ class EventRepository
      * @return mixed
      */
     public function getAll($per_page, $order_by = 'id', $sort = 'desc') {
-        return Event::orderBy($order_by, $sort)->paginate($per_page);
-    }
-
-    /**
-     * @param $per_page
-     * @param string $order_by
-     * @param string $sort
-     * @return mixed
-     */
-    public function getNewsCategoryPaginated($per_page, $order_by = 'id', $sort = 'asc') {
-        return NewsCategory::orderBy($order_by, $sort)->paginate($per_page);
+        return $this->model->orderBy($order_by, $sort)->paginate($per_page);
     }
 
     /**
@@ -43,7 +42,7 @@ class EventRepository
      * @return \Illuminate\Pagination\Paginator
      */
     public function getDeletedUsersPaginated($per_page) {
-        return User::onlyTrashed()->paginate($per_page);
+        return $this->model->onlyTrashed()->paginate($per_page);
     }
 
     /**
@@ -51,7 +50,7 @@ class EventRepository
      * @return bool
      */
     public function create($input) {
-        $obj = Event::create($input);
+        $obj = $this->model->create($input);
         return $obj->save() ? $obj : false;
     }
     /**
@@ -77,6 +76,7 @@ class EventRepository
             throw new GeneralException($e->getMessage());
         }
     }
+
     /**
      * @param $id
      * @return bool
@@ -87,21 +87,6 @@ class EventRepository
         if ($user->restore())
             return true;
         throw new GeneralException("There was a problem restoring this user. Please try again.");
-    }
-    /**
-     * @param $id
-     * @param $status
-     * @return bool
-     * @throws GeneralException
-     */
-    public function mark($id, $status) {
-        if (auth()->id() == $id && ($status == 0 || $status == 2))
-            throw new GeneralException("You can not do that to yourself.");
-        $user = $this->findOrThrowException($id);
-        $user->status = $status;
-        if ($user->save())
-            return true;
-        throw new GeneralException("There was a problem updating this user. Please try again.");
     }
 
 }

@@ -4,14 +4,16 @@ namespace App\Repositories\News;
 
 use App\Models\News;
 use App\Models\NewsCategory;
-use App\Models\Tags;
+use App\Models\Tag;
 use App\Exceptions\GeneralException;
+use App\Repositories\AbstractRepository;
+use App\Repositories\NewsContract;
 
 /**
  * Class NewsRepository
  * @package App\Repositories\Backend\News
  */
-class NewsRepository
+class NewsRepository extends AbstractRepository implements NewsContract
 {
     /**
      * @param $id
@@ -29,7 +31,7 @@ class NewsRepository
      * @param string $sort
      * @return mixed
      */
-    public function getNewsPaginated($per_page, $order_by = 'id', $sort = 'asc') {
+    public function getAll($per_page, $order_by = 'id', $sort = 'asc') {
         return News::orderBy($order_by, $sort)->paginate($per_page);
     }
 

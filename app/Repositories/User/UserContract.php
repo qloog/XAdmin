@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\Comment;
+namespace App\Repositories\User;
 
-interface CommentContract
+interface UserContract
 {
 
     public function getAll($per_page, $order_by = 'id', $sort = 'desc');
