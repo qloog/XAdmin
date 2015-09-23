@@ -17,7 +17,8 @@
         "laravel/socialite": "^3.0@dev",
         "laravelcollective/html": "~5.0",
 		"barryvdh/laravel-ide-helper": "^2.0",
-        "laracasts/flash": "~1.3"
+        "laracasts/flash": "~1.3",
+		"dingo/api": "1.0.x@dev"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
@@ -65,7 +66,7 @@
         },  
         {   
             "type": "composer", 
-            "url": "https://toran.reimu.io/repo/packagist/"
+            "url": "http://packagist.phpcomposer.com"
         }   
     ]
 }
