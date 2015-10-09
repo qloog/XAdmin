@@ -30,7 +30,7 @@ class NewsController extends BaseController
      */
     public function index()
     {
-        $news = $this->repository->getNewsPaginated(config('custom.per_page'), 'id', 'desc');
+        $news = $this->repository->getAll(config('custom.per_page'), 'id', 'desc');
         return view('backend.news.index', ['news' => $news]);
     }
 
@@ -72,7 +72,7 @@ class NewsController extends BaseController
      */
     public function show($id)
     {
-        $news = $this->repository->findOrThrowException($id);
+        $news = $this->repository->find($id);
         print_r($news->category->name);exit;
     }
 
@@ -120,7 +120,7 @@ class NewsController extends BaseController
      */
     public function destroy($id)
     {
-        $news = $this->repository->findOrThrowException($id);
+        $news = $this->repository->find($id);
         $news->tags()->detach();
         $news->delete();
 

@@ -9,6 +9,12 @@ use App\Repositories\User\UserRepository;
 
 class UserController extends BaseController
 {
+
+    public function __construct(UserRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +22,7 @@ class UserController extends BaseController
      */
     public function index()
     {
-        $userRepository = new UserRepository();
-        $users = $userRepository->getUsersPaginated(config('custom.per_page'));
+        $users = $this->repository->getAll(config('custom.per_page'));
 
         return view('backend.user.index', ['users' => $users]);
     }

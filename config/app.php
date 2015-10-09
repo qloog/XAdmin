@@ -150,12 +150,18 @@ return [
          * Custom Service Providers
          */
         App\Providers\AccessServiceProvider::class,
+        App\Providers\OAuthServiceProvider::class,
         Overtrue\LaravelWechat\ServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Ender\UEditor\UEditorServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-        Laracasts\Flash\FlashServiceProvider::class
+        Laracasts\Flash\FlashServiceProvider::class,
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class,
+        LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class,
+        Dingo\Api\Provider\LaravelServiceProvider::class,
+
 
 	],
 
@@ -204,6 +210,7 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+        'Gate' => Illuminate\Support\Facades\Gate::class,
 
         /**
          * custom alias
@@ -212,7 +219,10 @@ return [
         'Debugbar'  => Barryvdh\Debugbar\Facade::class,
         'UEditor'   => Ender\UEditor\UEditor::class,
         'Image'     => Intervention\Image\Facades\Image::class,
-        'Flash'     => Laracasts\Flash\Flash::class
+        'Flash'     => Laracasts\Flash\Flash::class,
+        'JWTAuth'   => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'Authorizer' => LucaDegasperi\OAuth2Server\Facades\Authorizer::class,
 
 	],
 

@@ -54,7 +54,7 @@ class UserRepository extends AbstractRepository implements UserContract
      * @param int $status
      * @return mixed
      */
-    public function getUsersPaginated($per_page, $status = 1, $order_by = 'id', $sort = 'asc') {
+    public function getAll($per_page, $status = 1, $order_by = 'id', $sort = 'asc') {
         return User::where('status', $status)->orderBy($order_by, $sort)->paginate($per_page);
     }
     /**

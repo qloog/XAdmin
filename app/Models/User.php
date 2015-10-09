@@ -3,13 +3,15 @@
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
+class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract {
 
-	use Authenticatable, CanResetPassword, SoftDeletes;
+    use Authenticatable, Authorizable, CanResetPassword, SoftDeletes;
 
 	/**
 	 * The database table used by the model.
@@ -44,7 +46,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @param  String permission Slug of a permission (i.e: manage_user)
      * @return Boolean true if has permission, otherwise false
      */
-    public function can($permission = null)
+    public function can2($permission = null)
     {
         return !is_null($permission) && $this->checkPermission($permission);
     }

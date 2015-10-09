@@ -20,13 +20,13 @@ class PasswordController extends Controller {
 
 	use ResetsPasswords;
 
-	/**
-	 * Create a new password controller instance.
-	 *
-	 * @param  \Illuminate\Contracts\Auth\Guard  $auth
-	 * @param  \Illuminate\Contracts\Auth\PasswordBroker  $passwords
-	 * @return void
-	 */
+    /**
+     * Create a new password controller instance.
+     *
+     * @internal param Guard $auth
+     * @internal param PasswordBroker $passwords
+     * @return \App\Http\Controllers\Frontend\Auth\PasswordController
+     */
 	public function __construct()
 	{
 		$this->middleware('guest');

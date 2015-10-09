@@ -32,7 +32,7 @@ class AlbumRepository extends AbstractRepository implements AlbumContract
      * @param $per_page
      * @param string $order_by
      * @param string $sort
-     * @return mixed
+     * @return \Illuminate\Pagination\Paginator
      */
     public function getAll($per_page, $order_by = 'id', $sort = 'desc') {
         return $this->model->orderBy($order_by, $sort)->paginate($per_page);

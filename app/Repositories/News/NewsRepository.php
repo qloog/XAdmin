@@ -7,22 +7,33 @@ use App\Models\NewsCategory;
 use App\Models\Tag;
 use App\Exceptions\GeneralException;
 use App\Repositories\AbstractRepository;
-use App\Repositories\NewsContract;
+use App\Repositories\News\NewsContract;
 
 /**
  * Class NewsRepository
- * @package App\Repositories\Backend\News
+ * @package App\Repositories\News
  */
 class NewsRepository extends AbstractRepository implements NewsContract
 {
+
+    /**
+     * Create a new NewsRepository instance.
+     * @param News $news
+     */
+    public function __construct(News $news)
+    {
+        $this->model = $news;
+    }
+
     /**
      * @param $id
      * @return mixed
      * @throws GeneralException
      */
-    public function findOrThrowException($id) {
-        $news = News::find($id);
-        if (! is_null($news)) return $news;
+    public function find($id) {
+
+        $obj = $this->model->findOrNew($id);
+        if (! is_null($obj)) return $obj;
         return array();
     }
     /**
@@ -32,7 +43,7 @@ class NewsRepository extends AbstractRepository implements NewsContract
      * @return mixed
      */
     public function getAll($per_page, $order_by = 'id', $sort = 'asc') {
-        return News::orderBy($order_by, $sort)->paginate($per_page);
+        return $this->model->orderBy($order_by, $sort)->paginate($per_page);
     }
 
     /**
@@ -65,7 +76,7 @@ class NewsRepository extends AbstractRepository implements NewsContract
      * @return bool
      */
     public function create($input) {
-        $news = News::create($input);
+        $news = $this->model->create($input);
 
         if ($news->save()) {
             return $news;
@@ -78,7 +89,7 @@ class NewsRepository extends AbstractRepository implements NewsContract
      * @return bool
      */
     public function update($id, $input) {
-        $news = $this->findOrThrowException($id);
+        $news = $this->find($id);
         return $news->update($input);
     }
     /**
@@ -88,7 +99,7 @@ class NewsRepository extends AbstractRepository implements NewsContract
      * @throws GeneralException
      */
     public function updatePassword($id, $input) {
-        $user = $this->findOrThrowException($id);
+        $user = $this->find($id);
         //Passwords are hashed on the model
         $user->password = $input['password'];
         if ($user->save())
@@ -103,7 +114,7 @@ class NewsRepository extends AbstractRepository implements NewsContract
     public function destroy($id) {
         if (auth()->id() == $id)
             throw new GeneralException("You can not delete yourself.");
-        $user = $this->findOrThrowException($id);
+        $user = $this->find($id);
         if ($user->delete())
             return true;
         throw new GeneralException("There was a problem deleting this user. Please try again.");
@@ -114,7 +125,7 @@ class NewsRepository extends AbstractRepository implements NewsContract
      * @throws GeneralException
      */
     public function delete($id) {
-        $user = $this->findOrThrowException($id, true);
+        $user = $this->find($id, true);
         //Detach all roles & permissions
         $user->detachRoles($user->roles);
         $user->detachPermissions($user->permissions);
@@ -130,7 +141,7 @@ class NewsRepository extends AbstractRepository implements NewsContract
      * @throws GeneralException
      */
     public function restore($id) {
-        $user = $this->findOrThrowException($id);
+        $user = $this->find($id);
         if ($user->restore())
             return true;
         throw new GeneralException("There was a problem restoring this user. Please try again.");
@@ -144,7 +155,7 @@ class NewsRepository extends AbstractRepository implements NewsContract
     public function mark($id, $status) {
         if (auth()->id() == $id && ($status == 0 || $status == 2))
             throw new GeneralException("You can not do that to yourself.");
-        $user = $this->findOrThrowException($id);
+        $user = $this->find($id);
         $user->status = $status;
         if ($user->save())
             return true;

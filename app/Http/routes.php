@@ -29,11 +29,22 @@ Route::group(['namespace' => 'Frontend'], function ()
         'password' => 'Auth\PasswordController',
     ]);
 
+    // Authentication routes...
     Route::get('auth/login', 'Auth\AuthController@getLogin');
-    Route::get('auth/register', 'Auth\AuthController@getRegister');
     Route::post('auth/login', 'Auth\AuthController@postLogin');
     Route::get('auth/logout', 'Auth\AuthController@getLogout');
-    //Route::get('password/email', 'Auth\PasswordController');
+
+    // Registration routes...
+    Route::get('auth/register', 'Auth\AuthController@getRegister');
+    Route::post('auth/register', 'Auth\AuthController@postRegister');
+
+    // Password reset link request routes...
+    Route::get('password/email', 'Auth\PasswordController@getEmail');
+    Route::post('password/email', 'Auth\PasswordController@postEmail');
+
+    // Password reset routes...
+    Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+    Route::post('password/reset', 'Auth\PasswordController@postReset');
 
     /**
      * These frontend controllers require the user to be logged in
@@ -101,4 +112,31 @@ Route::group(['namespace' => 'Backend'], function ()
 //        Route::resource('materials/audio', 'MaterialsAudioController');
     });
 });
+
+// api
+Route::group(['prefix' => 'api'], function ()
+{
+
+    Route::post('oauth/access_token', function() {
+            return Response::json(Authorizer::issueAccessToken());
+        });
+
+    $api = app('Dingo\Api\Routing\Router');
+    $api->version('v1', function ($api) {
+
+            $api->group(['protected' => true],function($api){
+                    //需要保护的路由
+                });
+
+            $api->get('users/{id}', 'App\Http\Controllers\Api\V1\UserController@show');
+            $api->get('users/test', 'App\Http\Controllers\Api\V1\UserController@index');
+
+            $api->get('users/get_token', 'App\Http\Controllers\Api\V1\AuthenticateController@authenticate');
+
+
+        });
+});
+
+
+
 
