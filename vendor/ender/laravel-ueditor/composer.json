@@ -1,0 +1,27 @@
+{
+  "name": "ender/laravel-ueditor",
+  "description": "A laravel package of ueditor,which is baidu's open source WYSIWYG editor",
+  "keywords": ["laravel","editor","ueditor","WYSIWYG"],
+  "homepage": "https://www.bigfeettrip.com",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "ender",
+      "email": "ender0421@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "illuminate/config": "~5.0",
+    "illuminate/support": "~5.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Ender\\UEditor\\": "src/"
+    }
+  },
+  "minimum-stability": "dev"
+}

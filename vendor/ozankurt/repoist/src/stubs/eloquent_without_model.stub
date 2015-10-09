@@ -1,0 +1,12 @@
+<?php namespace {{namespace}};
+
+use App\Repositories\AbstractRepository;
+
+class {{class}} extends AbstractRepository implements {{contract}}
+{
+    
+    public function getAll()
+    {
+        //
+    }
+}
