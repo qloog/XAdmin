@@ -2,6 +2,11 @@
 
 namespace App\Models;
 
+/**
+ * see: https://github.com/laracasts/laravel-5-roles-and-permissions-demo
+ * Class HasRoles
+ * @package App\Models
+ */
 trait HasRoles
 {
 
