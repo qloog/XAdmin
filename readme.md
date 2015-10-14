@@ -2,7 +2,7 @@
 
 基于Laravel5.1(LTS) 开发
 
-## 安装
+## 使用说明
 * clone目录结构到本地： git clone https://github.com/qloog/laravel5-backend.git
 * 根据composer.json下载vendor包目录：composer update
 * 生成表结构: php artisan migrate
