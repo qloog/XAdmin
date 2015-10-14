@@ -569,6 +569,8 @@ class Request extends SymfonyRequest implements ArrayAccess
     /**
      * Determine if the given content types match.
      *
+     * @param  string  $actual
+     * @param  string  $type
      * @return bool
      */
     public static function matchesType($actual, $type)
@@ -876,6 +878,17 @@ class Request extends SymfonyRequest implements ArrayAccess
     public function offsetUnset($offset)
     {
         return $this->getInputSource()->remove($offset);
+    }
+
+    /**
+     * Check if an input element is set on the request.
+     *
+     * @param  string  $key
+     * @return bool
+     */
+    public function __isset($key)
+    {
+        return ! is_null($this->__get($key));
     }
 
     /**

@@ -38,6 +38,19 @@
 * [x]评论列表
 * [x]评论审核：先发后审、先审后发
 
+## 技术栈
+
+### 前端
+ * React
+    * [Amaze UI React](http://amazeui.org/react/)
+        bower install amazeui-react
+    * [react-datagrid](https://github.com/zippyui/react-datagrid)
+ * Bootstrap
+
+### 后端
+ * Laravel
+
+
 
 
 ## License

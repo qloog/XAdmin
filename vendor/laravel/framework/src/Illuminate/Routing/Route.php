@@ -272,7 +272,7 @@ class Route
         }
 
         $this->action['middleware'] = array_merge(
-            array_get($this->action['middleware'], []), $middleware
+            Arr::get($this->action, 'middleware', []), $middleware
         );
 
         return $this;
@@ -927,7 +927,7 @@ class Route
      */
     public function name($name)
     {
-        $this->action['as'] = $name;
+        $this->action['as'] = isset($this->action['as']) ? $this->action['as'].$name : $name;
 
         return $this;
     }

@@ -20,12 +20,12 @@ class Permission extends Model
     */
 
     /**
-     * many-to-many relationship method
+     * A permission can be applied to roles.
      *
-     * @return QueryBuilder
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function roles()
     {
-        return $this->belongsToMany('App\Models\Role');
+        return $this->belongsToMany(Role::class);
     }
 }

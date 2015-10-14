@@ -13,29 +13,25 @@ class Role extends Model
      */
     protected $table = 'roles';
 
-    /*
-    |--------------------------------------------------------------------------
-    | Relationship Methods
-    |--------------------------------------------------------------------------
-    */
-
     /**
+     * A role may by given various permissions
      * many-to-many relationship method.
      *
-     * @return QueryBuilder
-     */
-    public function users()
-    {
-        return $this->belongsToMany('App\Models\User');
-    }
-
-    /**
-     * many-to-many relationship method.
-     *
-     * @return QueryBuilder
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function permissions()
     {
-        return $this->belongsToMany('App\Models\Permission');
+        return $this->belongsToMany(Permission::class);
+    }
+
+    /**
+     * Grant the given permission to a role.
+     *
+     * @param  Permission $permission
+     * @return mixed
+     */
+    public function givePermissionTo(Permission $permission)
+    {
+        return $this->permissions()->save($permission);
     }
 }

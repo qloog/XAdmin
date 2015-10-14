@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
     $vendorDir . '/symfony/var-dumper/Resources/functions/dump.php',
     $vendorDir . '/swiftmailer/swiftmailer/lib/swift_required.php',
     $vendorDir . '/nikic/php-parser/lib/bootstrap.php',
@@ -17,9 +18,9 @@ return array(
     $vendorDir . '/guzzlehttp/guzzle/src/functions_include.php',
     $vendorDir . '/laracasts/flash/src/Laracasts/Flash/functions.php',
     $vendorDir . '/dingo/api/src/helpers.php',
-    $vendorDir . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
-    $vendorDir . '/laravel/framework/src/Illuminate/Support/helpers.php',
     $vendorDir . '/barryvdh/laravel-debugbar/src/helpers.php',
     $vendorDir . '/laravelcollective/html/src/helpers.php',
+    $vendorDir . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
+    $vendorDir . '/laravel/framework/src/Illuminate/Support/helpers.php',
     $baseDir . '/app/Helpers.php',
 );

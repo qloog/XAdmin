@@ -2,6 +2,28 @@
 
 All notable changes of the PHPUnit 4.8 release series are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [4.8.12] - 2015-10-12
+
+### Changed
+
+* Merged [#1893](https://github.com/sebastianbergmann/phpunit/issues/1893): Removed workaround for phpab bug
+
+## [4.8.11] - 2015-10-07
+
+### Fixed
+
+* Merged [#1885](https://github.com/sebastianbergmann/phpunit/issues/1885): Fixed handling of PHP configuration settings for process isolation
+* Fixed [#1857](https://github.com/sebastianbergmann/phpunit/issues/1857): `@covers` and `@uses` should only take a single word
+* Fixed [#1879](https://github.com/sebastianbergmann/phpunit/issues/1879): `assertEqualXMLStructure()` cannot compare nodes with an ID
+* Fixed [#1898](https://github.com/sebastianbergmann/phpunit/issues/1898): `@covers` and `@uses` cannot be used for namespaced functions
+* Fixed [#1901](https://github.com/sebastianbergmann/phpunit/issues/1901): `--self-update` updates to PHPUnit 5, even on PHP < 5.6
+
+## [4.8.10] - 2015-10-01
+
+### Fixed
+
+* Merged [#1884](https://github.com/sebastianbergmann/phpunit/issues/1884): Avoid passing `Error` to `onNotSuccessfulTest()` on PHP 7
+
 ## [4.8.9] - 2015-09-20
 
 ### Fixed
@@ -69,6 +91,9 @@ New PHAR release due to updated dependencies
 * Made the argument check of `assertContains()` and `assertNotContains()` more strict to prevent undefined behavior such as [#1808](https://github.com/sebastianbergmann/phpunit/issues/1808)
 * Changed the name of the default group from `__nogroup__` to `default`
 
+[4.8.12]: https://github.com/sebastianbergmann/phpunit/compare/4.8.11...4.8.12
+[4.8.11]: https://github.com/sebastianbergmann/phpunit/compare/4.8.10...4.8.11
+[4.8.10]: https://github.com/sebastianbergmann/phpunit/compare/4.8.9...4.8.10
 [4.8.9]: https://github.com/sebastianbergmann/phpunit/compare/4.8.8...4.8.9
 [4.8.8]: https://github.com/sebastianbergmann/phpunit/compare/4.8.7...4.8.8
 [4.8.7]: https://github.com/sebastianbergmann/phpunit/compare/4.8.6...4.8.7
