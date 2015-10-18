@@ -21,7 +21,7 @@
             <tr>
                 <th>ID</th>
                 <th>用户名</th>
-                <th>姓名</th>
+                <th>拥有角色</th>
                 <th>Email</th>
                 <th>创建时间</th>
                 <th>更新时间</th>
@@ -34,7 +34,11 @@
             <tr>
                 <th>{{ $user->id }}</th>
                 <th>{{ $user->username }}</th>
-                <th>{{ $user->realname }}</th>
+                <th>
+                    @foreach($user->roles as $role)
+                        {{ $role->role_title }}({{ $role->role_slug }}) <br>
+                    @endforeach
+                </th>
                 <th>{{ $user->email }}</th>
                 <th>{{ $user->created_at }}</th>
                 <th>{{ $user->updated_at }}</th>

@@ -17,36 +17,27 @@ use App\Exceptions\UserNotFoundException;
  */
 class UserRepository extends AbstractRepository implements UserContract
 {
+
     /**
-     * @var RoleRepositoryContract
+     * Create a new UserRepository instance.
+     * @param User $user
      */
-    //protected $role;
-    /**
-     * @var Registrar
-     */
-    //protected $registrar;
-    /**
-     * @param RoleRepositoryContract $role
-     * @param Registrar $registrar
-     */
-    public function __construct(/*RoleRepositoryContract $role, Registrar $registrar*/) {
-//        $this->role = $role;
-//        $this->registrar = $registrar;
+    public function __construct(User $user)
+    {
+        $this->model = $user;
     }
+
     /**
      * @param $id
-     * @param bool $withRoles
      * @return mixed
-     * @throws UserNotFoundException
+     * @throws GeneralException
      */
-    public function findOrThrowException($id, $withRoles = false) {
-        if ($withRoles)
-            $user = User::with('roles')->withTrashed()->find($id);
-        else
-            $user = User::withTrashed()->find($id);
-        if (! is_null($user)) return $user;
-        throw new UserNotFoundException('That user does not exist.');
+    public function find($id) {
+        $obj = $this->model->findOrNew($id);
+        if (! is_null($obj)) return $obj;
+        return array();
     }
+
     /**
      * @param $per_page
      * @param string $order_by
@@ -57,6 +48,7 @@ class UserRepository extends AbstractRepository implements UserContract
     public function getAll($per_page, $status = 1, $order_by = 'id', $sort = 'asc') {
         return User::where('status', $status)->orderBy($order_by, $sort)->paginate($per_page);
     }
+
     /**
      * @param $per_page
      * @return \Illuminate\Pagination\Paginator
@@ -64,6 +56,7 @@ class UserRepository extends AbstractRepository implements UserContract
     public function getDeletedUsersPaginated($per_page) {
         return User::onlyTrashed()->paginate($per_page);
     }
+
     /**
      * @param string $order_by
      * @param string $sort
@@ -72,6 +65,7 @@ class UserRepository extends AbstractRepository implements UserContract
     public function getAllUsers($order_by = 'id', $sort = 'asc') {
         return User::orderBy($order_by, $sort)->get();
     }
+
     /**
      * @param $input
      * @param $roles
@@ -96,6 +90,7 @@ class UserRepository extends AbstractRepository implements UserContract
         }
         throw new GeneralException('There was a problem creating this user. Please try again.');
     }
+
     /**
      * @param $id
      * @param $input
@@ -118,6 +113,7 @@ class UserRepository extends AbstractRepository implements UserContract
         }
         throw new GeneralException('There was a problem updating this user. Please try again.');
     }
+
     /**
      * @param $id
      * @param $input
@@ -132,6 +128,7 @@ class UserRepository extends AbstractRepository implements UserContract
             return true;
         throw new GeneralException('There was a problem changing this users password. Please try again.');
     }
+
     /**
      * @param $id
      * @return bool
@@ -145,6 +142,7 @@ class UserRepository extends AbstractRepository implements UserContract
             return true;
         throw new GeneralException("There was a problem deleting this user. Please try again.");
     }
+
     /**
      * @param $id
      * @return boolean|null
@@ -161,6 +159,7 @@ class UserRepository extends AbstractRepository implements UserContract
             throw new GeneralException($e->getMessage());
         }
     }
+
     /**
      * @param $id
      * @return bool
@@ -187,6 +186,7 @@ class UserRepository extends AbstractRepository implements UserContract
             return true;
         throw new GeneralException("There was a problem updating this user. Please try again.");
     }
+
     /**
      * Check to make sure at lease one role is being applied or deactivate user
      * @param $user
@@ -208,6 +208,7 @@ class UserRepository extends AbstractRepository implements UserContract
             throw $exception;
         }
     }
+
     /**
      * @param $input
      * @param $user
@@ -233,6 +234,7 @@ class UserRepository extends AbstractRepository implements UserContract
         $user->detachRoles($user->roles);
         $user->attachRoles($roles['assignees_roles']);
     }
+
     /**
      * @param $permissions
      * @param $user

@@ -8,6 +8,9 @@
 * 生成表结构: php artisan migrate
 * 访问后台地址：http://local.app/admin/login
 
+## 常用命令
+* 生成Repository: php artisan make:repository Role
+
 ## 功能列表
 
 ### 用户登录
@@ -47,6 +50,13 @@
 ## 技术栈
 
 ### 前端
+
+#### 组件安装方法
+ * bower install jquery --save
+ * bower install bootstrap --save
+ * bower install react --save
+ 
+#### 其他 
  * React
     * [Amaze UI React](http://amazeui.org/react/)
         bower install amazeui-react

@@ -43,21 +43,35 @@
                         <b class="arrow"></b>
                     </li>
 
-                    <li @if(Request::is('admin/user/*')) class="active open" @endif>
+                    <li @if(Request::is('admin/permission/*')) class="active open" @endif>
                         <a href="javascript:;" class="dropdown-toggle">
                             <i class="menu-icon fa fa-user"></i>
                             <span class="menu-text">
-                                用户管理
+                                用户权限管理
                             </span>
 
                             <b class="arrow fa fa-angle-down"></b>
                         </a>
                         <b class="arrow"></b>
                         <ul class="submenu">
-                            <li @if(Request::is('admin/user/index')) class="active" @endif>
+                            <li @if(Request::is('admin/user/*')) class="active" @endif>
                                 <a href="/admin/user/index">
                                     <i class="menu-icon fa fa-caret-right"></i>
-                                    用户列表
+                                    用户管理
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li @if(Request::is('admin/role')) class="active" @endif>
+                                <a href="/admin/role">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    角色管理
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li @if(Request::is('admin/permission')) class="active" @endif>
+                                <a href="/admin/permission">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    权限管理
                                 </a>
                                 <b class="arrow"></b>
                             </li>
@@ -98,7 +112,7 @@
                             </li>
 
                             <li class="">
-                                <a href="invoice.html">
+                                <a href="javascript:void(0)">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     标签管理
                                 </a>

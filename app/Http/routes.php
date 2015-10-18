@@ -81,6 +81,10 @@ Route::group(['namespace' => 'Backend'], function ()
         Route::get('user/index', 'UserController@index');
 //        Route::resource('user/profile', 'ProfileController@index');
 //        Route::resource('user/setting', 'SettingController@index');
+
+        Route::resource('role', 'RoleController');
+        Route::resource('permission', 'PermissionController');
+
         //news
         Route::resource('news/category', 'NewsCategoryController');
         Route::resource('news', 'NewsController');
