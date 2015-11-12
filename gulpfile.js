@@ -1,6 +1,11 @@
-var gulp = require('gulp');
-var rename = require('gulp-rename');
-var elixir = require('laravel-elixir');
+var gulp       = require('gulp'),
+    browserify = require('browserify'),
+    babelify   = require('babelify'),
+    source     = require('vinyl-source-stream'),
+    rename     = require('gulp-rename'),
+    elixir     = require('laravel-elixir'),
+    glob       = require('glob'),
+    es         = require('event-stream');
 
 /*
  |--------------------------------------------------------------------------
@@ -28,7 +33,8 @@ var paths = {
     'datatables': 'resources/assets/bower/datatables',
     'datatables_plugins': 'resources/assets/bower/datatables-plugins',
     'jquery_file_upload': 'resources/assets/bower/jquery-file-upload',
-    'jquery_validate': 'resources/assets/bower/jquery-validate'
+    'jquery_validate': 'resources/assets/bower/jquery-validate',
+    'react': 'resources/assets/bower/react'
 };
 
 /**
@@ -89,6 +95,40 @@ gulp.task("copyfiles", function() {
 
     gulp.src(paths.jquery_validate + '/dist/additional-methods.js')
         .pipe(gulp.dest('resources/assets/js/'));
+
+    //copy react
+    gulp.src(paths.react + '/react.js').pipe(gulp.dest('resources/assets/js'));
+    gulp.src(paths.react + '/react-dom.js').pipe(gulp.dest('resources/assets/js'));
+});
+
+/**
+ * link: http://fettblog.eu/gulp-browserify-multiple-bundles/
+ */
+gulp.task('js', function(done) {
+    glob('./resources/backend/src/**.js', function(err, files) {
+        if(err) done(err);
+
+        var tasks = files.map(function(entry) {
+            var arr = entry.split('/');
+            var buildFile = arr[arr.length-1];
+
+            return browserify({ entries: [entry] })
+                .transform(babelify, {stage : 0})
+                .bundle()
+                .pipe(source(buildFile))    //Pass desired output filename to vinyl-source-stream
+                //.pipe(rename({
+                //    extname: '.bundle.js'
+                //}))
+                .pipe(gulp.dest('./public/js/build'));  // Start piping stream to tasks!
+        });
+        es.merge(tasks).on('end', done);
+    })
+});
+
+// Rerun tasks whenever a file changes.
+gulp.task('watch', function(){
+    var path = ['./resources/backend/src/*.js'];
+    gulp.watch(path, ['js']);
 });
 
 /**
@@ -115,5 +155,7 @@ elixir(function(mix) {
     mix.copy('resources/assets/js/jquery.validate.js', 'public/js/jquery-validate/jquery.validate.js');
     mix.copy('resources/assets/js/additional-methods.js', 'public/js/jquery-validate/additional-methods.js');
     mix.copy('resources/assets/bower/jquery-validate/src/localization/messages_zh.js', 'public/js/jquery-validate/messages_zh.js');
+    mix.copy('resources/assets/js/react.js', 'public/js/react/react.js');
+    mix.copy('resources/assets/js/react-dom.js', 'public/js/react/react-dom.js');
 
 });
