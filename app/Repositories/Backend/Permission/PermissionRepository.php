@@ -1,16 +1,17 @@
-<?php namespace App\Repositories\Role;
+<?php
 
-use App\Models\Role;
-use App\Repositories\AbstractRepository;
+namespace App\Repositories\Backend\Permission;
 
-class RoleRepository extends AbstractRepository implements RoleContract
+use App\Models\Permission;
+
+class PermissionRepository implements PermissionContract
 {
 
     /**
      * Create a new DbUserRepository instance.
-     * @param Role $album
+     * @param Permission $album
      */
-    public function __construct(Role $album)
+    public function __construct(Permission $album)
     {
         $this->model = $album;
     }
@@ -35,5 +36,4 @@ class RoleRepository extends AbstractRepository implements RoleContract
     public function getAll($per_page, $order_by = 'id', $sort = 'desc') {
         return $this->model->orderBy($order_by, $sort)->paginate($per_page);
     }
-
 }

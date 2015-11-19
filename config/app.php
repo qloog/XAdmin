@@ -141,15 +141,14 @@ return [
 		 * Application Service Providers...
 		 */
         App\Providers\AppServiceProvider::class,
+		App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-		App\Providers\BusServiceProvider::class,
-		App\Providers\ConfigServiceProvider::class,
 
         /**
          * Custom Service Providers
          */
-        App\Providers\AccessServiceProvider::class,
+        App\Providers\BackendServiceProvider::class,
         App\Providers\OAuthServiceProvider::class,
         Overtrue\LaravelWechat\ServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,

@@ -5,14 +5,19 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Repositories\User\UserRepository;
+use App\Repositories\Backend\User\UserContract;
 
 class UserController extends BaseController
 {
 
-    public function __construct(UserRepository $repository)
+    /**
+     * @var UserContract
+     */
+    protected $users;
+
+    public function __construct(UserContract $users)
     {
-        $this->repository = $repository;
+        $this->users = $users;
     }
 
     /**
@@ -22,7 +27,7 @@ class UserController extends BaseController
      */
     public function index()
     {
-        $users = $this->repository->getAll(config('custom.per_page'));
+        $users = $this->users->getUsersPaginated(10);
 
         return view('backend.user.index', ['users' => $users]);
     }

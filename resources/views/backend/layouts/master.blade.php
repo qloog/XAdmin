@@ -115,6 +115,9 @@
     <script src="{{ asset('js/ace-elements.min.js') }}"></script>
     <script src="{{ asset('js/ace.min.js') }}"></script>
 
+    <script src="{{ asset('js/react/react.js') }}"></script>
+    <script src="{{ asset('js/react/react-dom.js') }}"></script>
+
     <!-- inline scripts related to this page -->
     @yield('scripts')
 </body>

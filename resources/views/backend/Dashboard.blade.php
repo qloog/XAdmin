@@ -2,8 +2,9 @@
 
 @section('title', '管理首页 - 后台')
 
-@section('css')
-<link href="{{ asset('/css/dashboard.css') }}" rel="stylesheet">
+@section('styles')
+    <link href="{{ asset('/css/react-datagrid.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/dashboard.css') }}" rel="stylesheet">
 @stop
 
 @section('breadcrumb')
@@ -19,9 +20,14 @@
 @endsection
 
 @section('content')
-
+    <div id="example"></div>
 @endsection
 
-@section('js')
+@section('scripts')
     <script src="{{ asset('/js/holder.js') }}"></script>
+    <script src="{{ asset('/js/build/userList.js') }}"></script>
+    <script>
+
+    </script>
 @endsection
+

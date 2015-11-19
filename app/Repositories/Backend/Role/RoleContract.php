@@ -1,4 +1,6 @@
-<?php namespace App\Repositories\Role;
+<?php
+
+namespace App\Repositories\Backend\Role;
 
 interface RoleContract
 {

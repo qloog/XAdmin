@@ -1,29 +1,19 @@
 <?php
 
-namespace App\Repositories\News;
+namespace App\Repositories\Backend\News;
 
 use App\Models\News;
 use App\Models\NewsCategory;
 use App\Models\Tag;
 use App\Exceptions\GeneralException;
-use App\Repositories\AbstractRepository;
-use App\Repositories\News\NewsContract;
+use App\Repositories\Backend\News\NewsContract;
 
 /**
  * Class NewsRepository
  * @package App\Repositories\News
  */
-class NewsRepository extends AbstractRepository implements NewsContract
+class NewsRepository implements NewsContract
 {
-
-    /**
-     * Create a new NewsRepository instance.
-     * @param News $news
-     */
-    public function __construct(News $news)
-    {
-        $this->model = $news;
-    }
 
     /**
      * @param $id
@@ -32,7 +22,7 @@ class NewsRepository extends AbstractRepository implements NewsContract
      */
     public function find($id) {
 
-        $obj = $this->model->findOrNew($id);
+        $obj = News::findOrNew($id);
         if (! is_null($obj)) return $obj;
         return array();
     }
@@ -42,8 +32,8 @@ class NewsRepository extends AbstractRepository implements NewsContract
      * @param string $sort
      * @return mixed
      */
-    public function getAll($per_page, $order_by = 'id', $sort = 'asc') {
-        return $this->model->orderBy($order_by, $sort)->paginate($per_page);
+    public function getRolesPaginated($per_page, $order_by = 'id', $sort = 'asc') {
+        return News::orderBy($order_by, $sort)->paginate($per_page);
     }
 
     /**

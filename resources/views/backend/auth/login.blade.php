@@ -70,6 +70,16 @@
         											</h4>
 
         											<div class="space-6"></div>
+													@if (count($errors) > 0)
+														<div class="alert alert-danger">
+															<strong>Whoops!</strong> There were some problems with your input.<br><br>
+															<ul>
+																@foreach ($errors->all() as $error)
+																	<li>{{ $error }}</li>
+																@endforeach
+															</ul>
+														</div>
+													@endif
         											<form method="POST" action="{{ url('/admin/login') }}">
         											<input type="hidden" name="_token" value="{{ csrf_token() }}">
         												<fieldset>

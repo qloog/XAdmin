@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\News;
+namespace App\Repositories\Backend\Permission;
 
-interface NewsContract
+interface PermissionContract
 {
 
     public function getAll($per_page, $order_by = 'id', $sort = 'desc');

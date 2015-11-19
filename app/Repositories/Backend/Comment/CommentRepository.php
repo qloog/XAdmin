@@ -26,4 +26,9 @@ class CommentRepository extends AbstractRepository implements CommentContract
     public function getAll($per_page, $order_by = 'id', $sort = 'desc') {
         return $this->model->orderBy($order_by, $sort)->paginate($per_page);
     }
+
+    public function create($data)
+    {
+        return $this->model->create($data);
+    }
 }

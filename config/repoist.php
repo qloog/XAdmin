@@ -5,7 +5,7 @@ return [
      * In this case:
      * 		app/Repositories
      */
-    'path' => 'Repositories',
+    'path' => 'Repositories/Backend',
     /**
      * Default path of models in larave is the `app` folder.
      * In this case:

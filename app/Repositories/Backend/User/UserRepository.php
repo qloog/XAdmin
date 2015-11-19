@@ -1,39 +1,41 @@
 <?php
 
-namespace App\Repositories\User;
+namespace App\Repositories\Backend\User;
 
 use App\Models\User;
-use App\Repositories\AbstractRepository;
-use App\Repositories\User\UserContract;
+use App\Repositories\Backend\Role\RoleContract;
 use App\Services\Registrar;
 use App\Exceptions\GeneralException;
 use App\Exceptions\UserNotFoundException;
-//use App\Repositories\Backend\Role\RoleRepositoryContract;
-//use App\Exceptions\Backend\Access\User\UserNeedsRolesException;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class UserRepository
- * @package App\Repositories\Backend
+ * @package App\Repositories
  */
-class UserRepository extends AbstractRepository implements UserContract
+class UserRepository implements UserContract
 {
 
     /**
-     * Create a new UserRepository instance.
-     * @param User $user
+     * @var RoleContract
      */
-    public function __construct(User $user)
+    protected $role;
+
+    /**
+     * @param RoleContract           $role
+     * @internal param User $user
+     */
+    public function __construct(RoleContract $role)
     {
-        $this->model = $user;
+        $this->role = $role;
     }
 
     /**
      * @param $id
      * @return mixed
-     * @throws GeneralException
      */
     public function find($id) {
-        $obj = $this->model->findOrNew($id);
+        $obj = User::withTrashed()->find($id);
         if (! is_null($obj)) return $obj;
         return array();
     }
@@ -45,7 +47,7 @@ class UserRepository extends AbstractRepository implements UserContract
      * @param int $status
      * @return mixed
      */
-    public function getAll($per_page, $status = 1, $order_by = 'id', $sort = 'asc') {
+    public function getUsersPaginated($per_page, $status = 1, $order_by = 'id', $sort = 'asc') {
         return User::where('status', $status)->orderBy($order_by, $sort)->paginate($per_page);
     }
 
@@ -99,7 +101,7 @@ class UserRepository extends AbstractRepository implements UserContract
      * @throws GeneralException
      */
     public function update($id, $input, $roles, $permissions) {
-        $user = $this->findOrThrowException($id);
+        $user = $this->find($id);
         $this->checkUserByEmail($input, $user);
         if ($user->update($input)) {
             //For whatever reason this just wont work in the above call, so a second is needed for now
@@ -121,7 +123,7 @@ class UserRepository extends AbstractRepository implements UserContract
      * @throws GeneralException
      */
     public function updatePassword($id, $input) {
-        $user = $this->findOrThrowException($id);
+        $user = $this->find($id);
         //Passwords are hashed on the model
         $user->password = $input['password'];
         if ($user->save())
@@ -137,7 +139,7 @@ class UserRepository extends AbstractRepository implements UserContract
     public function destroy($id) {
         if (auth()->id() == $id)
             throw new GeneralException("You can not delete yourself.");
-        $user = $this->findOrThrowException($id);
+        $user = $this->find($id);
         if ($user->delete())
             return true;
         throw new GeneralException("There was a problem deleting this user. Please try again.");
@@ -149,7 +151,7 @@ class UserRepository extends AbstractRepository implements UserContract
      * @throws GeneralException
      */
     public function delete($id) {
-        $user = $this->findOrThrowException($id, true);
+        $user = $this->find($id, true);
         //Detach all roles & permissions
         $user->detachRoles($user->roles);
         $user->detachPermissions($user->permissions);
@@ -166,7 +168,7 @@ class UserRepository extends AbstractRepository implements UserContract
      * @throws GeneralException
      */
     public function restore($id) {
-        $user = $this->findOrThrowException($id);
+        $user = $this->find($id);
         if ($user->restore())
             return true;
         throw new GeneralException("There was a problem restoring this user. Please try again.");
@@ -180,7 +182,7 @@ class UserRepository extends AbstractRepository implements UserContract
     public function mark($id, $status) {
         if (auth()->id() == $id && ($status == 0 || $status == 2))
             throw new GeneralException("You can not do that to yourself.");
-        $user = $this->findOrThrowException($id);
+        $user = $this->find($id);
         $user->status = $status;
         if ($user->save())
             return true;

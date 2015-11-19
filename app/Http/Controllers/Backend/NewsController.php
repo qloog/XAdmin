@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Repositories\News\NewsRepository;
+use App\Repositories\Backend\News\NewsContract;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\Backend\NewsRequest;
@@ -19,9 +19,14 @@ use App\Http\Requests\Backend\NewsUpdateRequest;
 class NewsController extends BaseController
 {
 
-    public function __construct(NewsRepository $repository)
+    /**
+     * @var NewsContract
+     */
+    protected $news;
+
+    public function __construct(NewsContract $news)
     {
-        $this->repository = $repository;
+        $this->news = $news;
     }
     /**
      * Display a listing of the resource.
@@ -30,7 +35,7 @@ class NewsController extends BaseController
      */
     public function index()
     {
-        $news = $this->repository->getAll(config('custom.per_page'), 'id', 'desc');
+        $news = $this->news->getRolesPaginated(config('custom.per_page'), 'id', 'desc');
         return view('backend.news.index', ['news' => $news]);
     }
 

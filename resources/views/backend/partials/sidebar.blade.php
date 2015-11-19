@@ -43,33 +43,33 @@
                         <b class="arrow"></b>
                     </li>
 
-                    <li @if(Request::is('admin/permission/*')) class="active open" @endif>
+                    <li @if(Request::is('admin/auth/*')) class="active open" @endif>
                         <a href="javascript:;" class="dropdown-toggle">
                             <i class="menu-icon fa fa-user"></i>
                             <span class="menu-text">
-                                用户权限管理
+                                权限管理
                             </span>
 
                             <b class="arrow fa fa-angle-down"></b>
                         </a>
                         <b class="arrow"></b>
                         <ul class="submenu">
-                            <li @if(Request::is('admin/user/*')) class="active" @endif>
-                                <a href="/admin/user/index">
+                            <li @if(Request::is('admin/auth/user/*')) class="active" @endif>
+                                <a href="/admin/auth/user/index">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     用户管理
                                 </a>
                                 <b class="arrow"></b>
                             </li>
-                            <li @if(Request::is('admin/role')) class="active" @endif>
-                                <a href="/admin/role">
+                            <li @if(Request::is('admin/auth/role')) class="active" @endif>
+                                <a href="/admin/auth/role">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     角色管理
                                 </a>
                                 <b class="arrow"></b>
                             </li>
-                            <li @if(Request::is('admin/permission')) class="active" @endif>
-                                <a href="/admin/permission">
+                            <li @if(Request::is('admin/auth/permission')) class="active" @endif>
+                                <a href="/admin/auth/permission">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     权限管理
                                 </a>

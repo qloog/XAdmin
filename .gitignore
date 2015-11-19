@@ -3,6 +3,7 @@
 .env
 /config/wechat.php
 /public/uploads
+/public/js/build
 /resources/assets
 /resources/views/frontend
 

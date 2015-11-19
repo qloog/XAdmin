@@ -73,17 +73,14 @@ Route::group(['namespace' => 'Backend'], function ()
     // need to auth controller
     Route::group(['prefix' => 'admin', 'middleware' => 'auth.admin'], function ()
     {
-        Route::get('/', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
-
         //dashboard
+        Route::get('/', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
         Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
-        //user
-        Route::get('user/index', 'UserController@index');
-//        Route::resource('user/profile', 'ProfileController@index');
-//        Route::resource('user/setting', 'SettingController@index');
 
-        Route::resource('role', 'RoleController');
-        Route::resource('permission', 'PermissionController');
+        //user
+        Route::resource('auth/user', 'UserController');
+        Route::resource('auth/role', 'RoleController');
+        Route::resource('auth/permission', 'PermissionController');
 
         //news
         Route::resource('news/category', 'NewsCategoryController');

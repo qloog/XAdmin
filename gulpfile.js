@@ -105,7 +105,7 @@ gulp.task("copyfiles", function() {
  * link: http://fettblog.eu/gulp-browserify-multiple-bundles/
  */
 gulp.task('js', function(done) {
-    glob('./resources/backend/src/**.js', function(err, files) {
+    glob('./resources/assets/js/backend/src/**.js', function(err, files) {
         if(err) done(err);
 
         var tasks = files.map(function(entry) {
@@ -116,13 +116,10 @@ gulp.task('js', function(done) {
                 .transform(babelify, {stage : 0})
                 .bundle()
                 .pipe(source(buildFile))    //Pass desired output filename to vinyl-source-stream
-                //.pipe(rename({
-                //    extname: '.bundle.js'
-                //}))
                 .pipe(gulp.dest('./public/js/build'));  // Start piping stream to tasks!
         });
         es.merge(tasks).on('end', done);
-    })
+    });
 });
 
 // Rerun tasks whenever a file changes.
@@ -134,28 +131,30 @@ gulp.task('watch', function(){
 /**
  * Default gulp is to run this elixir stuff
  */
-elixir(function(mix) {
-
-    // Combine scripts
-    mix.scripts([
-            'jquery.js',
-            'bootstrap.js',
-            'jquery.dataTables.js',
-            'dataTables.bootstrap.js'
-        ],
-        'public/js/app.js'
-    );
-
-    // Compile Less, default to public/css/app.css
-    mix.less('app.less');
-
-    //copy file: from resources/assets/js to public/js
-    //All operations are relative to the project's root directory
-    //mix.copy('resources/assets/js/jquery.fileupload.js', 'public/js/jquery.fileupload.js');
-    mix.copy('resources/assets/js/jquery.validate.js', 'public/js/jquery-validate/jquery.validate.js');
-    mix.copy('resources/assets/js/additional-methods.js', 'public/js/jquery-validate/additional-methods.js');
-    mix.copy('resources/assets/bower/jquery-validate/src/localization/messages_zh.js', 'public/js/jquery-validate/messages_zh.js');
-    mix.copy('resources/assets/js/react.js', 'public/js/react/react.js');
-    mix.copy('resources/assets/js/react-dom.js', 'public/js/react/react-dom.js');
-
-});
+//elixir(function(mix) {
+//
+    //mix.browserify('backend/src/commentBox.js', './public/js/build');
+//
+//    // Combine scripts
+//    //mix.scripts([
+//    //        'jquery.js',
+//    //        'bootstrap.js',
+//    //        'jquery.dataTables.js',
+//    //        'dataTables.bootstrap.js'
+//    //    ],
+//    //    'public/js/app.js'
+//    //);
+//    //
+//    //// Compile Less, default to public/css/app.css
+//    //mix.less('app.less');
+//
+//    //copy file: from resources/assets/js to public/js
+//    //All operations are relative to the project's root directory
+//    //mix.copy('resources/assets/js/jquery.fileupload.js', 'public/js/jquery.fileupload.js');
+//    //mix.copy('resources/assets/js/jquery.validate.js', 'public/js/jquery-validate/jquery.validate.js');
+//    //mix.copy('resources/assets/js/additional-methods.js', 'public/js/jquery-validate/additional-methods.js');
+//    //mix.copy('resources/assets/bower/jquery-validate/src/localization/messages_zh.js', 'public/js/jquery-validate/messages_zh.js');
+//    //mix.copy('resources/assets/js/react.js', 'public/js/react/react.js');
+//    //mix.copy('resources/assets/js/react-dom.js', 'public/js/react/react-dom.js');
+//
+//});
