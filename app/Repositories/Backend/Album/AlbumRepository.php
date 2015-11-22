@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Repositories\Album;
+namespace App\Repositories\Backend\Album;
 
 use App\Models\Album;
-use App\Repositories\AbstractRepository;
 
-class AlbumRepository extends AbstractRepository implements AlbumContract
+class AlbumRepository implements AlbumContract
 {
 
     /**

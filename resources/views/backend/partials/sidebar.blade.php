@@ -55,7 +55,7 @@
                         <b class="arrow"></b>
                         <ul class="submenu">
                             <li @if(Request::is('admin/auth/user/*')) class="active" @endif>
-                                <a href="/admin/auth/user/index">
+                                <a href="/admin/auth/user">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     用户管理
                                 </a>

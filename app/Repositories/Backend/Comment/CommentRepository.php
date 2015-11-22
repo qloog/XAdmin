@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Repositories\Comment;
+namespace App\Repositories\Backend\Comment;
 
 use App\Models\Comment;
-use App\Repositories\AbstractRepository;
 
-class CommentRepository extends AbstractRepository implements CommentContract
+class CommentRepository implements CommentContract
 {
 
     /**

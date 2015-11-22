@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Repositories\Event;
+namespace App\Repositories\Backend\Event;
 
 use App\Models\Event;
-use App\Repositories\AbstractRepository;
 
-class EventRepository extends AbstractRepository implements EventContract
+class EventRepository implements EventContract
 {
 
     /**

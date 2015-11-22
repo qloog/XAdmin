@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Repositories\Role\RoleRepository;
+use App\Repositories\Backend\Role\RoleRepository;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 

@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Redirect, Input;
 use App\Models\Comment;
-use App\Repositories\Comment\CommentRepository;
+use App\Repositories\Backend\Comment\CommentRepository;
 
 class CommentController extends BaseController
 {

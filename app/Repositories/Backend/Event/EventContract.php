@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Event;
+namespace App\Repositories\Backend\Event;
 
 interface EventContract
 {

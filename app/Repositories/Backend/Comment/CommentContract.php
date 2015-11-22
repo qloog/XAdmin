@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Comment;
+namespace App\Repositories\Backend\Comment;
 
 interface CommentContract
 {

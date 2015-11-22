@@ -41,6 +41,7 @@ class BackendServiceProvider extends ServiceProvider
         $this->app->bind('App\Repositories\Backend\Role\RoleContract', 'App\Repositories\Backend\Role\RoleRepository');
         $this->app->bind('App\Repositories\Backend\Permission\PermissionContract', 'App\Repositories\Backend\Permission\PermissionRepository');
         $this->app->bind('App\Repositories\Backend\News\NewsContract', 'App\Repositories\Backend\News\NewsRepository');
+        $this->app->bind('App\Repositories\Backend\Event\EventContract', 'App\Repositories\Backend\Event\EventRepository');
     }
     /**
      * Register the blade extender to use new blade sections

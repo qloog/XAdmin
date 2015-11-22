@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Album;
+namespace App\Repositories\Backend\Album;
 
 interface AlbumContract
 {

@@ -28,13 +28,16 @@ class RoleRepository implements RoleContract
     }
 
     /**
-     * @param $per_page
      * @param string $order_by
      * @param string $sort
-     * @return \Illuminate\Pagination\Paginator
+     * @param bool $withPermissions
+     * @return mixed
      */
-    public function getAll($per_page, $order_by = 'id', $sort = 'desc') {
-        return $this->model->orderBy($order_by, $sort)->paginate($per_page);
+    public function getAllRoles($order_by = 'sort', $sort = 'asc', $withPermissions = false) {
+        if ($withPermissions) {
+            return Role::with('permissions')->orderBy($order_by, $sort)->get();
+        }
+        return Role::orderBy($order_by, $sort)->get();
     }
 
 }

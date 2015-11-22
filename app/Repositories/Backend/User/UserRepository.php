@@ -100,17 +100,17 @@ class UserRepository implements UserContract
      * @return bool
      * @throws GeneralException
      */
-    public function update($id, $input, $roles, $permissions) {
+    public function update($id, $input, $roles=array(), $permissions=array()) {
         $user = $this->find($id);
         $this->checkUserByEmail($input, $user);
         if ($user->update($input)) {
             //For whatever reason this just wont work in the above call, so a second is needed for now
-            $user->status = isset($input['status']) ? 1 : 0;
-            $user->confirmed = isset($input['confirmed']) ? 1 : 0;
-            $user->save();
-            $this->checkUserRolesCount($roles);
-            $this->flushRoles($roles, $user);
-            $this->flushPermissions($permissions, $user);
+//            $user->status = isset($input['status']) ? 1 : 0;
+//            $user->confirmed = isset($input['confirmed']) ? 1 : 0;
+//            $user->save();
+//            $this->checkUserRolesCount($roles);
+//            $this->flushRoles($roles, $user);
+//            $this->flushPermissions($permissions, $user);
             return true;
         }
         throw new GeneralException('There was a problem updating this user. Please try again.');
