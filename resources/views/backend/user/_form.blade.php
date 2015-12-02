@@ -7,19 +7,17 @@
                     </div>
                 </div>
 
-                {{--<div class="form-group">--}}
-                    {{--<label class="col-sm-2 control-label no-padding-right" for="category_id"> 所属分类 </label>--}}
-                    {{--<div class="col-sm-10">--}}
-                        {{--<div class="clearfix">--}}
-                        {{--<select name="category_id" id="category_id">--}}
-                            {{--<option value="">请选择</option>--}}
-                            {{--@foreach ($selectCategory as $item)--}}
-                            {{--<option value="{{ $item['id'] }}">{{ $item['html'] }}{{ $item['name'] }}</option>--}}
-                            {{--@endforeach--}}
-                        {{--</select>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="category_id"> 所属分类 </label>
+                    <div class="col-sm-10">
+                        <div class="clearfix">
+                            @foreach ($roles as $item)
+                                <label for="role_id">{{ $item['role_name'] }}</label>
+                                <input type="checkbox" name="role_id" value="{{ $item['id'] }}" />
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <label class="col-sm-2 control-label no-padding-right" for="meta_keyword"> Email </label>
@@ -29,5 +27,3 @@
                         </div>
                     </div>
                 </div>
-
-

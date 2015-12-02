@@ -75,7 +75,7 @@ class UserController extends BaseController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\View\View
      */
     public function show($id)
@@ -86,27 +86,31 @@ class UserController extends BaseController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\View\View
      */
     public function edit($id)
     {
         $user = $this->users->find($id);
-        return view('backend.user.edit')
-            ->withUser($user)
-            ->withUserRole($user->roles->lists('id')->all())
-            ->withRoles($this->roles->getAllRoles('id','desc', true));
+
+        return view('backend.user.edit',
+            [
+                'user' => $user,
+                'userRole' => $user->roles->lists('id')->all(),
+                'roles' => $this->roles->getAllRoles('id', 'desc', true)
+            ]
+        );
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function update($id)
     {
-        if ($this->users->update($id, ['username'=>Input::get('username'), 'email' => Input::get('email')])) {
+        if ($this->users->update($id, ['username' => Input::get('username'), 'email' => Input::get('email')])) {
             return Redirect::to('admin/auth/user');
         } else {
             return Redirect::back()->withInput()->withErrors('保存失败！');
@@ -117,7 +121,7 @@ class UserController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function destroy($id)
