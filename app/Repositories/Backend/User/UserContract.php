@@ -13,4 +13,6 @@ interface UserContract
 
     public function getAllUsers($order_by = 'id', $sort = 'asc');
 
+    public function destroy($id);
+
 }

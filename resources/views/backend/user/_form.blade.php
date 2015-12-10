@@ -8,12 +8,14 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right" for="category_id"> 所属分类 </label>
+                    <label class="col-sm-2 control-label no-padding-right" for="category_id"> 拥有角色 </label>
                     <div class="col-sm-10">
                         <div class="clearfix">
-                            @foreach ($roles as $item)
-                                <label for="role_id">{{ $item['role_name'] }}</label>
-                                <input type="checkbox" name="role_id" value="{{ $item['id'] }}" />
+                            @foreach ($roles as $role)
+                                <label for="role_id">{{ $role->role_name }}</label>
+                                <input type="checkbox" name="role_id" value="{{ $role->id }}"
+                                      {{ in_array($role->id, $userRole) ? 'checked' : '' }}
+                                />{{ $role['role_name'] }}
                             @endforeach
                         </div>
                     </div>

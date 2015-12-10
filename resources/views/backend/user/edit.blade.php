@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-xs-12">
             <!-- PAGE CONTENT BEGINS -->
-            <form class="form-horizontal" id="news_form" role="form" method="POST" action="{{ URL::to('admin/auth/user/' . $user->id) }}" enctype="multipart/form-data">
+            <form class="form-horizontal" id="news_form" role="form" method="POST" action="{{ route('admin.auth.user.update', $user->id) }}" enctype="multipart/form-data">
                 <input name="_method" type="hidden" value="PUT">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -62,13 +62,13 @@
                         </p>
                     </div>
                     <div class="modal-footer">
-                        <form method="POST" action="{{ route('admin.news.destroy', $user->id) }}">
+                        <form method="POST" action="{{ route('admin.auth.user.destroy', $user->id) }}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="hidden" name="_method" value="DELETE">
                             <button type="button" class="btn btn-default"
-                                    data-dismiss="modal">Close</button>
+                                    data-dismiss="modal">X</button>
                             <button type="submit" class="btn btn-danger">
-                                <i class="fa fa-times-circle"></i> Yes
+                                <i class="fa fa-times-circle"></i> 是
                             </button>
                         </form>
                     </div>

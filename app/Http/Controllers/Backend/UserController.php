@@ -126,6 +126,10 @@ class UserController extends BaseController
      */
     public function destroy($id)
     {
-        //
+        $this->users->destroy($id);
+
+        return redirect()
+            ->route('admin.auth.user.index')
+            ->withSuccess('Post deleted.');
     }
 }
