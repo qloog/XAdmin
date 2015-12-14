@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use App\Repositories\Backend\User\UserContract;
@@ -47,7 +48,7 @@ class UserController extends BaseController
      */
     public function index()
     {
-        $users = $this->users->getUsersPaginated(config('custom.per_page'));
+        $users = $this->users->getAllUsers(config('custom.per_page'));
 
         return view('backend.user.index', ['users' => $users]);
     }
@@ -59,17 +60,25 @@ class UserController extends BaseController
      */
     public function create()
     {
-        //
+        return view('backend.user.create',
+            [
+                'roles' => $this->roles->getAllRoles('id', 'desc', true),
+                'userRoles' => array()
+            ]
+        );
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return Response
+     * @param Request $request
+     * @return mixed
      */
-    public function store()
+    public function store(Request $request)
     {
-        //
+        if ($this->users->create($request->except('assignees_roles'), $request->only('assignees_roles'))) {
+            return redirect()->route('admin.auth.user.index');
+        }
+        return Redirect::back()->withInput()->withErrors('保存失败！');
     }
 
     /**
@@ -93,10 +102,11 @@ class UserController extends BaseController
     {
         $user = $this->users->find($id);
 
-        return view('backend.user.edit',
+        return view(
+            'backend.user.edit',
             [
                 'user' => $user,
-                'userRole' => $user->roles->lists('id')->all(),
+                'userRoles' => $user->roles->lists('id')->all(),
                 'roles' => $this->roles->getAllRoles('id', 'desc', true)
             ]
         );
@@ -105,17 +115,16 @@ class UserController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  int $id
+     * @param  int    $id
+     * @param Request $request
      * @return Response
      */
-    public function update($id)
+    public function update($id, Request $request)
     {
-        if ($this->users->update($id, ['username' => Input::get('username'), 'email' => Input::get('email')])) {
-            return Redirect::to('admin/auth/user');
-        } else {
-            return Redirect::back()->withInput()->withErrors('保存失败！');
+        if ($this->users->update($id, $request->except('assignees_roles'), $request->only('assignees_roles'))) {
+            return redirect()->route('admin.auth.user.index');
         }
-
+        return Redirect::back()->withInput()->withErrors('保存失败！');
     }
 
     /**

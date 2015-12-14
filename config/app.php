@@ -139,6 +139,7 @@ return [
          * Custom Service Providers
          */
         App\Providers\BackendServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
         App\Providers\OAuthServiceProvider::class,
         Overtrue\LaravelWechat\ServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
@@ -202,6 +203,8 @@ return [
         /**
          * custom alias
          */
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
         'Wechat' => Overtrue\LaravelWechat\Facade::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'UEditor' => Ender\UEditor\UEditor::class,

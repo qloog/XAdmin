@@ -31,12 +31,18 @@ class UserRepository implements UserContract
     }
 
     /**
-     * @param $id
-     * @return mixed
+     * get user by id
+     * @param            $id
+     * @param bool|false $withRoles
+     * @return array|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
      */
-    public function find($id) {
-        $obj = User::withTrashed()->find($id);
-        if (! is_null($obj)) return $obj;
+    public function find($id, $withRoles = false) {
+        if ($withRoles) {
+            $user = User::with('roles')->withTrashed()->find($id);
+        } else {
+            $user = User::withTrashed()->find($id);
+        }
+        if (! is_null($user)) return $user;
         return array();
     }
 
@@ -60,23 +66,24 @@ class UserRepository implements UserContract
     }
 
     /**
+     * @param string $per_page
      * @param string $order_by
      * @param string $sort
      * @return mixed
+     * @internal param $
      */
-    public function getAllUsers($order_by = 'id', $sort = 'asc') {
-        return User::orderBy($order_by, $sort)->get();
+    public function getAllUsers($per_page, $order_by = 'id', $sort = 'asc') {
+        return User::orderBy($order_by, $sort)->paginate($per_page);
     }
 
     /**
      * @param $input
      * @param $roles
-     * @param $permissions
      * @return bool
      * @throws GeneralException
      * @throws UserNeedsRolesException
      */
-    public function create($input, $roles, $permissions) {
+    public function create($input, $roles) {
         $user = $this->createUserStub($input);
         if ($user->save()) {
             //User Created, Validate Roles
@@ -84,10 +91,10 @@ class UserRepository implements UserContract
             //Attach new roles
             $user->attachRoles($roles['assignees_roles']);
             //Attach other permissions
-            $user->attachPermissions($permissions['permission_user']);
+            //$user->attachPermissions($permissions['permission_user']);
             //Send confirmation email if requested
-            if (isset($input['confirmation_email']) && $user->confirmed == 0)
-                $this->registrar->resendConfirmationEmail($user->id);
+//            if (isset($input['confirmation_email']) && $user->confirmed == 0)
+//                $this->registrar->resendConfirmationEmail($user->id);
             return true;
         }
         throw new GeneralException('There was a problem creating this user. Please try again.');
@@ -100,16 +107,16 @@ class UserRepository implements UserContract
      * @return bool
      * @throws GeneralException
      */
-    public function update($id, $input, $roles=array(), $permissions=array()) {
+    public function update($id, $input, $roles=array()) {
         $user = $this->find($id);
         $this->checkUserByEmail($input, $user);
         if ($user->update($input)) {
             //For whatever reason this just wont work in the above call, so a second is needed for now
-//            $user->status = isset($input['status']) ? 1 : 0;
+            $user->status = isset($input['status']) ? 1 : 0;
 //            $user->confirmed = isset($input['confirmed']) ? 1 : 0;
-//            $user->save();
-//            $this->checkUserRolesCount($roles);
-//            $this->flushRoles($roles, $user);
+            $user->save();
+            $this->checkUserRolesCount($roles);
+            $this->flushRoles($roles, $user);
 //            $this->flushPermissions($permissions, $user);
             return true;
         }
@@ -266,12 +273,12 @@ class UserRepository implements UserContract
     private function createUserStub($input)
     {
         $user = new User;
-        $user->name = $input['name'];
+        $user->username = $input['username'];
         $user->email = $input['email'];
-        $user->password = $input['password'];
+        //$user->password = $input['password'];
         $user->status = isset($input['status']) ? 1 : 0;
-        $user->confirmation_code = md5(uniqid(mt_rand(), true));
-        $user->confirmed = isset($input['confirmed']) ? 1 : 0;
+//        $user->confirmation_code = md5(uniqid(mt_rand(), true));
+//        $user->confirmed = isset($input['confirmed']) ? 1 : 0;
         return $user;
     }
 }

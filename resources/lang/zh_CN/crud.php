@@ -48,7 +48,7 @@ return [
         'other_permissions' => 'Other Permissions',
         'restore_user' => 'Restore User',
         'roles' => '拥有的角色',
-        'total' => 'user(s) total',
+        'total' => '个用户',
     ],
     /*
     |--------------------------------------------------------------------------

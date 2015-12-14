@@ -2,16 +2,28 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Repositories\Backend\Role\RoleRepository;
+use App\Repositories\Backend\Permission\PermissionContract;
+use App\Repositories\Backend\Role\RoleContract;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
 class RoleController extends BaseController
 {
 
-    public function __construct(RoleRepository $repository)
+    /**
+     * @var RoleContract
+     */
+    protected $roles;
+
+    /**
+     * @var
+     */
+    protected $permissions;
+
+    public function __construct(RoleContract $roles, PermissionContract $permissions)
     {
-        $this->repository = $repository;
+        $this->roles = $roles;
+        $this->permissions = $permissions;
     }
 
     /**
@@ -21,7 +33,7 @@ class RoleController extends BaseController
      */
     public function index()
     {
-        $roles = $this->repository->getAll(config('custom_per_page'));
+        $roles = $this->roles->getRolesPaginated(config('custom_per_page'));
         return view('backend.roles.index', compact('roles'));
     }
 
