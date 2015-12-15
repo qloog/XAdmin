@@ -18,10 +18,10 @@
 * [x]增加验证码
 
 ### 用户权限管理
-* [x]ACL (Access Control Layer) using Laravel Middleware
+* [x] RBAC (Role-Based Access Control) 
     * [✓]用户管理：主要用来查看已注册用户信息；
-    * [X]角色管理：角色查看，角色分配权限（待增加）；
-    * [X]权限管理：权限查看，曾删改（待增加）
+    * [✓]角色管理：角色查看，角色分配权限；
+    * [✓]权限管理：权限查看、修改，增删（待增加）
 
 ### 新闻管理
 * 新闻管理
@@ -65,9 +65,6 @@
 
 ### 后端
  * Laravel
-
-
-
 
 ## License
 

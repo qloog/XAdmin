@@ -31,16 +31,13 @@
         @foreach ($permissions as $item)
             <tr>
                 <th>{{ $item->id }}</th>
-                <th>{{ $item->permission_title }}</th>
+                <th>{{ $item->permission_name }}</th>
                 <th>{{ $item->permission_slug }}</th>
                 <th>{{ $item->created_at }}</th>
                 <th>{{ $item->updated_at }}</th>
                 <th>
                     <div class="hidden-sm hidden-xs action-buttons">
-                        <a class="blue" href="#">
-                            <i class="ace-icon fa fa-search-plus bigger-130"></i>分配权限
-                        </a>
-                        <a class="green" href="#">
+                        <a class="green" href="{{ route('admin.auth.permission.edit', $item->id) }}">
                             <i class="ace-icon fa fa-pencil bigger-130"></i>
                         </a>
                         <a class="red" href="#">

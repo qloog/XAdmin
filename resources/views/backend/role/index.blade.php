@@ -11,7 +11,7 @@
         <a>用户管理</a>
     </li>
     <li>
-        列表
+        角色列表
     </li>
 @endsection
 
@@ -32,25 +32,22 @@
         @foreach ($roles as $item)
             <tr>
                 <th>{{ $item->id }}</th>
-                <th>{{ $item->role_title }}</th>
+                <th>{{ $item->role_name }}</th>
                 <th>{{ $item->role_slug }}</th>
                 <th>
                     @foreach($item->permissions as $permission)
-                        {{ $permission->permission_title }}({{ $permission->permission_slug }})
+                        {{ $permission->permission_name }}({{ $permission->permission_slug }})
                     @endforeach
                 </th>
                 <th>{{ $item->created_at }}</th>
                 <th>{{ $item->updated_at }}</th>
                 <th>
                     <div class="hidden-sm hidden-xs action-buttons">
-                        <a class="blue" href="#">
-                            <i class="ace-icon fa fa-search-plus bigger-130"></i>分配权限
-                        </a>
-                        <a class="green" href="#">
-                            <i class="ace-icon fa fa-pencil bigger-130"></i>
+                        <a class="green" href="{{ route('admin.auth.role.edit', [$item->id]) }}">
+                            <i class="ace-icon fa fa-pencil bigger-130"></i>编辑
                         </a>
                         <a class="red" href="#">
-                            <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                            <i class="ace-icon fa fa-trash-o bigger-130"></i>删除
                         </a>
                     </div>
                 </th>

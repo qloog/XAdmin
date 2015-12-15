@@ -43,7 +43,7 @@
                 <td>
                     @if ($user->roles()->count() > 0)
                         @foreach ($user->roles as $role)
-                            {!! $role->role_title !!}【{!! $role->role_slug !!}】<br/>
+                            {!! $role->role_name !!}【{!! $role->role_slug !!}】<br/>
                         @endforeach
                     @else
                         None

@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Repositories\Backend\Permission\PermissionRepository;
+use App\Repositories\Backend\Permission\PermissionContract;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 class PermissionController extends BaseController
 {
 
-    public function __construct(PermissionRepository $repository)
+    /**
+     * @var PermissionContract
+     */
+    protected $permissions;
+
+    public function __construct(PermissionContract $permissions)
     {
-        $this->repository = $repository;
+        $this->permissions = $permissions;
     }
 
     /**
@@ -22,7 +26,7 @@ class PermissionController extends BaseController
      */
     public function index()
     {
-        $permissions = $this->repository->getAll(config('custom_per_page'));
+        $permissions = $this->permissions->getPermissionsPaginated(config('custom.per_page'));
         return view('backend.permission.index', compact('permissions'));
     }
 
@@ -66,19 +70,20 @@ class PermissionController extends BaseController
      */
     public function edit($id)
     {
-        //
+        $permission = $this->permissions->find($id);
+        return view('backend.permission.edit', ['permission' => $permission]);
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id, Request $request)
     {
-        //
+        $permission = $this->permissions->update($id, $request->all());
+        return redirect()->route('admin.auth.permission.index');
     }
 
     /**

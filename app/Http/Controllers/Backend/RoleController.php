@@ -34,7 +34,7 @@ class RoleController extends BaseController
     public function index()
     {
         $roles = $this->roles->getRolesPaginated(config('custom_per_page'));
-        return view('backend.roles.index', compact('roles'));
+        return view('backend.role.index', compact('roles'));
     }
 
     /**
@@ -44,7 +44,12 @@ class RoleController extends BaseController
      */
     public function create()
     {
-        //
+        return view('backend.role.create',
+            [
+                'permissions' => $this->permissions->getAllPermissions('id', 'desc', true),
+                'rolePermissions' => array()
+            ]
+        );
     }
 
     /**
@@ -55,7 +60,8 @@ class RoleController extends BaseController
      */
     public function store(Request $request)
     {
-        //
+        $this->roles->create($request->all());
+        return redirect()->route('admin.auth.role.index')->withFlashSuccess(trans('alerts.roles.created'));
     }
 
     /**
@@ -66,7 +72,7 @@ class RoleController extends BaseController
      */
     public function show($id)
     {
-        //
+        dd($this->roles->find($id));
     }
 
     /**
@@ -77,19 +83,29 @@ class RoleController extends BaseController
      */
     public function edit($id)
     {
-        //
+        $role = $this->roles->find($id, true);
+
+        return view(
+            'backend.role.edit',
+            [
+                'role' => $role,
+                'rolePermissions' => $role->permissions->lists('id')->all(),
+                'permissions' => $this->permissions->getAllPermissions('id', 'asc', true)
+            ]
+        );
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id, Request $request)
     {
-        //
+        $this->roles->update($id, $request->all());
+        return redirect()->route('admin.auth.role.index')->withFlashSuccess(trans('alerts.roles.updated'));
+
     }
 
     /**
@@ -100,6 +116,10 @@ class RoleController extends BaseController
      */
     public function destroy($id)
     {
-        //
+        $this->roles->destroy($id);
+
+        return redirect()
+            ->route('admin.auth.role.index')
+            ->withSuccess(trans('alerts.users.deleted'));
     }
 }
