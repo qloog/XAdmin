@@ -76,6 +76,7 @@
 
                     <div class="page-content">
                         {{--@include('backend.includes.setting_box')--}}
+                        @include('flash::message')
                         @include('backend.partials.errors')
                         @include('backend.partials.success')
                         {{--<div class="page-header">--}}

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Repositories\Backend\User\UserContract;
 use App\Repositories\Backend\Role\RoleContract;
 use App\Repositories\Backend\Permission\PermissionContract;
+use Laracasts\Flash\Flash;
 
 class UserController extends BaseController
 {
