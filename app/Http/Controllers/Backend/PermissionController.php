@@ -3,19 +3,35 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Repositories\Backend\Permission\PermissionContract;
+use App\Repositories\Backend\Role\RoleContract;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
+/**
+ * Class PermissionController
+ * @package App\Http\Controllers\Backend
+ */
 class PermissionController extends BaseController
 {
+
+
+    /**
+     * @var RoleContract
+     */
+    protected $roles;
 
     /**
      * @var PermissionContract
      */
     protected $permissions;
 
-    public function __construct(PermissionContract $permissions)
+    /**
+     * @param RoleContract       $roles
+     * @param PermissionContract $permissions
+     */
+    public function __construct(RoleContract $roles, PermissionContract $permissions)
     {
+        $this->roles = $roles;
         $this->permissions = $permissions;
     }
 
@@ -27,6 +43,7 @@ class PermissionController extends BaseController
     public function index()
     {
         $permissions = $this->permissions->getPermissionsPaginated(config('custom.per_page'));
+
         return view('backend.permission.index', compact('permissions'));
     }
 
@@ -37,24 +54,31 @@ class PermissionController extends BaseController
      */
     public function create()
     {
-        //
+        return view(
+            'backend.permission.create',
+            [
+                'roles' => $this->roles->getAllRoles(),
+                'permissionRoles' => array()
+            ]
+        );
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $this->permissions->create($request->except('permission_roles'), $request->only('permission_roles'));
+        return redirect()->route('admin.auth.permission.index')->withSuccess(trans('alerts.permissions.created'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -65,35 +89,46 @@ class PermissionController extends BaseController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $permission = $this->permissions->find($id);
-        return view('backend.permission.edit', ['permission' => $permission]);
+        $permission = $this->permissions->find($id, true);
+
+        return view(
+            'backend.permission.edit',
+            [
+                'permission' => $permission,
+                'roles' => $this->roles->getAllRoles(),
+                'permissionRoles' => $permission->roles->lists('id')->all()
+            ]
+        );
     }
 
     /**
      * Update the specified resource in storage.
-     * @param  int  $id
-     * @param  \Illuminate\Http\Request  $request
+     * @param  int                      $id
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function update($id, Request $request)
     {
-        $permission = $this->permissions->update($id, $request->all());
-        return redirect()->route('admin.auth.permission.index');
+        $this->permissions->update($id, $request->except('permission_roles'), $request->only('permission_roles'));
+
+        return redirect()->route('admin.auth.permission.index')->withSuccess(trans('alerts.permissions.updated'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        $this->permissions->destroy($id);
+
+        return redirect()->route('admin.auth.permission.index')->withSuccess(trans('alerts.common.deleted'));
     }
 }

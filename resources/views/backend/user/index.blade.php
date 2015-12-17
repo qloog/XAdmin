@@ -3,16 +3,9 @@
 @section('title', '用户管理')
 
 @section('breadcrumb')
-        <li>
-            <i class="ace-icon fa fa-home home-icon"></i>
-            <a href="/admin/dashboard">主页</a>
-        </li>
-        <li>
-            <a>用户管理</a>
-        </li>
-        <li>
-            列表
-        </li>
+        <li><i class="ace-icon fa fa-home home-icon"></i><a href="/admin/dashboard">主页</a></li>
+        <li><a>用户管理</a></li>
+        <li>列表</li>
 @endsection
 
 @section('content')

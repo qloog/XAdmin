@@ -129,6 +129,26 @@ class UserController extends BaseController
     }
 
     /**
+     * @param $id
+     * @param Request $request
+     * @return mixed
+     */
+    public function changePassword($id, Request $request) {
+        return view('backend.user.change-password')
+            ->withUser($this->users->find($id));
+    }
+
+    /**
+     * @param $id
+     * @param Request $request
+     * @return mixed
+     */
+    public function updatePassword($id, Request $request) {
+        $this->users->updatePassword($id, $request->all());
+        return redirect()->route('admin.auth.user.index')->withFlashSuccess(trans("alerts.users.updated_password"));
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int $id

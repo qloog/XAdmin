@@ -13,15 +13,16 @@ return [
     |
     */
 
+    'common' => [
+        'created' => '创建成功',
+        'updated' => '更新成功',
+        'deleted' => '删除成功',
+    ],
+
     'permissions' => [
-        'created' => 'Permission successfully created.',
-        'updated' => 'Permission successfully updated.',
-        'deleted' => 'Permission successfully deleted.',
-        'groups'  => [
-            'created' => 'Permission group successfully created.',
-            'updated' => 'Permission group successfully updated.',
-            'deleted' => 'Permission group successfully deleted.',
-        ],
+        'created' => '权限创建成功',
+        'updated' => '权限更新成功',
+        'deleted' => '权限删除成功',
     ],
 
     'roles' => [
@@ -36,7 +37,7 @@ return [
         'deleted' => 'The user was successfully deleted.',
         'deleted_permanently' => 'The user was deleted permanently.',
         'restored' => 'The user was successfully restored.',
-        'updated_password' => "The user's password was successfully updated.",
+        'updated_password' => "用户密码修改成功",
         'confirmation_email' => 'A new confirmation e-mail has been sent to the address on file.'
     ]
 

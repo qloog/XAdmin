@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-//use App\Blade\Access\AccessBladeExtender;
 
 /**
  * Class BackendServiceProvider
@@ -21,7 +20,7 @@ class BackendServiceProvider extends ServiceProvider
      * Package boot method
      */
     public function boot() {
-        //$this->registerBladeExtender();
+
     }
     /**
      * Register the service provider.
@@ -44,10 +43,11 @@ class BackendServiceProvider extends ServiceProvider
         $this->app->bind('App\Repositories\Backend\Event\EventContract', 'App\Repositories\Backend\Event\EventRepository');
 
     }
+
     /**
      * Register the blade extender to use new blade sections
      */
     protected function registerBladeExtender() {
-        //AccessBladeExtender::attach($this->app);
+
     }
 }

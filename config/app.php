@@ -203,6 +203,7 @@ return [
         /**
          * custom alias
          */
+        'Access' => \App\Services\Access\Facades\Access::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Wechat' => Overtrue\LaravelWechat\Facade::class,

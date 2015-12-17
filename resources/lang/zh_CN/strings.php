@@ -24,6 +24,10 @@ return [
     'be_right_back' => 'Be Right Back.',
     'cancel_button' => '取消',
     'return_button' => '返回',
+    'save_button' => '保存',
+    'search_button' => '搜索',
+    'search_placeholder' => 'Search...',
+
     'click_here_to_confirm_account' => 'Click here to confirm your account:',
     'click_here_to_reset' => 'Click here to reset your password:',
     'edit' => '编辑',
@@ -34,8 +38,7 @@ return [
     'page_not_found' => 'Page Not Found',
     'password_successfully_changed' => 'Password successfully changed',
     'profile_successfully_updated' => 'Profile successfully updated.',
-    'save_button' => '保存',
-    'search_placeholder' => 'Search...',
+
     'see_all' => [
         'messages' => 'See all messages',
         'notifications' => 'View all',

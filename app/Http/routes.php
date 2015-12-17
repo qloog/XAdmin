@@ -79,6 +79,8 @@ Route::group(['namespace' => 'Backend'], function ()
 
         //user
         Route::resource('auth/user', 'UserController');
+        Route::get('auth/user/change-password/{id}', 'UserController@changePassword');
+        Route::post('auth/user/update-password/{id}', ['as' => 'admin.auth.user.update-password', 'uses' => 'UserController@updatePassword']);
         Route::resource('auth/role', 'RoleController');
         Route::resource('auth/permission', 'PermissionController');
 

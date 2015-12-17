@@ -16,6 +16,9 @@
 @endsection
 
 @section('content')
+    <div class="pull-left">
+        <a class="btn btn-primary btn-xs" href="{{ route('admin.auth.role.create') }}">添加角色</a>
+    </div>
     <table id="example" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
         <thead>
         <tr>
@@ -45,9 +48,6 @@
                     <div class="hidden-sm hidden-xs action-buttons">
                         <a class="green" href="{{ route('admin.auth.role.edit', [$item->id]) }}">
                             <i class="ace-icon fa fa-pencil bigger-130"></i>编辑
-                        </a>
-                        <a class="red" href="#">
-                            <i class="ace-icon fa fa-trash-o bigger-130"></i>删除
                         </a>
                     </div>
                 </th>

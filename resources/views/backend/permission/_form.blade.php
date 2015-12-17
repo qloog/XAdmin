@@ -18,3 +18,18 @@
                         {!! Form::text('permission_description', null, ['class' => 'form-control', 'placeholder' => '']) !!}
                     </div>
                 </div><!--form control-->
+
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">{{ trans('validation.attributes.associated_roles') }}</label>
+                    <div class="col-lg-3">
+                        @if (count($roles) > 0)
+                            @foreach($roles as $role)
+                                <input type="checkbox" {{ in_array($role->id, $permissionRoles) ? 'checked' : ''}} value="{{$role->id}}" name="permission_roles[]" id="role-{{$role->id}}" />
+                                <label for="role-{{$role->id}}">{!! $role->role_name !!}</label>
+                                <br/>
+                            @endforeach
+                        @else
+                            No Roles to set
+                        @endif
+                    </div>
+                </div><!--form control-->

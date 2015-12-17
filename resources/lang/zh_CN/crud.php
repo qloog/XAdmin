@@ -61,8 +61,8 @@ return [
     */
     'activate_user_button' => 'Activate User',
     'ban_user_button' => 'Ban User',
-    'change_password_button' => 'Change Password',
+    'change_password_button' => '修改密码',
     'deactivate_user_button' => 'Deactivate User',
-    'delete_button' => 'Delete',
-    'edit_button' => 'Edit',
+    'delete_button' => '删除',
+    'edit_button' => '编辑',
 ];

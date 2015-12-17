@@ -18,7 +18,7 @@
                     <a href="#" class="navbar-brand">
                         <small>
                             <i class="fa fa-leaf"></i>
-                            X Admin
+                            {{ trans('strings.backend.dashboard_title') }}
                         </small>
                     </a>
                 </div>
@@ -285,13 +285,20 @@
                             <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                                 <img class="nav-user-photo" src="/avatars/user.jpg" alt="Jason's Photo">
                                 <span class="user-info">
-                                    <small>Welcome,</small>
+                                    <small>{{ trans('strings.backend.WELCOME') }},</small>
                                     {{ Auth::user()->username }}
                                 </span>
                                 <i class="ace-icon fa fa-caret-down"></i>
                             </a>
 
                             <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                                <li>
+                                    <a href="{{ url('/admin/auth/user/change-password', Auth::user()->id) }}">
+                                        <i class="ace-icon fa fa-lock"></i>
+                                        修改密码
+                                    </a>
+                                </li>
+
                                 {{--<li>--}}
                                     {{--<a href="{{ url('admin/user/setting') }}">--}}
                                         {{--<i class="ace-icon fa fa-cog"></i>--}}

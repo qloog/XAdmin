@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
@@ -40,6 +41,20 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function getStatusAttribute($value)
     {
         return $value == 1 ? '正常' : '已删除';
+    }
+
+    /**
+     * Hash the users password
+     *
+     * @param $value
+     */
+    public function setPasswordAttribute($value)
+    {
+        if (Hash::needsRehash($value)) {
+            $this->attributes['password'] = bcrypt($value);
+        } else {
+            $this->attributes['password'] = $value;
+        }
     }
 
 }

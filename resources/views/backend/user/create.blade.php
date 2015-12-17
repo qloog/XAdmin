@@ -32,7 +32,7 @@
 
             <div class="well">
                 <div class="text-center">
-                    <a href="{{route('admin.auth.user.index')}}" class="btn btn-danger btn-xs">{{ trans('strings.cancel_button') }}</a>
+                    <a href="{{route('admin.user.index')}}" class="btn btn-danger btn-xs">{{ trans('strings.cancel_button') }}</a>
                     <input type="submit" class="btn btn-success btn-xs" value="{{ trans('strings.save_button') }}" />
                 </div>
                 <div class="clearfix"></div>

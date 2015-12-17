@@ -61,7 +61,7 @@ class RoleController extends BaseController
     public function store(Request $request)
     {
         $this->roles->create($request->all());
-        return redirect()->route('admin.auth.role.index')->withFlashSuccess(trans('alerts.roles.created'));
+        return redirect()->route('admin.auth.role.index')->withSuccess(trans('alerts.roles.created'));
     }
 
     /**
@@ -104,7 +104,7 @@ class RoleController extends BaseController
     public function update($id, Request $request)
     {
         $this->roles->update($id, $request->all());
-        return redirect()->route('admin.auth.role.index')->withFlashSuccess(trans('alerts.roles.updated'));
+        return redirect()->route('admin.auth.role.index')->withSuccess(trans('alerts.roles.updated'));
 
     }
 

@@ -25,7 +25,7 @@
 
             <div class="well">
                 <div class="text-center">
-                    <a href="{{route('admin.auth.role.index')}}" class="btn btn-danger btn-xs">{{ trans('strings.cancel_button') }}</a>
+                    <a href="{{route('admin.permission.index')}}" class="btn btn-info btn-xs">{{ trans('strings.return_button') }}</a>
                     <input type="submit" class="btn btn-success btn-xs" value="{{ trans('strings.save_button') }}" />
                 </div>
                 <div class="clearfix"></div>

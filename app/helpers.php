@@ -12,6 +12,7 @@ if (! function_exists('app_name')) {
         return config('app.name');
     }
 }
+
 if ( ! function_exists('access')) {
     /**
      * Access (lol) the Access:: facade as a simple function
@@ -19,16 +20,6 @@ if ( ! function_exists('access')) {
     function access()
     {
         return app('access');
-    }
-}
-
-if ( ! function_exists('link_to')) {
-    /**
-     * Access (lol) the Access:: facade as a simple function
-     */
-    function link_to()
-    {
-        return '-------------';
     }
 }
 
@@ -73,18 +64,18 @@ if ( ! function_exists('get_image_url')) {
         $image =  \Illuminate\Support\Facades\DB::table('images')->where('image_name', '=', $imageName)->first();
         $imagePath = $image ? $image->image_path : null;
         if ($fullUrl) {
-            return $image ? getStaticDomain() . $imagePath : getStaticDomain() . config('custom.default_image');
+            return $image ? get_static_domain() . $imagePath : get_static_domain() . config('custom.default_image');
         }
         return $image ? $imagePath : config('custom.default_image');
     }
 }
 
-if ( ! function_exists('get_image_url')) {
+if ( ! function_exists('get_static_domain')) {
     /**
      * get static domain
      * @return string
      */
-    function getStaticDomain()
+    function get_static_domain()
     {
         return 'http://www.local.com/';
     }

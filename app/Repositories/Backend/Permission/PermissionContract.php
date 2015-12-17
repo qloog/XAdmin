@@ -36,9 +36,10 @@ interface PermissionContract
     /**
      * @param  $id
      * @param  $input
+     * @param  $roles
      * @return mixed
      */
-    public function update($id, $input);
+    public function update($id, $input, $roles);
     /**
      * @param  $id
      * @return mixed

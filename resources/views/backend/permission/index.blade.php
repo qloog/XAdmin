@@ -3,19 +3,15 @@
 @section('title', '用户管理')
 
 @section('breadcrumb')
-    <li>
-        <i class="ace-icon fa fa-home home-icon"></i>
-        <a href="/admin/dashboard">主页</a>
-    </li>
-    <li>
-        <a>用户管理</a>
-    </li>
-    <li>
-        列表
-    </li>
+    <li><i class="ace-icon fa fa-home home-icon"></i><a href="/admin/dashboard">主页</a></li>
+    <li><a>权限管理</a></li>
+    <li>列表</li>
 @endsection
 
 @section('content')
+    <div class="pull-left">
+        <a class="btn btn-primary btn-xs" href="{{ route('admin.auth.permission.create') }}">添加权限</a>
+    </div>
     <table id="example" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
         <thead>
         <tr>
@@ -38,10 +34,7 @@
                 <th>
                     <div class="hidden-sm hidden-xs action-buttons">
                         <a class="green" href="{{ route('admin.auth.permission.edit', $item->id) }}">
-                            <i class="ace-icon fa fa-pencil bigger-130"></i>
-                        </a>
-                        <a class="red" href="#">
-                            <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                            <i class="ace-icon fa fa-pencil bigger-130"></i>编辑
                         </a>
                     </div>
                 </th>
