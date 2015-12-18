@@ -22,7 +22,8 @@
         "tymon/jwt-auth": "0.5.*",
         "lucadegasperi/oauth2-server-laravel": "5.0.*",
         "dingo/api": "1.0.x@dev",
-        "maatwebsite/excel": "~2.0.0"
+        "maatwebsite/excel": "~2.0.0",
+        "arcanedev/log-viewer": "^3.7"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
