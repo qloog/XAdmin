@@ -75,7 +75,7 @@
                     </div>
 
                     <div class="page-content">
-                        {{--@include('backend.includes.setting_box')--}}
+                        @include('backend.partials.setting_box')
                         @include('flash::message')
                         @include('backend.partials.errors')
                         @include('backend.partials.success')
@@ -115,9 +115,6 @@
     <!-- ace scripts -->
     <script src="{{ asset('js/ace-elements.min.js') }}"></script>
     <script src="{{ asset('js/ace.min.js') }}"></script>
-
-    <script src="{{ asset('js/react/react.js') }}"></script>
-    <script src="{{ asset('js/react/react-dom.js') }}"></script>
 
     <!-- inline scripts related to this page -->
     @yield('scripts')
