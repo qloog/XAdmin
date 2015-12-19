@@ -54,22 +54,22 @@
                         </a>
                         <b class="arrow"></b>
                         <ul class="submenu">
-                            <li @if(Request::is('admin/auth/user/*')) class="active" @endif>
-                                <a href="/admin/auth/user">
+                            <li @if(Request::is('admin/auth/user*')) class="active" @endif>
+                                <a href="{{ route('admin.auth.user.index') }}">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     用户管理
                                 </a>
                                 <b class="arrow"></b>
                             </li>
-                            <li @if(Request::is('admin/auth/role')) class="active" @endif>
-                                <a href="/admin/auth/role">
+                            <li @if(Request::is('admin/auth/role*')) class="active" @endif>
+                                <a href="{{ route('admin.auth.role.index') }}">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     角色管理
                                 </a>
                                 <b class="arrow"></b>
                             </li>
-                            <li @if(Request::is('admin/auth/permission')) class="active" @endif>
-                                <a href="/admin/auth/permission">
+                            <li @if(Request::is('admin/auth/permission*')) class="active" @endif>
+                                <a href="{{ route('admin.auth.permission.index') }}">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     权限管理
                                 </a>
