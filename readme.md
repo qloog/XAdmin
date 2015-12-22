@@ -19,33 +19,33 @@
 
  - 用户权限管理
     * [x] RBAC (Role-Based Access Control) 
-        * [✓] 用户管理：新建、修改用户；
-        * [✓] 角色管理：角色查看，角色分配权限；
-        * [✓] 权限管理：权限查看、修改，增删（待增加）
+        * [x] 用户管理：新建、修改用户；
+        * [x] 角色管理：角色查看，角色分配权限；
+        * [x] 权限管理：权限查看、修改，增删（待增加）
 
  - 新闻管理
-    * 新闻管理
+   * 新闻管理
         - [x] 新闻列表
         - [x] 添加新闻
             - [x] 增加Ueditor
             - [x] 补齐表单字段及验证处理
-* [x] 分类管理： 支持无限分类    
-* [x]标签管理
+   * [x] 分类管理： 支持无限分类    
+   * [x] 标签管理
 
-### 单页管理
-* [x]分类管理
-* [✓]内容管理   待完善
+ - 单页管理
+  * [x]分类管理
+  * [✓]内容管理   待完善
 
-### 相册管理
-* [x]相册列表
+ - 相册管理
+  * [x]相册列表
 
-### 活动管理
-* [x] 活动列表  
-* [x] 添加活动
+ - 活动管理
+  * [x] 活动列表  
+  * [x] 添加活动
 
-### 评论管理
-* [x]评论列表
-* [x]评论审核：先发后审、先审后发
+ - 评论管理
+  * [x]评论列表
+  * [x]评论审核：先发后审、先审后发
 
 ## 技术栈
 
@@ -55,16 +55,10 @@
  * bower install jquery --save
  * bower install bootstrap --save
  * bower install react --save
- 
-#### 其他 
- * React
-    * [Amaze UI React](http://amazeui.org/react/)
-        bower install amazeui-react
-    * [react-datagrid](https://github.com/zippyui/react-datagrid)
- * Bootstrap
 
 ### 后端
- * Laravel
+ * 框架：[Laravel](https://github.com/laravel/laravel)
+ * UI: [ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Bootstrap)
 
 ## License
 
