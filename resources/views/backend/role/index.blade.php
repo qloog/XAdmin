@@ -39,7 +39,7 @@
                 <th>{{ $item->role_slug }}</th>
                 <th>
                     @foreach($item->permissions as $permission)
-                        {{ $permission->permission_name }}({{ $permission->permission_slug }})
+                        {{ $permission->permission_name }}({{ $permission->permission_slug }})<br>
                     @endforeach
                 </th>
                 <th>{{ $item->created_at }}</th>

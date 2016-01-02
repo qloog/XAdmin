@@ -35,10 +35,7 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-        $gallery = Page::where('slug', '=', 'gallery')->first();
-        $images = explode(',', $gallery->content);
-        $images = array_slice($images, 0, 16);
-		return view('frontend.index', ['images' => $images]);
+		return view('frontend.index');
 	}
 
 }

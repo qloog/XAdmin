@@ -151,7 +151,8 @@ return [
         LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class,
         LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class,
         Dingo\Api\Provider\LaravelServiceProvider::class,
-        Arcanedev\LogViewer\LogViewerServiceProvider::class
+        Arcanedev\LogViewer\LogViewerServiceProvider::class,
+        Mews\Captcha\CaptchaServiceProvider::class,
 
     ],
     /*
@@ -214,6 +215,7 @@ return [
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'Authorizer' => LucaDegasperi\OAuth2Server\Facades\Authorizer::class,
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
 
     ],
 

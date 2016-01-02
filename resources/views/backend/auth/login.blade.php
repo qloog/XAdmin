@@ -72,7 +72,7 @@
         											<div class="space-6"></div>
 													@if (count($errors) > 0)
 														<div class="alert alert-danger">
-															<strong>Whoops!</strong> There were some problems with your input.<br><br>
+															<strong>哎哟!</strong> 你输入的貌似有些问题.<br><br>
 															<ul>
 																@foreach ($errors->all() as $error)
 																	<li>{{ $error }}</li>
@@ -95,6 +95,11 @@
         															<i class="ace-icon fa fa-lock"></i>
         														</span>
         													</label>
+															<label class="block clearfix">
+        														<span class="block input-icon input-icon-right">
+        															<input type="text" class="" name="captcha" style="width: 100px;"/> &nbsp;&nbsp; {!! captcha_img() !!}
+        														</span>
+															</label>
         													<div class="space"></div>
         													<div class="clearfix">
         														<label class="inline">
