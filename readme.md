@@ -11,6 +11,7 @@
 ## 使用说明
 * clone目录结构到本地： git clone https://github.com/qloog/laravel5-backend.git
 * 根据composer.json下载vendor包目录：composer install
+* 安装node依赖组件：npm install
 * 生成表结构: php artisan migrate
 * 访问后台地址：http://local.app/admin/login
 
