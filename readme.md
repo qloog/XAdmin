@@ -56,19 +56,18 @@
 
 ## 技术栈
 
-### 前端
-
-#### 组件安装方法
- * bower install jquery --save
- * bower install bootstrap --save
- * bower install react --save
-
-### 后端
- * 框架：[Laravel](https://github.com/laravel/laravel)
- * UI: [ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Bootstrap)
- * 
+ * node
+ * npm 
+ * react
+ * webpack
+ * [Antd](http://ant.design)
+ * composer
+ * [Laravel5.1 LTS](https://github.com/laravel/laravel)
  
 ## 0.1.0 截图
+
+* UI: [ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Bootstrap)
+
 ![登录页面](http://www.lnmp100.com/static/uploads/2016/01/login-page.png)
 ![用户页面](http://www.lnmp100.com/static/uploads/2016/01/user-page.png)
 ![角色页面](http://www.lnmp100.com/static/uploads/2016/01/role-page.png)
