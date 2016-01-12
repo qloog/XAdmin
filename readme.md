@@ -1,10 +1,15 @@
 ## Laravel5-Backend
 
-基于Laravel5.1(LTS) 开发
+基于Laravel5.1(LTS) 开发  
+
+此项目主要目的是为了搭建一套基本常用的后台系统，减少重复劳动。从而可以专注于自己业务的开发。
+接下来的开发，后台UI会基于React+Antd+webpack 来开发
+
+> 目前已经开发了一版，基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Bootstrap)开发，参见分支：0.1.0 
 
 ## 使用说明
 * clone目录结构到本地： git clone https://github.com/qloog/laravel5-backend.git
-* 根据composer.json下载vendor包目录：composer update
+* 根据composer.json下载vendor包目录：composer install
 * 生成表结构: php artisan migrate
 * 访问后台地址：http://local.app/admin/login
 
@@ -15,7 +20,7 @@
 
  - 用户登录
     * [x] 后台登录
-    * [x]增加验证码
+    * [x] 增加验证码
 
  - 用户权限管理
     * [x] RBAC (Role-Based Access Control) 
@@ -30,22 +35,22 @@
             - [x] 增加Ueditor
             - [x] 补齐表单字段及验证处理
    * [x] 分类管理： 支持无限分类    
-   * [x] 标签管理
+   * [ ] 标签管理
 
  - 单页管理
-  * [x]分类管理
-  * [✓]内容管理   待完善
+  * [x] 分类管理
+  * [ ] 内容管理   待完善
 
  - 相册管理
-  * [x]相册列表
+  * [ ] 相册列表
 
  - 活动管理
-  * [x] 活动列表  
-  * [x] 添加活动
+  * [ ] 活动列表  
+  * [ ] 添加活动
 
  - 评论管理
-  * [x]评论列表
-  * [x]评论审核：先发后审、先审后发
+  * [ ] 评论列表
+  * [ ] 评论审核：先发后审、先审后发
 
 ## 技术栈
 
@@ -59,6 +64,12 @@
 ### 后端
  * 框架：[Laravel](https://github.com/laravel/laravel)
  * UI: [ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Bootstrap)
+ * 
+ 
+## 0.1.0 截图
+![登录页面](http://www.lnmp100.com/static/uploads/2016/01/login-page.png)
+![用户页面](http://www.lnmp100.com/static/uploads/2016/01/user-page.png)
+![角色页面](http://www.lnmp100.com/static/uploads/2016/01/role-page.png)
 
 ## License
 
