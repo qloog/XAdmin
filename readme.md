@@ -63,6 +63,16 @@
  * [Antd](http://ant.design)
  * composer
  * [Laravel5.1 LTS](https://github.com/laravel/laravel)
+
+## 开发规范
+ * PHP：遵循[PSR](http://www.php-fig.org/psr/)规范
+   - [PSR1 Basic Coding Standard](http://www.php-fig.org/psr/psr-1/)
+   - [PSR2 Coding Style Guide](http://www.php-fig.org/psr/psr-2/)
+   - [PSR3 Logger Interface](http://www.php-fig.org/psr/psr-3/)
+   - [PSR4 Autoloading Standard](http://www.php-fig.org/psr/psr-4/)
+   - [PSR6 Caching Interface](http://www.php-fig.org/psr/psr-6/)
+   - [PSR7 HTTP Message Interface](http://www.php-fig.org/psr/psr-7/)
+ * JS： 遵循 CommonJS, ES5/[ES6](http://es6.ruanyifeng.com/)(ES2015)
  
 ## v0.1.0 截图
 
