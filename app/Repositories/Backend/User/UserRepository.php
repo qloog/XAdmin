@@ -73,7 +73,7 @@ class UserRepository implements UserContract
      * @internal param $
      */
     public function getAllUsers($per_page, $order_by = 'id', $sort = 'asc') {
-        return User::orderBy($order_by, $sort)->paginate($per_page);
+        return User::orderBy($order_by, $sort)->withTrashed()->paginate($per_page);
     }
 
     /**

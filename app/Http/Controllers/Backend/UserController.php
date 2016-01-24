@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Redirect;
 use App\Repositories\Backend\User\UserContract;
 use App\Repositories\Backend\Role\RoleContract;
 use App\Repositories\Backend\Permission\PermissionContract;
-use Laracasts\Flash\Flash;
 
 class UserController extends BaseController
 {
@@ -47,11 +46,15 @@ class UserController extends BaseController
      * Display a listing of the resource.
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = $this->users->getAllUsers(config('custom.per_page'));
-
-        return view('backend.user.index', ['users' => $users]);
+        if ($request->ajax()) {
+            $field = Input::get('sortField') ?: 'id';
+            $sorter = str_replace('end', '',Input::get('sortOrder')) ?: 'desc';
+            $users = $this->users->getAllUsers(Input::get('pageSize'), $field, $sorter);
+            return response()->json($users->toArray());
+        }
+        return view('backend.user.index');
     }
 
     /**
@@ -156,10 +159,21 @@ class UserController extends BaseController
      */
     public function destroy($id)
     {
-        $this->users->destroy($id);
+        try{
+            $statusCode = 200;
+            $response = [
+                'message'  => 'ok'
+            ];
 
-        return redirect()
-            ->route('admin.auth.user.index')
-            ->withSuccess('Post deleted.');
+            $this->users->destroy($id);
+
+        }catch (\Exception $e){
+            $statusCode = 400;
+            $response = [
+                "error" => $e->getMessage()
+            ];
+        }finally{
+            return response()->json($response, $statusCode);
+        }
     }
 }

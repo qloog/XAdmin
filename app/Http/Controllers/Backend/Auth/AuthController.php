@@ -57,12 +57,13 @@ class AuthController extends Controller
      */
     public function postLogin(Request $request)
     {
+        /*
         $this->validate(
             $request,
             [
                 $this->loginUsername() => 'required',
                 'password' => 'required',
-                'captcha' => 'required|captcha'
+                //'captcha' => 'required|captcha'
             ]
         );
 
@@ -96,6 +97,23 @@ class AuthController extends Controller
                     'captcha' => '验证码错误'
                 ]
             );
+        */
+        $auth = false;
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials, $request->has('remember'))) {
+            $auth = true; // Success
+        }
+
+        if ($request->ajax()) {
+            return response()->json([
+                'auth' => $auth,
+                'intended' => $this->redirectPath()
+            ]);
+        } else {
+            return redirect()->intended($this->redirectPath());
+        }
+        //return redirect(URL::route('login_page'));
     }
 
 }

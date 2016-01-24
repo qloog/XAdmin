@@ -3,9 +3,10 @@
 .env
 /config/wechat.php
 /public/uploads
-/public/js/build
+/public/js/backend/build
 /resources/assets
 /resources/views/frontend
+data.json
 
 .idea
 .DS_Store

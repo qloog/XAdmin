@@ -11,29 +11,11 @@
         <!-- bootstrap & fontawesome -->
         <link href="{{ asset('css/bootstrap.min.css?v=3.4.0') }}" rel="stylesheet">
         <link href="{{ asset('font-awesome/css/font-awesome.css?v=4.3.0') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/backend/common.css') }}" />
 
         <!-- page specific plugin styles -->
         <link rel="stylesheet" href="{{ asset('css/jquery-ui.custom.min.css') }}" />
         @yield('styles')
-
-        <!-- text fonts -->
-        {{--<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300" />--}}
-
-        <!-- ace styles -->
-        <link rel="stylesheet" href="{{ asset('css/ace.min.css') }}" class="ace-main-stylesheet" id="main-ace-style" />
-
-        <!--[if lte IE 9]>
-            <link rel="stylesheet" href="{{ asset('css/ace-part2.min.css') }}" class="ace-main-stylesheet" />
-        <![endif]-->
-
-        <!--[if lte IE 9]>
-          <link href="{{ asset('css/ace-ie.min.css') }}" rel="stylesheet">
-        <![endif]-->
-
-        <!-- inline styles related to this page -->
-
-        <!-- ace settings handler -->
-        <script src="{{ asset('js/ace-extra.min.js') }}"></script>
 
         <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
@@ -43,68 +25,32 @@
         <![endif]-->
 </head>
 
-<body class="no-skin">
-        @include('backend.partials.nav')
-
-        <div class="main-container" id="main-container">
-            <script type="text/javascript">
-                try{ace.settings.check('main-container' , 'fixed')}catch(e){}
-            </script>
-
-            @include('backend.partials.sidebar')
-
-            <div class="main-content">
-                <div class="main-content-inner">
-                    <div class="breadcrumbs" id="breadcrumbs">
-                        <script type="text/javascript">
-                            try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
-                        </script>
-
-                        <ul class="breadcrumb">
-                            @yield('breadcrumb')
-                        </ul><!-- /.breadcrumb -->
-
-                        {{--<div class="nav-search" id="nav-search">--}}
-                            {{--<form class="form-search">--}}
-                                {{--<span class="input-icon">--}}
-                                    {{--<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off">--}}
-                                    {{--<i class="ace-icon fa fa-search nav-search-icon"></i>--}}
-                                {{--</span>--}}
-                            {{--</form>--}}
-                        {{--</div><!-- /.nav-search -->--}}
-                    </div>
-
-                    <div class="page-content">
-                        @include('backend.partials.setting_box')
-                        @include('flash::message')
-                        @include('backend.partials.errors')
-                        @include('backend.partials.success')
-                        {{--<div class="page-header">--}}
-                            {{--<h1>--}}
-                                {{--UI Elements--}}
-                                {{--<small>--}}
-                                    {{--<i class="ace-icon fa fa-angle-double-right"></i>--}}
-                                    {{--Common UI Features &amp; Elements--}}
-                                {{--</small>--}}
-                            {{--</h1>--}}
-                        {{--</div><!-- /.page-header -->--}}
-
-                        <!-- example:  row begin -->
-                        @yield('content')
-                    </div><!-- /.page-content -->
+<body>
+    <div class="ant-layout-aside">
+        <div class="ant-layout-sider">
+            <div class="ant-layout-logo"></div>
+            <div id="sider"></div>
+        </div>
+        <div class="ant-layout-main">
+            <div class="ant-layout-header"></div>
+            <div class="ant-layout-breadcrumb">
+                <div id="breadcrumb">
                 </div>
-            </div><!-- /.main-content -->
-
-            @include('backend.partials.footer')
-
-            <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-                <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
-            </a>
-        </div><!-- /.main-container -->
+            </div>
+            <div class="ant-layout-container">
+                <div class="ant-layout-content">
+                    <div id="content">
+                    </div>
+                </div>
+            </div>
+            <div class="ant-layout-footer">
+                Ant Design 版权所有 © 2015 由蚂蚁金服体验技术部支持
+            </div>
+        </div>
+    </div>
 
     <!-- basic scripts -->
     <script src="{{ asset('js/jquery-2.1.1.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js?v=3.4.0') }}"></script>
     <!--[if IE]>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <![endif]-->
@@ -112,11 +58,12 @@
     <!-- page specific plugin scripts -->
     <script src="{{ asset('js/jquery-ui.custom.min.js') }}"></script>
 
-    <!-- ace scripts -->
-    <script src="{{ asset('js/ace-elements.min.js') }}"></script>
-    <script src="{{ asset('js/ace.min.js') }}"></script>
+    <!-- React scripts -->
+    <script src="{{ asset('js/react/react.js') }}"></script>
+    <script src="{{ asset('js/react/react-dom.js') }}"></script>
 
     <!-- inline scripts related to this page -->
+    <script type="text/javascript" src="{{ asset('js/backend/build/app.js') }}" charset="utf-8"></script>
     @yield('scripts')
 </body>
 </html>
