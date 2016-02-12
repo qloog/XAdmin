@@ -6,6 +6,7 @@ use App\Repositories\Backend\Permission\PermissionContract;
 use App\Repositories\Backend\Role\RoleContract;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Input;
 
 class RoleController extends BaseController
 {
@@ -31,9 +32,15 @@ class RoleController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $roles = $this->roles->getRolesPaginated(config('custom_per_page'));
+        if ($request->ajax()) {
+            $field = Input::get('sortField') ?: 'id';
+            $sorter = str_replace('end', '', Input::get('sortOrder')) ?: 'desc';
+            $roles = $this->roles->getRolesPaginated(Input::get('pageSize'), $field, $sorter);
+            return response()->json($roles->toArray());
+        }
+
         return view('backend.role.index', compact('roles'));
     }
 

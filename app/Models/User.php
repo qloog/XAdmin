@@ -43,6 +43,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $value == 1 ? '正常' : '已删除';
     }
 
+    public function getStatusBoolAttribute($value)
+    {
+        return $value == 1 ? true : false;
+    }
+
     /**
      * Hash the users password
      *

@@ -6,6 +6,7 @@ use App\Repositories\Backend\Permission\PermissionContract;
 use App\Repositories\Backend\Role\RoleContract;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Input;
 
 /**
  * Class PermissionController
@@ -40,11 +41,17 @@ class PermissionController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $permissions = $this->permissions->getPermissionsPaginated(config('custom.per_page'));
 
-        return view('backend.permission.index', compact('permissions'));
+        if ($request->ajax()) {
+            $field = Input::get('sortField') ?: 'id';
+            $sorter = str_replace('end', '', Input::get('sortOrder')) ?: 'desc';
+            $permissions = $this->permissions->getPermissionsPaginated(Input::get('pageSize'), $field, $sorter);
+            return response()->json($permissions->toArray());
+        }
+
+        return view('backend.permission.index');
     }
 
     /**

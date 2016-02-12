@@ -17,7 +17,9 @@ module.exports = {
         app:    "./resources/assets/js/backend/src/app.jsx",
         login:  "./resources/assets/js/backend/src/login.jsx",
         dashboard:  "./resources/assets/js/backend/src/dashboard.jsx",
-        user:  "./resources/assets/js/backend/src/user.jsx"
+        user:  "./resources/assets/js/backend/src/user.jsx",
+        role:  "./resources/assets/js/backend/src/role.jsx",
+        permission:  "./resources/assets/js/backend/src/permission.jsx"
     },
     output: {
         path: path.join(__dirname, "/public/js/backend/build"),
@@ -27,7 +29,7 @@ module.exports = {
         loaders: [{
           test: /\.jsx$/,
           exclude: /node_modules/,
-          loader: 'react-hot!babel-loader',
+          loader: 'babel-loader'
         },
         {
           test: /\.less/,
@@ -47,7 +49,8 @@ module.exports = {
     },
     externals: {
         'react': 'React',
-        'react-dom': 'ReactDOM'
+        'react-dom': 'ReactDOM',
+        //'antd': 'Antd'
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
