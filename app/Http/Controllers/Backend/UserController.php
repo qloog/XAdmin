@@ -52,7 +52,10 @@ class UserController extends BaseController
             $field = Input::get('sortField') ?: 'id';
             $sorter = str_replace('end', '',Input::get('sortOrder')) ?: 'desc';
             $users = $this->users->getAllUsers(Input::get('pageSize'), $field, $sorter);
-            return response()->json($users->toArray());
+            foreach ($users as &$user) {
+                $user['roles'] = $user->roles;
+            }
+            return response()->json($users);
         }
         return view('backend.user.index');
     }
