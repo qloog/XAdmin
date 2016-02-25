@@ -3,12 +3,7 @@
 基于Laravel5.1(LTS) 开发  
 
 此项目主要目的是为了搭建一套基本常用的后台系统，减少重复劳动。从而可以专注于自己业务的开发。
-> 当前版本：基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Bootstrap)开发，参见分支：[v0.1.0](#v010-截图) 
-
-### 下一版本：
-
-后台UI会基于[React](http://facebook.github.io/react/) + [Antd](http://ant.design) + [webpack](http://webpack.github.io/docs/) 来开发, 与0.1.0版本最大的区别是 UI的升级和后续开发模式的不同。
-抛弃了老套的嵌套模板的方式，使用React组件化+webpack工程化的方式来开发。
+theme 基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Bootstrap)开发，参见分支：[v0.1.1](#v011-截图) 
 
 ## 使用说明
 
@@ -60,9 +55,6 @@
 
  * node
  * npm 
- * react
- * webpack
- * [Antd](http://ant.design)
  * composer
  * [Laravel5.1 LTS](https://github.com/laravel/laravel)
 
@@ -76,10 +68,9 @@
    - [PSR4](http://www.php-fig.org/psr/psr-4/) Autoloading Standard
    - [PSR6](http://www.php-fig.org/psr/psr-6/) Caching Interface
    - [PSR7](http://www.php-fig.org/psr/psr-7/) HTTP Message Interface
+
  
- * JS： 遵循 CommonJS, ES5/[ES6](http://es6.ruanyifeng.com/)(ES2015)
- 
-## v0.1.0 截图
+## v0.1.1 截图
 
 * UI: [ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Bootstrap)
 
