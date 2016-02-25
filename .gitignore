@@ -4,7 +4,8 @@
 /config/wechat.php
 /public/uploads
 /public/js/backend/build
-/resources/assets
+/resources/assets/*
+!/resources/assets/js/backend/
 /resources/views/frontend
 data.json
 

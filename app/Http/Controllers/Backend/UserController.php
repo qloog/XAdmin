@@ -53,11 +53,28 @@ class UserController extends BaseController
             $sorter = str_replace('end', '',Input::get('sortOrder')) ?: 'desc';
             $users = $this->users->getAllUsers(Input::get('pageSize'), $field, $sorter);
             foreach ($users as &$user) {
-                $user['roles'] = $user->roles;
+                $user['roles'] = self::formatToTree($user->roles);
             }
-            return response()->json($users);
+            $users = $users->toArray();
+            $result['data']['user']['total'] = $users['total'];
+            $result['data']['users']['users'] = $users['data'];
+            $result['data']['roles'] = $this->roles->getAllRoles();
+            return response()->json($result);
         }
         return view('backend.user.index');
+    }
+
+    private static function formatToTree($arr)
+    {
+        $result = array();
+        if ($arr) {
+            foreach ($arr as $key => $item) {
+                $result[$key]['label'] = $item->role_name;
+                $result[$key]['value'] = $item->id;
+                $result[$key]['key'] = $item->id;
+            }
+        }
+        return $result;
     }
 
     /**
@@ -128,10 +145,24 @@ class UserController extends BaseController
      */
     public function update($id, Request $request)
     {
-        if ($this->users->update($id, $request->except('assignees_roles'), $request->only('assignees_roles'))) {
-            return redirect()->route('admin.auth.user.index');
+        try{
+            $statusCode = 200;
+            $response = [
+                'status' => $statusCode,
+                'message'  => 'ok'
+            ];
+
+            $this->users->update($id, $request->except('assignees_roles'), $request->only('assignees_roles'));
+
+        }catch (\Exception $e){
+            $statusCode = 400;
+            $response = [
+                'status' => $statusCode,
+                "message" => $e->getMessage()
+            ];
+        }finally{
+            return response()->json($response, $statusCode);
         }
-        return Redirect::back()->withInput()->withErrors('保存失败！');
     }
 
     /**
