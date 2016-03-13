@@ -4,8 +4,8 @@
 
 @section('breadcrumb')
         <li><i class="ace-icon fa fa-home home-icon"></i><a href="/admin/dashboard">主页</a></li>
-        <li><a>用户管理</a></li>
-        <li>列表</li>
+        <li>权限管理</li>
+        <li>用户管理</li>
 @endsection
 
 @section('content')
@@ -36,7 +36,7 @@
                 <td>
                     @if ($user->roles()->count() > 0)
                         @foreach ($user->roles as $role)
-                            {!! $role->role_name !!}【{!! $role->role_slug !!}】<br/>
+                            {!! $role->role_name !!}<br/>
                         @endforeach
                     @else
                         None
