@@ -1,6 +1,6 @@
 ## Laravel5-Backend
 
-基于Laravel5.1(LTS) 开发  
+基于Laravel5.1(LTS) 开发
 
 此项目主要目的是为了搭建一套基本常用的后台系统，减少重复劳动。从而可以专注于自己业务的开发。
 theme 基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Bootstrap)开发，
@@ -12,9 +12,11 @@ theme 基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Boots
 * 根据composer.json下载vendor包目录：composer install
 * 安装node依赖组件：npm install
 * 生成表结构: php artisan migrate
-* 访问后台地址：http://local.app/admin/login
+* 填充测试数据: php artisan db:seed
+* 运行server: php artisan serve
+* 访问地址：http://localhost:8000/admin/login   (用户名: admin_demo, 密码: 12345678)
 
-## 常用命令
+## 开发常用命令
 
 * 生成Repository: php artisan make:repository Role
 
@@ -34,7 +36,7 @@ theme 基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Boots
    * [x] 添加新闻
        - [x] 增加Ueditor
        - [x] 补齐表单字段及验证处理
-   * [x] 分类管理： 支持无限分类    
+   * [x] 分类管理： 支持无限分类
    * [ ] 标签管理
 
  - 单页管理
@@ -45,7 +47,7 @@ theme 基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Boots
   * [ ] 相册列表
 
  - 活动管理
-  * [ ] 活动列表  
+  * [ ] 活动列表
   * [ ] 添加活动
 
  - 评论管理
@@ -55,14 +57,14 @@ theme 基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Boots
 ## 技术栈
 
  * node
- * npm 
+ * npm
  * composer
  * [Laravel5.1 LTS](https://github.com/laravel/laravel)
 
 ## 开发规范
 
  * PHP：遵循[PSR](http://www.php-fig.org/psr/)规范
- 
+
    - [PSR1](http://www.php-fig.org/psr/psr-1/) Basic Coding Standard
    - [PSR2](http://www.php-fig.org/psr/psr-2/) Coding Style Guide
    - [PSR3](http://www.php-fig.org/psr/psr-3/) Logger Interface
@@ -70,7 +72,7 @@ theme 基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Boots
    - [PSR6](http://www.php-fig.org/psr/psr-6/) Caching Interface
    - [PSR7](http://www.php-fig.org/psr/psr-7/) HTTP Message Interface
 
- 
+
 ## v0.1.1 截图
 
 * UI: [ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Bootstrap)
