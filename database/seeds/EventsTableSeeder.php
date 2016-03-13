@@ -14,9 +14,9 @@ class EventsTableSeeder extends Seeder
     {
         DB::table('events')->delete();
 
-        for ($i=0; $i < 100; $i++) {
+        for ($i=1; $i <= 100; $i++) {
             Event::create([
-                    'title'   => 'Title '.$i,
+                    'title'   => '我是活动 - '.$i,
                     'content' => 'content ' . $i,
                     'begin_time' => \Carbon\Carbon::now(),
                     'end_time' => \Carbon\Carbon::now(),
