@@ -3,8 +3,7 @@
 基于Laravel5.1(LTS) 开发
 
 此项目主要目的是为了搭建一套基本常用的后台系统，减少重复劳动。从而可以专注于自己业务的开发。
-theme 基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Bootstrap)开发，
-参见分支：[v0.1.1](#v011-截图) , 也是当前开发分支
+theme 基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Bootstrap)开发，[部分截图](#v011-截图)
 
 ## 使用说明
 
