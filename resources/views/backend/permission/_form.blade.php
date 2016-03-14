@@ -20,7 +20,7 @@
                 </div><!--form control-->
 
                 <div class="form-group">
-                    <label class="col-lg-2 control-label">{{ trans('validation.attributes.associated_roles') }}</label>
+                    <label class="col-lg-2 control-label">关联角色</label>
                     <div class="col-lg-3">
                         @if (count($roles) > 0)
                             @foreach($roles as $role)

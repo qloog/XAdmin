@@ -13,4 +13,7 @@ interface NewsContract
      */
     public function getRolesPaginated($per_page, $order_by = 'id', $sort = 'asc');
 
+
+    public function getAllCategory($order_by = 'id', $sort = 'asc');
+
 }

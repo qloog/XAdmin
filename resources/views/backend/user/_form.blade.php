@@ -1,19 +1,19 @@
                 <div class="form-group">
-                    {!! Form::label('username', trans('validation.attributes.name'), ['class' => 'col-lg-2 control-label']) !!}
+                    {!! Form::label('username', '用户名', ['class' => 'col-lg-2 control-label']) !!}
                     <div class="col-lg-3">
                         {!! Form::text('username', null, ['class' => 'form-control', 'placeholder' => trans('strings.full_name')]) !!}
                     </div>
                 </div><!--form control-->
 
                 <div class="form-group">
-                    {!! Form::label('email', trans('validation.attributes.email'), ['class' => 'col-lg-2 control-label']) !!}
+                    {!! Form::label('email', 'Email', ['class' => 'col-lg-2 control-label']) !!}
                     <div class="col-lg-3">
                         {!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.email')]) !!}
                     </div>
                 </div><!--form control-->
 
                 <div class="form-group">
-                    <label class="col-lg-2 control-label">{{ trans('validation.attributes.associated_roles') }}</label>
+                    <label class="col-lg-2 control-label">角色</label>
                     <div class="col-lg-3">
                         @if (count($roles) > 0)
                             @foreach($roles as $role)

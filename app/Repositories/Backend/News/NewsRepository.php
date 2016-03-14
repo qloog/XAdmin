@@ -66,7 +66,7 @@ class NewsRepository implements NewsContract
      * @return bool
      */
     public function create($input) {
-        $news = $this->model->create($input);
+        $news = NewsCategory::create($input);
 
         if ($news->save()) {
             return $news;

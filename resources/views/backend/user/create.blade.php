@@ -24,7 +24,7 @@
             @include('backend.user._form')
 
             <div class="form-group">
-                <label class="col-lg-2 control-label">{{ trans('validation.attributes.active') }}</label>
+                <label class="col-lg-2 control-label">是否启用</label>
                 <div class="col-lg-1">
                     <input type="checkbox" value="1" name="status" />
                 </div>

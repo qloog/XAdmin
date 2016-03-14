@@ -47,7 +47,7 @@ class NewsController extends BaseController
     public function create()
     {
         $data = $this->dispatch(new NewsFormFields());
-        $category = $this->repository->getAllCategory();
+        $category = $this->news->getAllCategory();
         $data['selectCategory'] = CategoryService::unlimitedForLevel($category->toArray());
 
         return view('backend.news.create', $data);
@@ -61,7 +61,7 @@ class NewsController extends BaseController
      */
     public function store(NewsCreateRequest $request)
     {
-        if ($news = $this->repository->create($request->newsFillData())) {
+        if ($news = $this->news->create($request->newsFillData())) {
             trim(Input::get('tags')) &&  $news->syncTags(array_map('trim', explode(',', Input::get('tags'))));
             return Redirect::to('admin/news');
         } else {
@@ -106,7 +106,7 @@ class NewsController extends BaseController
     public function update(NewsUpdateRequest $request, $id)
     {
         $news = News::findOrNew($id);
-        if ($this->repository->update($id, $request->newsFillData())) {
+        if ($this->news->update($id, $request->newsFillData())) {
             Log::info('update...'. Input::get('tags'));
             $tags = Input::get('tags') ? array_map('trim', explode(',', Input::get('tags'))) : [];
             $news->syncTags($tags);
