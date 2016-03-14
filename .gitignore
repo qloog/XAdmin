@@ -4,7 +4,7 @@
 /config/wechat.php
 /public/uploads
 /public/js/build
-/resources/assets
+/resources/assets/bower
 /resources/views/frontend
 
 .DS_Store
