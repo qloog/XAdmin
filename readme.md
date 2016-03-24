@@ -13,7 +13,7 @@ theme 基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Boots
 * 生成表结构: php artisan migrate
 * 填充测试数据: php artisan db:seed
 * 运行server: php artisan serve
-* 访问地址：http://localhost:8000/admin/login   (用户名: admin_demo, 密码: 12345678)
+* 访问地址：http://localhost:8000/admin/login   (用户名: admin@test.com, 密码: 12345678)
 
 ## 开发常用命令
 
