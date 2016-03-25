@@ -1,4 +1,4 @@
-## Laravel5-Backend 基于Laravel5.1(LTS) 开发
+## Laravel5-Backend （基于Laravel5.1(LTS) 开发）
 
 [![Build Status](https://travis-ci.org/qloog/laravel5-backend.svg?branch=master)](https://travis-ci.org/qloog/laravel5-backend)
 
