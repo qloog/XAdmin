@@ -1,6 +1,7 @@
 ## Laravel5-Backend
 
 基于Laravel5.1(LTS) 开发
+[![Build Status](https://travis-ci.org/qloog/laravel5-backend.svg?branch=master)](https://travis-ci.org/qloog/laravel5-backend)
 
 此项目主要目的是为了搭建一套基本常用的后台系统，减少重复劳动。从而可以专注于自己业务的开发。
 theme 基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Bootstrap)开发，[部分截图](#v011-截图)
