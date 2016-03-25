@@ -7,5 +7,7 @@
 /resources/assets/bower
 /resources/views/frontend
 
+_ide_helper.php
+
 .DS_Store
 .idea
