@@ -1,6 +1,5 @@
-## Laravel5-Backend
+## Laravel5-Backend 基于Laravel5.1(LTS) 开发
 
-基于Laravel5.1(LTS) 开发
 [![Build Status](https://travis-ci.org/qloog/laravel5-backend.svg?branch=master)](https://travis-ci.org/qloog/laravel5-backend)
 
 此项目主要目的是为了搭建一套基本常用的后台系统，减少重复劳动。从而可以专注于自己业务的开发。
