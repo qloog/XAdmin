@@ -5,7 +5,6 @@
 /public/uploads
 /public/js/build
 /resources/assets/bower
-/resources/views/frontend
 
 _ide_helper.php
 
