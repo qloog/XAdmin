@@ -117,6 +117,7 @@ Route::group(['namespace' => 'Backend'], function ()
 });
 
 // api
+/*
 Route::group(['prefix' => 'api'], function ()
 {
 
@@ -139,6 +140,7 @@ Route::group(['prefix' => 'api'], function ()
 
         });
 });
+ */
 
 
 

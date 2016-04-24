@@ -93,7 +93,6 @@ class AuthController extends Controller
             ->withErrors(
                 [
                     $this->loginUsername() => $this->getFailedLoginMessage(),
-                    'captcha' => '验证码错误'
                 ]
             );
     }

@@ -14,7 +14,7 @@ class UserTest extends TestCase
     public function testNewUserRegistration()
     {
         $this->assertTrue(true);
-        
+
         //$this->visit('/auth/register')
         //    ->type('user1', 'username')
         //    ->type('user1@test.com', 'email')
