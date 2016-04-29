@@ -72,6 +72,27 @@ theme 基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Boots
    - [PSR7](http://www.php-fig.org/psr/psr-7/) HTTP Message Interface
 
 
+遵循PSR标准的代码格式化工具[php-cs-fixer](http://cs.sensiolabs.org/)。
+可通过composer安装：`composer require fabpot/php-cs-fixer`
+
+## 代码文档
+
+   按照phpdoc规范写注释，自动生成代码文档 [phpDoc文档](https://www.phpdoc.org/docs/latest/getting-started/your-first-set-of-documentation.html)
+
+
+## 二次开发提示
+
+   - 尽量使用依赖注入,尤其在控制器里,具体如Laravel文档中：[依赖注入和控制器](http://laravel-china.org/docs/5.1/controllers), [php依赖注入简介](http://www.dahouduan.com/2015/05/26/php-dependency-injection/)
+   - [Laravel 5.1 LTS 中文文档](http://laravel-china.org/docs/5.1/)
+
+参看：[PHP之道](http://laravel-china.github.io/php-the-right-way/)
+
+
+## 上线部署
+
+   可通过[Walle](https://walle-web.io/) 工具来部署
+
+
 ## v0.1.1 截图
 
 * UI: [ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Bootstrap)
