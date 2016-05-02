@@ -5,7 +5,7 @@
 此项目主要目的是为了搭建一套基本常用的后台系统，减少重复劳动。从而可以专注于自己业务的开发。
 theme 基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Bootstrap)开发，[部分截图](#v011-截图)
 
-## 使用说明
+## Introduction
 
 * clone目录结构到本地： git clone https://github.com/qloog/laravel5-backend.git
 * 根据composer.json下载vendor包目录：composer install
@@ -15,11 +15,11 @@ theme 基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Boots
 * 运行server: php artisan serve
 * 访问地址：http://localhost:8000/admin/login   (用户名: admin@test.com, 密码: 12345678)
 
-## 开发常用命令
+## Command
 
 * 生成Repository: php artisan make:repository Role
 
-## 功能列表
+## Features
 
  - 用户登录
     * [x] 后台登录

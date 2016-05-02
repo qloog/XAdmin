@@ -16,7 +16,7 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>角色名</th>
+            <th>权限名</th>
             <th>角色slug</th>
             <th>创建时间</th>
             <th>更新时间</th>
