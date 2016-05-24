@@ -14,8 +14,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        'App\Console\Commands\Inspire',
-        'App\Console\Commands\SendEmails',
+        Commands\Inspire::class,
+        Commands\SendEmails::class,
         Commands\MultithreadingRequest::class,
     ];
 
