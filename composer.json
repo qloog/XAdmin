@@ -12,27 +12,26 @@
         "laracasts/utilities": "~2.1",
         "guzzlehttp/guzzle": "^6.0",
         "overtrue/wechat": "2.0.*",
-        "overtrue/laravel-wechat": "2.0.*",
         "dflydev/apache-mime-types": "^1.0",
         "ender/laravel-ueditor": "0.8.*",
         "intervention/image": "^2.3",
         "thomaswelton/laravel-gravatar": "1.0.*",
-        "barryvdh/laravel-ide-helper": "^2.0",
         "tymon/jwt-auth": "0.5.*",
         "lucadegasperi/oauth2-server-laravel": "5.0.*",
         "dingo/api": "1.0.x@dev",
         "maatwebsite/excel": "~2.0.0",
-        "arcanedev/log-viewer": "^3.7",
         "mews/captcha": "^2.1",
         "solarium/solarium": "^3.5"
     },
     "require-dev": {
-        "fzaninotto/faker": "~1.4",
+        "fzaninotto/faker": "~1.5",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~4.0",
-        "phpspec/phpspec": "~2.1",
+        "phpspec/phpspec": "~2.4",
         "ozankurt/repoist": "^1.0",
-        "barryvdh/laravel-debugbar": "^2.0"
+        "barryvdh/laravel-debugbar": "^2.0",
+        "barryvdh/laravel-ide-helper": "^2.1",
+        "fabpot/php-cs-fixer": "^1.10"
     },
     "autoload": {
         "classmap": [
