@@ -17,7 +17,8 @@ theme 基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Boots
 
 ## Command
 
-* 生成Repository: php artisan make:repository Role
+* 生成User model: php artisan make:model Models/User
+* 生成User Repository: php artisan make:repository User
 
 ## Features
 
@@ -33,7 +34,7 @@ theme 基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Boots
  - 新闻管理
    * [x] 新闻列表
    * [x] 添加新闻
-       - [x] 增加Ueditor
+       - [x] 增加 Ueditor
        - [x] 补齐表单字段及验证处理
    * [x] 分类管理： 支持无限分类
    * [ ] 标签管理

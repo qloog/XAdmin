@@ -1,7 +1,6 @@
 /vendor
 /node_modules
 .env
-composer.lock
 /config/wechat.php
 /public/uploads
 /public/js/build

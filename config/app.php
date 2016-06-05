@@ -141,7 +141,6 @@ return [
         App\Providers\BackendServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         App\Providers\OAuthServiceProvider::class,
-        Overtrue\LaravelWechat\ServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Ender\UEditor\UEditorServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
@@ -151,7 +150,6 @@ return [
         LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class,
         LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class,
         Dingo\Api\Provider\LaravelServiceProvider::class,
-        Arcanedev\LogViewer\LogViewerServiceProvider::class,
         Mews\Captcha\CaptchaServiceProvider::class,
 
     ],
@@ -207,7 +205,6 @@ return [
         'Access' => \App\Services\Access\Facades\Access::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'Wechat' => Overtrue\LaravelWechat\Facade::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'UEditor' => Ender\UEditor\UEditor::class,
         'Image' => Intervention\Image\Facades\Image::class,
