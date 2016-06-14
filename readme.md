@@ -1,4 +1,4 @@
-## Laravel5-Backend （基于Laravel5.1(LTS) 开发）
+## Laravel5-Backend - 基于Laravel5.1(LTS) 开发
 
 [![Build Status](https://travis-ci.org/qloog/laravel5-backend.svg?branch=master)](https://travis-ci.org/qloog/laravel5-backend)
 
@@ -7,18 +7,18 @@ theme 基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Boots
 
 ## Introduction
 
-* clone目录结构到本地： git clone https://github.com/qloog/laravel5-backend.git
-* 根据composer.json下载vendor包目录：composer install
-* 安装node依赖组件：npm install
-* 生成表结构: php artisan migrate
-* 填充测试数据: php artisan db:seed
-* 运行server: php artisan serve
-* 访问地址：http://localhost:8000/admin/login   (用户名: admin@test.com, 密码: 12345678)
+* clone目录结构到本地： `git clone https://github.com/qloog/laravel5-backend.git`
+* 根据composer.json下载vendor包目录：`composer install -vvv`
+* 安装node依赖组件：`npm install`
+* 生成表结构: `php artisan migrate`
+* 填充测试数据: `php artisan db:seed`
+* 运行server: `php artisan serve`
+* 访问地址：`http://localhost:8000/admin/login`   (用户名: `admin@test.com`, 密码: `12345678`)
 
 ## Command
 
-* 生成User model: php artisan make:model Models/User
-* 生成User Repository: php artisan make:repository User
+* 生成User model: `php artisan make:model Models/User`
+* 生成User Repository: `php artisan make:repository User`
 
 ## Features
 
@@ -101,6 +101,12 @@ theme 基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Boots
 ![登录页面](http://www.lnmp100.com/static/uploads/2016/01/login-page.png)
 ![用户页面](http://www.lnmp100.com/static/uploads/2016/01/user-page.png)
 ![角色页面](http://www.lnmp100.com/static/uploads/2016/01/role-page.png)
+
+
+## issue
+
+ - 欢迎发 [issues](https://github.com/qloog/laravel5-backend/issues) 交流讨论
+ - QQ交流群：32649336
 
 ## License
 
