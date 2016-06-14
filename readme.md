@@ -98,9 +98,9 @@ theme 基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Boots
 
 * UI: [ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Bootstrap)
 
-![登录页面](http://www.lnmp100.com/static/uploads/2016/01/login-page.png)
-![用户页面](http://www.lnmp100.com/static/uploads/2016/01/user-page.png)
-![角色页面](http://www.lnmp100.com/static/uploads/2016/01/role-page.png)
+![登录页面](http://www.lnmp100.com/static/uploads/2016/01/login-page.jpeg)
+![用户页面](http://www.lnmp100.com/static/uploads/2016/01/user-page.jpeg)
+![角色页面](http://www.lnmp100.com/static/uploads/2016/01/role-page.jpeg)
 
 
 ## issue
