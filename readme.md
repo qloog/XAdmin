@@ -1,19 +1,29 @@
-## Laravel5-Backend - 基于Laravel5.1(LTS) 开发
+## Laravel5-Backend - base Laravel5.1(LTS)
 
 [![Build Status](https://travis-ci.org/qloog/laravel5-backend.svg?branch=master)](https://travis-ci.org/qloog/laravel5-backend)
 
 此项目主要目的是为了搭建一套基本常用的后台系统，减少重复劳动。从而可以专注于自己业务的开发。
 theme 基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Bootstrap)开发，[部分截图](#v011-截图)
 
-## Introduction
+## Requirements
 
-* clone目录结构到本地： `git clone https://github.com/qloog/laravel5-backend.git`
-* 根据composer.json下载vendor包目录：`composer install -vvv`
-* 安装node依赖组件：`npm install`
-* 生成表结构: `php artisan migrate`
-* 填充测试数据: `php artisan db:seed`
-* 运行server: `php artisan serve`
-* 访问地址：`http://localhost:8000/admin/login`   (用户名: `admin@test.com`, 密码: `12345678`)
+ - A web server: Nginx
+ - PHP 5.6.4+ with the following extensions: mbstring, pdo_mysql
+ - MySQL
+ - Composer
+
+## Installation
+
+```shell
+git clone https://github.com/qloog/laravel5-backend.git
+cd laravel5-backend
+composer install -vvv   //根据composer.json下载vendor包目录
+npm install //安装node依赖组件
+php artisan migrate //生成表结构
+php artisan db:seed //填充测试数据
+php artisan serve   //运行server
+open http://localhost:8000/admin/login  //用户名: admin@test.com, 密码: 12345678
+```
 
 ## Command
 
@@ -53,13 +63,6 @@ theme 基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Boots
  - 评论管理
   * [ ] 评论列表
   * [ ] 评论审核：先发后审、先审后发
-
-## 技术栈
-
- * node
- * npm
- * composer
- * [Laravel5.1 LTS](https://github.com/laravel/laravel)
 
 ## 开发规范
 
