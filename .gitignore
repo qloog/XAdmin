@@ -6,7 +6,8 @@
 /public/js/build
 /resources/assets/bower
 
-_ide_helper.php
-
 .DS_Store
 .idea
+_ide_helper.php
+_ide_helper_models.php
+.phpstorm.meta.php
