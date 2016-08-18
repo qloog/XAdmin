@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
-class AuthenticateController extends Controller
+class AuthenticateController extends BaseController
 {
     public function authenticate(Request $request)
     {
