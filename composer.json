@@ -21,7 +21,8 @@
         "dingo/api": "1.0.x@dev",
         "maatwebsite/excel": "~2.0.0",
         "mews/captcha": "^2.1",
-        "solarium/solarium": "^3.5"
+        "solarium/solarium": "^3.5",
+        "doctrine/dbal": "^2.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.5",
@@ -50,15 +51,12 @@
         ]
     },
     "scripts": {
-        "post-install-cmd": [
-            "php artisan clear-compiled",
-            "php artisan ide-helper:generate",
-            "php artisan optimize"
-        ],
         "pre-update-cmd": [
-                "php artisan clear-compiled"
-            ],
+            "php artisan clear-compiled"
+        ],
         "post-update-cmd": [
+            "php artisan ide-helper:generate",
+            "php artisan ide-helper:meta",
             "php artisan optimize"
         ],
         "post-create-project-cmd": [
