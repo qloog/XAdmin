@@ -141,7 +141,6 @@ return [
         App\Providers\BackendServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         App\Providers\OAuthServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
         Ender\UEditor\UEditorServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
