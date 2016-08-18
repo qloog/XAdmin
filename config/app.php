@@ -144,7 +144,6 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Ender\UEditor\UEditorServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class,
