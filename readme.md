@@ -1,4 +1,4 @@
-## Awesome-Backend - base Laravel5.1(LTS)
+## Laravel5-Backend - base Laravel5.1(LTS)
 
 [![Build Status](https://travis-ci.org/qloog/laravel5-backend.svg?branch=master)](https://travis-ci.org/qloog/laravel5-backend)
 
@@ -16,7 +16,7 @@ theme 基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Boots
 
 ```shell
 git clone https://github.com/qloog/laravel5-backend.git
-cd awesome-backend
+cd laravel5-backend
 composer install -vvv   //根据composer.json下载vendor包目录
 npm install //安装node依赖组件
 php artisan migrate //生成表结构
@@ -113,4 +113,4 @@ open http://localhost:8000/admin/login  //用户名: admin@test.com, 密码: 123
 
 ## License
 
-The awesome-backend is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+The laravel5-backend is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
