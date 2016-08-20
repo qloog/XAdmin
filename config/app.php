@@ -149,7 +149,7 @@ return [
         LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class,
         Dingo\Api\Provider\LaravelServiceProvider::class,
         Mews\Captcha\CaptchaServiceProvider::class,
-
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
     ],
     /*
     |--------------------------------------------------------------------------
