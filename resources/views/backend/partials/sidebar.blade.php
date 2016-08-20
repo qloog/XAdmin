@@ -210,6 +210,13 @@
                                 </a>
                                 <b class="arrow"></b>
                             </li>
+                            <li @if(Request::is('admin/event/create')) class="active" @endif>
+                                <a href="{{ url('admin/event/create') }}">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    添加活动
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
                         </ul>
                     </li>
 

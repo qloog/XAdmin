@@ -7,12 +7,14 @@ use App\Repositories\Backend\Event\EventRepository;
 
 use App\Http\Requests;
 use App\Http\Requests\Backend\EventCreateRequest;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\Backend\EventUpdateRequest;
 
 class EventController extends BaseController
 {
+
     public function __construct(EventRepository $repository)
     {
         $this->repository = $repository;
@@ -25,7 +27,7 @@ class EventController extends BaseController
      */
     public function index()
     {
-        $event = $this->repository->getAll(config('custom.per_page'));
+        $event = $this->repository->paginate(config('custom.per_page'));
         return view('backend.event.index', ['data' => $event]);
     }
 
@@ -36,7 +38,7 @@ class EventController extends BaseController
      */
     public function create()
     {
-        $data = $this->dispatch(new EventFormFields());
+        $data = $this->repository->getFields();
 
         return view('backend.event.create', $data);
     }
@@ -75,7 +77,7 @@ class EventController extends BaseController
      */
     public function edit($id)
     {
-        $data = $this->dispatch(new EventFormFields($id));
+        $data = $this->repository->getFormFields($id);
         return view('backend.event.edit', $data);
     }
 
@@ -88,7 +90,7 @@ class EventController extends BaseController
      */
     public function update(EventUpdateRequest $request, $id)
     {
-        if ($this->repository->update($id, $request->eventFillData())) {
+        if ($this->repository->update($request->eventFillData(), $id)) {
             return Redirect::to('admin/event');
         } else {
             return Redirect::back()->withInput()->withErrors('保存失败！');

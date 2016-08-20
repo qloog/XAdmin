@@ -2,90 +2,72 @@
 
 namespace App\Repositories\Backend\Event;
 
+use Prettus\Repository\Eloquent\BaseRepository;
 use App\Models\Event;
 
-class EventRepository implements EventContract
+class EventRepository extends BaseRepository
 {
 
-    /**
-     * Create a new EventRepository instance.
-     * @param Event $event
-     */
-    public function __construct(Event $event)
+    public function model()
     {
-        $this->model = $event;
+        return "App\\Models\\Event";
+    }
+
+    public function getFields()
+    {
+        return [
+            'title' => '',
+            'event_image' => '',
+            'begin_time'   => '',
+            'end_time'   => '',
+            'content' => '',
+            'user_count' => 0,
+            'user_id' => 0,
+        ];
     }
 
     /**
-     * @param $id
-     * @return mixed
+     * Execute the job.
+     *
+     * @param int $id
+     * @return array of fieldnames => values
      */
-    public function find($id) {
-        $obj = $this->model->findOrNew($id);
-        if (! is_null($obj)) return $obj;
-        return array();
-    }
+    public function getFormFields($id = 0)
+    {
+        $fields = $this->getFields();
 
-    /**
-     * @param $per_page
-     * @param string $order_by
-     * @param string $sort
-     * @return mixed
-     */
-    public function getAll($per_page, $order_by = 'id', $sort = 'desc') {
-        return $this->model->orderBy($order_by, $sort)->paginate($per_page);
-    }
-
-    /**
-     * @param $per_page
-     * @return \Illuminate\Pagination\Paginator
-     */
-    public function getDeletedUsersPaginated($per_page) {
-        return $this->model->onlyTrashed()->paginate($per_page);
-    }
-
-    /**
-     * @param $input
-     * @return bool
-     */
-    public function create($input) {
-        $obj = $this->model->create($input);
-        return $obj->save() ? $obj : false;
-    }
-    /**
-     * @param $id
-     * @param $input
-     * @return bool
-     */
-    public function update($id, $input) {
-        $obj = $this->find($id);
-        return $obj->update($input);
-    }
-
-    /**
-     * @param $id
-     * @return boolean|null
-     * @throws GeneralException
-     */
-    public function delete($id) {
-        $obj = $this->find($id);
-        try {
-            $obj->forceDelete();
-        } catch (\Exception $e) {
-            throw new GeneralException($e->getMessage());
+        if ($id) {
+            $fields = $this->fieldsFromModel($id, $fields);
         }
+
+        foreach ($fields as $fieldName => $fieldValue) {
+            $fields[$fieldName] = old($fieldName, $fieldValue);
+        }
+
+        return $fields;
     }
 
     /**
-     * @param $id
-     * @return bool
-     * @throws GeneralException
+     * Return the field values from the model
+     *
+     * @param integer $id
+     * @param array $fields
+     * @return array
      */
-    public function restore($id) {
-        $user = $this->find($id);
-        if ($user->restore())
-            return true;
-        throw new GeneralException("There was a problem restoring this user. Please try again.");
+    protected function fieldsFromModel($id, array $fields)
+    {
+        $data = Event::findOrNew($id);
+
+        $fieldNames = array_keys($fields);
+
+        $fields = ['id' => $id];
+        foreach ($fieldNames as $field) {
+            $fields[$field] = $data->{$field};
+        }
+
+        return $fields;
     }
+
+
 
 }
