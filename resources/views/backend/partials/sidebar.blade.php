@@ -88,13 +88,6 @@
                         <b class="arrow"></b>
 
                         <ul class="submenu">
-                            <li>
-                                <a href="{{ url('admin/log-viewer') }}" target="_blank">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Log Viewer
-                                </a>
-                                <b class="arrow"></b>
-                            </li>
                             <li @if(Request::is('admin/news/category')) class="active" @endif>
                                 <a href="javascript:;">
                                     <i class="menu-icon fa fa-caret-right"></i>
