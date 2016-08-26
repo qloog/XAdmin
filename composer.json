@@ -24,7 +24,8 @@
         "solarium/solarium": "^3.5",
         "doctrine/dbal": "^2.5",
         "friendsofphp/php-cs-fixer": "^1.12",
-        "prettus/l5-repository": "^2.6"
+        "prettus/l5-repository": "^2.6",
+        "filp/whoops": "^2.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.5",
