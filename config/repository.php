@@ -223,7 +223,7 @@ return [
         'rootNamespace' => 'App\\',
         'paths'         => [
             'models'       => 'Models',
-            'repositories' => 'Repositories\\Eloquent',
+            'repositories' => 'Repositories',
             'interfaces'   => 'Contracts\\Repositories',
             'transformers' => 'Transformers',
             'presenters'   => 'Presenters',
