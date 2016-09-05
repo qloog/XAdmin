@@ -24,9 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if ($this->app->isLocal()) {
-            $this->app->register('Kurt\Repoist\RepoistServiceProvider');
-        }
+
+        $this->app->register(RepositoryServiceProvider::class);
 
         if($this->app->environment() !== 'production') {
             $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);

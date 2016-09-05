@@ -16,8 +16,9 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>权限名</th>
-            <th>角色slug</th>
+            <th>名称</th>
+            <th>显示名</th>
+            <th>描述</th>
             <th>创建时间</th>
             <th>更新时间</th>
             <th>操作</th>
@@ -27,8 +28,9 @@
         @foreach ($permissions as $item)
             <tr>
                 <th>{{ $item->id }}</th>
-                <th>{{ $item->permission_name }}</th>
-                <th>{{ $item->permission_slug }}</th>
+                <th>{{ $item->name }}</th>
+                <th>{{ $item->display_name }}</th>
+                <th>{{ $item->description }}</th>
                 <th>{{ $item->created_at }}</th>
                 <th>{{ $item->updated_at }}</th>
                 <th>

@@ -7,8 +7,8 @@ use App\Http\Requests;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
-use App\Repositories\Backend\User\UserContract;
-use App\Repositories\Backend\Role\RoleContract;
+use App\Contracts\Repositories\Backend\UserRepository;
+use App\Contracts\Repositories\Backend\RoleRepository;
 use App\Repositories\Backend\Permission\PermissionContract;
 use Laracasts\Flash\Flash;
 
@@ -16,7 +16,7 @@ class UserController extends BaseController
 {
 
     /**
-     * @var UserContract
+     * @var UserRepository
      */
     protected $users;
 
@@ -32,11 +32,11 @@ class UserController extends BaseController
 
 
     /**
-     * @param UserContract       $users
-     * @param RoleContract       $roles
-     * @param PermissionContract $permissions
+     * @param UserRepository        $users
+     * @param RoleRepository        $roles
+     * @param PermissionContract    $permissions
      */
-    public function __construct(UserContract $users, RoleContract $roles, PermissionContract $permissions)
+    public function __construct(UserRepository $users, RoleRepository $roles, PermissionContract $permissions)
     {
         $this->users = $users;
         $this->roles = $roles;
@@ -49,7 +49,7 @@ class UserController extends BaseController
      */
     public function index()
     {
-        $users = $this->users->getAllUsers(config('custom.per_page'));
+        $users = $this->users->paginate(15);
 
         return view('backend.user.index', ['users' => $users]);
     }
@@ -63,7 +63,7 @@ class UserController extends BaseController
     {
         return view('backend.user.create',
             [
-                'roles' => $this->roles->getAllRoles('id', 'desc', true),
+                'roles' => $this->roles->all(),
                 'userRoles' => array()
             ]
         );

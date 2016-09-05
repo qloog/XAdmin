@@ -150,6 +150,7 @@ return [
         Dingo\Api\Provider\LaravelServiceProvider::class,
         Mews\Captcha\CaptchaServiceProvider::class,
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
+        Zizaco\Entrust\EntrustServiceProvider::class,
     ],
     /*
     |--------------------------------------------------------------------------
@@ -211,6 +212,7 @@ return [
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'Authorizer' => LucaDegasperi\OAuth2Server\Facades\Authorizer::class,
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 
     ],
 

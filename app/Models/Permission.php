@@ -2,30 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Zizaco\Entrust\EntrustPermission;
 
-class Permission extends Model
+class Permission extends EntrustPermission
 {
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'permissions';
 
-    /*
-    |--------------------------------------------------------------------------
-    | Relationship Methods
-    |--------------------------------------------------------------------------
-    */
+    protected $fillable = ['name', 'display_name', 'description'];
 
-    /**
-     * A permission can be applied to roles.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class, 'permission_role', 'permission_id', 'role_id');
-    }
 }

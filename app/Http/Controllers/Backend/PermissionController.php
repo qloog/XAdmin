@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Repositories\Backend\Permission\PermissionContract;
-use App\Repositories\Backend\Role\RoleContract;
+use App\Contracts\Repositories\Backend\PermissionRepository;
+use App\Contracts\Repositories\Backend\RoleRepository;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
@@ -16,20 +16,20 @@ class PermissionController extends BaseController
 
 
     /**
-     * @var RoleContract
+     * @var RoleRepository
      */
     protected $roles;
 
     /**
-     * @var PermissionContract
+     * @var PermissionRepository
      */
     protected $permissions;
 
     /**
-     * @param RoleContract       $roles
-     * @param PermissionContract $permissions
+     * @param RoleRepository       $roles
+     * @param PermissionRepository $permissions
      */
-    public function __construct(RoleContract $roles, PermissionContract $permissions)
+    public function __construct(RoleRepository $roles, PermissionRepository $permissions)
     {
         $this->roles = $roles;
         $this->permissions = $permissions;
@@ -42,7 +42,7 @@ class PermissionController extends BaseController
      */
     public function index()
     {
-        $permissions = $this->permissions->getPermissionsPaginated(config('custom.per_page'));
+        $permissions = $this->permissions->paginate();
 
         return view('backend.permission.index', compact('permissions'));
     }
@@ -57,7 +57,7 @@ class PermissionController extends BaseController
         return view(
             'backend.permission.create',
             [
-                'roles' => $this->roles->getAllRoles(),
+                'roles' => $this->roles->all(),
                 'permissionRoles' => array()
             ]
         );
@@ -71,7 +71,7 @@ class PermissionController extends BaseController
      */
     public function store(Request $request)
     {
-        $this->permissions->create($request->except('permission_roles'), $request->only('permission_roles'));
+        $this->permissions->create($request->all());
         return redirect()->route('admin.auth.permission.index')->withSuccess(trans('alerts.permissions.created'));
     }
 
@@ -94,13 +94,13 @@ class PermissionController extends BaseController
      */
     public function edit($id)
     {
-        $permission = $this->permissions->find($id, true);
+        $permission = $this->permissions->find($id);
 
         return view(
             'backend.permission.edit',
             [
                 'permission' => $permission,
-                'roles' => $this->roles->getAllRoles(),
+                'roles' => $this->roles->all(),
                 'permissionRoles' => $permission->roles->lists('id')->all()
             ]
         );
@@ -114,7 +114,7 @@ class PermissionController extends BaseController
      */
     public function update($id, Request $request)
     {
-        $this->permissions->update($id, $request->except('permission_roles'), $request->only('permission_roles'));
+        $this->permissions->update($request->all(), $id);
 
         return redirect()->route('admin.auth.permission.index')->withSuccess(trans('alerts.permissions.updated'));
     }

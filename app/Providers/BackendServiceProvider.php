@@ -36,7 +36,7 @@ class BackendServiceProvider extends ServiceProvider
      * Register service provider bindings
      */
     public function registerBindings() {
-        $this->app->bind('App\Repositories\Backend\User\UserContract', 'App\Repositories\Backend\User\UserRepository');
+        //$this->app->bind('App\Repositories\Backend\User\UserContract', 'App\Repositories\Backend\User\UserRepository');
         $this->app->bind('App\Repositories\Backend\Role\RoleContract', 'App\Repositories\Backend\Role\RoleRepository');
         $this->app->bind('App\Repositories\Backend\Permission\PermissionContract', 'App\Repositories\Backend\Permission\PermissionRepository');
         $this->app->bind('App\Repositories\Backend\News\NewsContract', 'App\Repositories\Backend\News\NewsRepository');
