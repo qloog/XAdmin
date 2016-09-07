@@ -16,8 +16,6 @@
         "ender/laravel-ueditor": "0.8.*",
         "intervention/image": "^2.3",
         "thomaswelton/laravel-gravatar": "1.0.*",
-        "tymon/jwt-auth": "0.5.*",
-        "lucadegasperi/oauth2-server-laravel": "5.0.*",
         "dingo/api": "1.0.x@dev",
         "maatwebsite/excel": "~2.0.0",
         "mews/captcha": "^2.1",
@@ -53,9 +51,6 @@
         ]
     },
     "scripts": {
-        "pre-update-cmd": [
-            "php artisan clear-compiled"
-        ],
         "post-update-cmd": [
             "php artisan ide-helper:generate",
             "php artisan ide-helper:meta",
