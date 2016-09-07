@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-class UserNotFoundException extends AbstractNotFoundException
+class UserNotFoundException extends AbstractException
 {
 
 }

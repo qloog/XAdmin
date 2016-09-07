@@ -19,7 +19,8 @@
                             @foreach($roles as $role)
                                 <input type="checkbox" value="{{$role->id}}" name="assignees_roles[]" {{in_array($role->id, $userRoles) ? 'checked' : ''}} id="role-{{$role->id}}" />
                                 <label for="role-{{$role->id}}">{!! $role->role_name !!}</label>
-                                <a href="#" data-role="role_{{$role->id}}" class="show-permissions small">(<span class="show-hide">Show</span> Permissions)</a>
+                                {{--<a href="#" data-role="role_{{$role->id}}" class="show-permissions small">(<span class="show-hide">Show</span> Permissions)</a>--}}
+                                <a href="#" data-role="role_{{$role->id}}" class="show-permissions small">{{ $role->name }}</a>
                                 <br/>
                             @endforeach
                         @else

@@ -4,6 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\NewsCategory
+ *
+ * @property integer $id
+ * @property string $name 分类名
+ * @property integer $pid 父类id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\News[] $news
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\NewsCategory whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\NewsCategory whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\NewsCategory wherePid($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\NewsCategory whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\NewsCategory whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class NewsCategory extends Model
 {
     /**

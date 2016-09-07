@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-class GeneralException extends AbstractNotFoundException
+class GeneralException extends AbstractException
 {
 
 }

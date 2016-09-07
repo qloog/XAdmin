@@ -35,11 +35,11 @@
         @foreach ($roles as $item)
             <tr>
                 <th>{{ $item->id }}</th>
-                <th>{{ $item->role_name }}</th>
-                <th>{{ $item->role_slug }}</th>
+                <th>{{ $item->name }}</th>
+                <th>{{ $item->display_name }}</th>
                 <th>
-                    @foreach($item->permissions as $permission)
-                        {{ $permission->permission_name }}({{ $permission->permission_slug }})<br>
+                    @foreach($item->perms as $permission)
+                        {{ $permission->display_name }}<br>
                     @endforeach
                 </th>
                 <th>{{ $item->created_at }}</th>

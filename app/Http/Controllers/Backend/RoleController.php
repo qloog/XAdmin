@@ -32,7 +32,7 @@ class RoleController extends BaseController
      */
     public function index()
     {
-        $roles = $this->roles->paginate(15);
+        $roles = $this->roles->orderBy('id', 'desc')->paginate(15);
         return view('backend.role.index', compact('roles'));
     }
 
@@ -82,14 +82,14 @@ class RoleController extends BaseController
      */
     public function edit($id)
     {
-        $role = $this->roles->find($id, true);
+        $role = $this->roles->find($id);
 
         return view(
             'backend.role.edit',
             [
                 'role' => $role,
-                'rolePermissions' => $role->permissions->lists('id')->all(),
-                'permissions' => $this->permissions->getAllPermissions('id', 'asc', true)
+                'rolePermissions' => $role->perms->lists('id')->all(),
+                'permissions' => $this->permissions->all()
             ]
         );
     }
@@ -102,9 +102,8 @@ class RoleController extends BaseController
      */
     public function update($id, Request $request)
     {
-        $this->roles->update($id, $request->all());
+        $this->roles->update($request->all(), $id);
         return redirect()->route('admin.auth.role.index')->withSuccess(trans('alerts.roles.updated'));
-
     }
 
     /**

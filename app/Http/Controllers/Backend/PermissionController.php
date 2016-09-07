@@ -42,7 +42,7 @@ class PermissionController extends BaseController
      */
     public function index()
     {
-        $permissions = $this->permissions->paginate();
+        $permissions = $this->permissions->orderBy('id', 'desc')->paginate();
 
         return view('backend.permission.index', compact('permissions'));
     }

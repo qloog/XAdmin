@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use App\Contracts\Repositories\Backend\UserRepository;
 use App\Contracts\Repositories\Backend\RoleRepository;
-use App\Repositories\Backend\Permission\PermissionContract;
+use App\Contracts\Repositories\Backend\PermissionRepository;
 use Laracasts\Flash\Flash;
 
 class UserController extends BaseController
@@ -21,12 +21,12 @@ class UserController extends BaseController
     protected $users;
 
     /**
-     * @var RoleContract
+     * @var RoleRepository
      */
     protected $roles;
 
     /**
-     * @var PermissionContract
+     * @var PermissionRepository
      */
     protected $permissions;
 
@@ -34,9 +34,9 @@ class UserController extends BaseController
     /**
      * @param UserRepository        $users
      * @param RoleRepository        $roles
-     * @param PermissionContract    $permissions
+     * @param PermissionRepository    $permissions
      */
-    public function __construct(UserRepository $users, RoleRepository $roles, PermissionContract $permissions)
+    public function __construct(UserRepository $users, RoleRepository $roles, PermissionRepository $permissions)
     {
         $this->users = $users;
         $this->roles = $roles;
@@ -49,7 +49,7 @@ class UserController extends BaseController
      */
     public function index()
     {
-        $users = $this->users->paginate(15);
+        $users = $this->users->orderBy('id', 'desc')->paginate(10);
 
         return view('backend.user.index', ['users' => $users]);
     }
@@ -76,7 +76,7 @@ class UserController extends BaseController
      */
     public function store(Request $request)
     {
-        if ($this->users->create($request->except('assignees_roles'), $request->only('assignees_roles'))) {
+        if ($this->users->create($request->all())) {
             return redirect()->route('admin.auth.user.index');
         }
         return Redirect::back()->withInput()->withErrors('保存失败！');
@@ -108,7 +108,7 @@ class UserController extends BaseController
             [
                 'user' => $user,
                 'userRoles' => $user->roles->lists('id')->all(),
-                'roles' => $this->roles->getAllRoles('id', 'desc', true)
+                'roles' => $this->roles->all()
             ]
         );
     }
@@ -122,7 +122,7 @@ class UserController extends BaseController
      */
     public function update($id, Request $request)
     {
-        if ($this->users->update($id, $request->except('assignees_roles'), $request->only('assignees_roles'))) {
+        if ($this->users->update($request->all(), $id)) {
             return redirect()->route('admin.auth.user.index');
         }
         return Redirect::back()->withInput()->withErrors('保存失败！');

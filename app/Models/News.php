@@ -4,6 +4,40 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\News
+ *
+ * @property integer $id
+ * @property integer $category_id 所属分类id
+ * @property string $title 新闻标题
+ * @property string $meta_keyword 页面关键词
+ * @property string $meta_description 页面描述
+ * @property string $page_image 页面缩略图
+ * @property string $summary 摘要
+ * @property string $content 正文
+ * @property integer $views 浏览量
+ * @property integer $user_id 发布者id
+ * @property boolean $status 发布状态
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \App\Models\NewsCategory $category
+ * @property-read \App\Models\User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tag[] $tags
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\News whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\News whereCategoryId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\News whereTitle($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\News whereMetaKeyword($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\News whereMetaDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\News wherePageImage($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\News whereSummary($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\News whereContent($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\News whereViews($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\News whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\News whereStatus($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\News whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\News whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class News extends Model
 {
     /**

@@ -4,6 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Image
+ *
+ * @property integer $id
+ * @property string $image_name 图片名，经过str_random函数处理
+ * @property string $image_path 图片存储的实际路径
+ * @property integer $user_id 用户id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \App\Models\NewsCategory $category
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Image whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Image whereImageName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Image whereImagePath($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Image whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Image whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Image whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class Image extends Model
 {
     /**
