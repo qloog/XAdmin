@@ -124,7 +124,8 @@ class News extends Model
 
     public function getPageImageAttribute($value)
     {
-        return get_image_url($value);
+        var_dump($value);exit;
+        return $value ? get_image_url($value) : '';
     }
 
 //    public function getStatusAttribute($value)

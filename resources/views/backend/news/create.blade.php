@@ -22,8 +22,7 @@
    <div class="row">
         <div class="col-xs-12">
             <!-- PAGE CONTENT BEGINS -->
-            <form class="form-horizontal" id="news_form" role="form" method="POST" action="{{ URL::to('admin/news') }}" enctype="multipart/form-data">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            {!! Form::open(['route' => 'admin.news.store', 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post', 'files' => true]) !!}
 
                 @include('backend.news._form')
 
@@ -41,7 +40,7 @@
                         </button>
                     </div>
                 </div>
-            </form>
+            {!! Form::close() !!}
     </div>
 @endsection
 

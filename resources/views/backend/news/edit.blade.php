@@ -22,9 +22,8 @@
    <div class="row">
         <div class="col-xs-12">
             <!-- PAGE CONTENT BEGINS -->
-            <form class="form-horizontal" id="news_form" role="form" method="POST" action="{{ URL::to('admin/news/' . $id) }}" enctype="multipart/form-data">
-                <input name="_method" type="hidden" value="PUT">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            {!! Form::model($news, ['route' => ['admin.news.update', $news->id], 'class' => 'form-horizontal', 'role' => 'form','files' => true]) !!}
+            {!! Form::hidden('_method', 'PUT') !!}
 
                 @include('backend.news._form')
 
@@ -45,7 +44,7 @@
                         </button>
                     </div>
                 </div>
-            </form>
+            {!! Form::close() !!}
     </div>
 
     {{-- Confirm Delete --}}
@@ -65,7 +64,7 @@
             </p>
           </div>
           <div class="modal-footer">
-            <form method="POST" action="{{ route('admin.news.destroy', $id) }}">
+            <form method="POST" action="{{ route('admin.news.destroy', $news->id) }}">
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
               <input type="hidden" name="_method" value="DELETE">
               <button type="button" class="btn btn-default"
@@ -105,27 +104,27 @@
         ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');
     });
 
-     var tag_input = $('#form-field-tags');
-        try{
-            tag_input.tag(
-              {
-                placeholder:tag_input.attr('placeholder'),
-                //enable typeahead by specifying the source array
-                source: {}//defined in ace.js >> ace.enable_search_ahead
-              }
-            )
+     {{--var tag_input = $('#form-field-tags');--}}
+        {{--try{--}}
+            {{--tag_input.tag(--}}
+              {{--{--}}
+                {{--placeholder:tag_input.attr('placeholder'),--}}
+                {{--//enable typeahead by specifying the source array--}}
+                {{--source: {}//defined in ace.js >> ace.enable_search_ahead--}}
+              {{--}--}}
+            {{--)--}}
 
-            //programmatically add a new
-            var $tag_obj = $('#form-field-tags').data('tag');
-            @foreach($tags as $item)
-            $tag_obj.add('{{ $item }}');
-            @endforeach
-        }
-        catch(e) {
-            //display a textarea for old IE, because it doesn't support this plugin or another one I tried!
-            tag_input.after('<textarea id="'+tag_input.attr('id')+'" name="'+tag_input.attr('name')+'" rows="2">'+tag_input.val()+'</textarea>').remove();
-            //$('#form-field-tags').autosize({append: "\n"});
-        }
+            {{--//programmatically add a new--}}
+            {{--var $tag_obj = $('#form-field-tags').data('tag');--}}
+            {{--@foreach($tags as $item)--}}
+            {{--$tag_obj.add('{{ $item }}');--}}
+            {{--@endforeach--}}
+        {{--}--}}
+        {{--catch(e) {--}}
+            {{--//display a textarea for old IE, because it doesn't support this plugin or another one I tried!--}}
+            {{--tag_input.after('<textarea id="'+tag_input.attr('id')+'" name="'+tag_input.attr('name')+'" rows="2">'+tag_input.val()+'</textarea>').remove();--}}
+            {{--//$('#form-field-tags').autosize({append: "\n"});--}}
+        {{--}--}}
 
 </script>
 @endsection

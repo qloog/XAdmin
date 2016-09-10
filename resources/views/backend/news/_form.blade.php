@@ -1,8 +1,8 @@
                 <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right" for="title"> 新闻标题 </label>
+                    {!! Form::label('title', '新闻标题', ['class' => 'col-sm-2 control-label no-padding-right']) !!}
                     <div class="col-sm-10">
                         <div class="clearfix">
-                            <input type="text" name="title" id="title" placeholder="标题" class="col-xs-10 col-sm-5" value="{{ $title }}">
+                            {!! Form::text('title', null, ['class' => 'col-xs-10 col-sm-5', 'placeholder' => '标题']) !!}
                         </div>
                     </div>
                 </div>
@@ -13,82 +13,85 @@
                         <div class="clearfix">
                         <select name="category_id" id="category_id">
                             <option value="">请选择</option>
-                            @foreach ($selectCategory as $item)
-                            <option value="{{ $item['id'] }}">{{ $item['html'] }}{{ $item['name'] }}</option>
-                            @endforeach
+                            @if(isset($selectCategory) && count($selectCategory))
+                                @foreach ($selectCategory as $item)
+                                <option value="{{ $item['id'] }}">{{ $item['html'] }}{{ $item['name'] }}</option>
+                                @endforeach
+                            @endif
                         </select>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right" for="meta_keyword"> 页面关键词 </label>
+                    {!! Form::label('meta_keyword', '页面关键词', ['class' => 'col-sm-2 control-label no-padding-right']) !!}
                     <div class="col-sm-10">
                         <div class="clearfix">
-                            <input type="text" name="meta_keyword" id="meta_keyword" placeholder="蜘蛛侠、煎饼侠" class="col-xs-10 col-sm-5" value="{{ $meta_keyword }}">
+                            {!! Form::text('meta_keyword', null, ['class' => 'col-xs-10 col-sm-5', 'placeholder' => '蜘蛛侠、煎饼侠']) !!}
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 页面描述 </label>
+                    {!! Form::label('meta_description', '页面描述', ['class' => 'col-sm-2 control-label no-padding-right']) !!}
                     <div class="col-sm-10">
-                        <input type="text" name="meta_description" id="form-field-1" placeholder="蜘蛛侠大超人" class="col-xs-10 col-sm-5" value="{{ $meta_description }}">
+                        {!! Form::text('meta_description', null, ['class' => 'col-xs-10 col-sm-5', 'placeholder' => '蜘蛛侠大超人']) !!}
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1"> 封面图 </label>
+                    {!! Form::label('page_image', '封面图', ['class' => 'col-sm-2 control-label no-padding-right']) !!}
                     <div class="col-sm-10">
                         <div class="clearfix">
                             <input type="file" name="file" id="file"  class="col-xs-10 col-sm-5" />
                             <input type="hidden" name="page_image" id="page_image"  class="col-xs-10 col-sm-5" />
-                            <img id="upload_image_preview" src="{{ $page_image }}" width="200px" />
+                            {{--<img id="upload_image_preview" src="{{ $page_image }}" width="200px" />--}}
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1"> 摘要 </label>
+                    {!! Form::label('summary', '摘要', ['class' => 'col-sm-2 control-label no-padding-right']) !!}
                     <div class="col-sm-10">
-                        <textarea name="summary" id="form-field-1-1" placeholder="简单描述" class="col-xs-10 col-sm-5">{{ $summary }}</textarea>
+                        {{--<textarea name="summary" id="form-field-1-1" placeholder="简单描述" class="col-xs-10 col-sm-5">{{ $summary }}</textarea>--}}
+                        {!! Form::text('summary', null, ['class' => 'col-xs-10 col-sm-5', 'placeholder' => '简单描述']) !!}
                     </div>
                 </div>
 
                 <div class="space-4"></div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right" for="content">正文</label>
+                    {!! Form::label('content', '正文', ['class' => 'col-sm-2 control-label no-padding-right']) !!}
                     <div class="col-sm-10">
                         <div class="clearfix">
-                        {!! UEditor::content($content) !!}
+                        @if(isset($news->content))
+                            {!! UEditor::content($news->content) !!}
+                        @else
+                            {!! UEditor::content() !!}
+                        @endif
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 浏览量 </label>
+                    {!! Form::label('views', '浏览量', ['class' => 'col-sm-2 control-label no-padding-right']) !!}
                     <div class="col-sm-10">
-                        <input type="text" name="views" id="form-field-1" placeholder="100" class="col-xs-10 col-sm-5" value="{{ $views }}">
+                        {!! Form::text('views', null, ['class' => 'col-xs-10 col-sm-5', 'placeholder' => '100']) !!}
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 标签 </label>
+                    {!! Form::label('tags', '标签', ['class' => 'col-sm-2 control-label no-padding-right']) !!}
                     <div class="col-sm-10">
                         <div class="inline">
-                            <input type="text" name="tags" id="form-field-tags" value="" placeholder="请输入标签名，回车即可" style="display: none;">
+                            {{--{!! Form::text('tags', null, ['placeholder' => '请输入标签名，回车即可']) !!}--}}
                     	</div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 发布状态 </label>
+                    {!! Form::label('status', '发布状态', ['class' => 'col-sm-2 control-label no-padding-right']) !!}
                     <div class="col-sm-10">
-                        <select name="status">
-                            @foreach ($allStatus as $key => $item)
-                            <option value="{{ $key }}" @if ($key == $status) selected @endif>{{ $item }}</option>
-                            @endforeach
-                        </select>
+                        {!! Form::select('status', ['0' => '草稿', '1' => '已发布'], '1') !!}
                     </div>
                 </div>

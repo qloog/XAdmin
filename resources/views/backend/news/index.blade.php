@@ -16,6 +16,9 @@
 @endsection
 
 @section('content')
+    <div class="pull-left">
+        <a class="btn btn-primary btn-xs" href="{{ route('admin.news.create') }}">添加新闻</a>
+    </div>
     <table id="example" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
         <thead>
             <tr>

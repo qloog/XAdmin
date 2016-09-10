@@ -37,6 +37,7 @@
                 </div>
                 <div class="clearfix"></div>
             </div><!--well-->
+            {!! Form::close() !!}
         </div>
     </div>
 @endsection
