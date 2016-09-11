@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Http\Requests\Backend\NewsCategoryCreateRequest;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Services\CategoryService;
-use App\Repositories\Backend\News\NewsRepository;
+use App\Contracts\Repositories\Backend\NewsCategoryRepository;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 
@@ -16,7 +17,7 @@ class NewsCategoryController extends Controller
 
     private $repository;
 
-    public function __construct(NewsRepository $repository)
+    public function __construct(NewsCategoryRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -28,32 +29,45 @@ class NewsCategoryController extends Controller
      */
     public function index()
     {
-        $category = $this->repository->getNewsCategoryPaginated(config('custom.per_page'), 'id', 'desc');
-        $selectedCategory = CategoryService::unlimitedForLevel($category->toArray()['data']);
-        return view('backend.news.category', ['category' => $category, 'selectCategory' => $selectedCategory]);
+        $categories = $this->repository->orderBy('id', 'desc')->paginate(15);
+        $selectedCategory = CategoryService::unlimitedForLevel($categories->toArray()['data']);
+
+        return view('backend.news.category', [
+            'categories' => $categories,
+            'selectCategory' => $selectedCategory,
+            'category' => ['id' => 0, 'name' => '', 'pid' => 0, 'html' => '', 'level' => 0]
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return Response
+     * @return bool
+     * @internal param NewsCategoryCreateRequest $request
      */
     public function create()
     {
-        //
+        $categories = $this->repository->all();
+        $data['selectCategory'] = CategoryService::unlimitedForLevel($categories->toArray());
+        $data['category'] = [
+            'id' => 0,
+            'name' => ''
+        ];
+
+        return view('backend.news.category_create', $data);
     }
 
     /**
      * Store a newly created resource in storage.
      *
+     * @param NewsCategoryCreateRequest $request
      * @return Response
      */
-    public function store()
+    public function store(NewsCategoryCreateRequest $request)
     {
-        $input = Input::except(['_token']);
-        $ret = $this->repository->createCategory($input);
-        if ($ret) {
+        if ($this->repository->create($request->categoryFillData())) {
             return Redirect::to('admin/news/category');
+        } else {
+            return Redirect::back()->withInput()->withErrors('保存失败！');
         }
     }
 
@@ -76,18 +90,28 @@ class NewsCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = $this->repository->orderBy('id', 'desc')->paginate(15);
+        $selectedCategory = CategoryService::unlimitedForLevel($categories->toArray()['data']);
+
+        $category = $this->repository->find($id);
+
+        return view('backend.news.category_edit', ['category' => $category, 'selectCategory' => $selectedCategory]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param Request $request
+     * @param  int    $id
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        //
+        if ($this->repository->update($request->all(), $id)) {
+            return Redirect::to('admin/news/category');
+        } else {
+            return Redirect::back()->withInput()->withErrors('保存失败！');
+        }
     }
 
     /**

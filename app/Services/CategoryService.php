@@ -2,6 +2,12 @@
 
 namespace App\Services;
 
+/**
+ * 分类
+ *
+ * Class CategoryService
+ * @package App\Services
+ */
 class CategoryService
 {
 
@@ -58,7 +64,7 @@ class CategoryService
      * @param int   $id   当前分类id
      * @return array
      */
-    public static function getParents($cate, $id)
+    public static function getParents(array $cate, $id)
     {
         $arr = array();
         foreach ($cate as $v) {

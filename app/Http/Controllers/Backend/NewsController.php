@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Contracts\Repositories\Backend\NewsRepository;
-use Illuminate\Support\Facades\Input;
+use App\Contracts\Repositories\Backend\NewsCategoryRepository;
 use Illuminate\Support\Facades\Redirect;
 use App\Services\CategoryService;
-use App\Models\News;
-use Auth, Log;
-use App\Jobs\NewsFormFields;
 use App\Http\Requests\Backend\NewsCreateRequest;
 use App\Http\Requests\Backend\NewsUpdateRequest;
 
+/**
+ * Class NewsController
+ * @package App\Http\Controllers\Backend
+ */
 class NewsController extends BaseController
 {
 
@@ -23,9 +21,15 @@ class NewsController extends BaseController
      */
     protected $news;
 
-    public function __construct(NewsRepository $news)
+    /**
+     * @var NewsCategoryRepository
+     */
+    protected $category;
+
+    public function __construct(NewsRepository $news, NewsCategoryRepository $category)
     {
         $this->news = $news;
+        $this->category = $category;
     }
     /**
      * Display a listing of the resource.
@@ -51,7 +55,7 @@ class NewsController extends BaseController
             'page_image' => '',
             'content' => ''
         ];
-        $category = $this->news->getCategories();
+        $category = $this->category->all();
         $data['selectCategory'] = CategoryService::unlimitedForLevel($category->toArray());
 
         return view('backend.news.create', $data);
@@ -93,10 +97,10 @@ class NewsController extends BaseController
      */
     public function edit($id)
     {
-        //$data = $this->dispatch(new NewsFormFields($id));
         $data['news'] = $this->news->find($id);
-        $category = $this->news->getCategories();
-        $data['selectCategory'] = CategoryService::unlimitedForLevel($category->toArray());
+
+        $categories = $this->category->all();
+        $data['selectCategory'] = CategoryService::unlimitedForLevel($categories->toArray());
 
         return view('backend.news.edit', $data);
     }
@@ -116,9 +120,8 @@ class NewsController extends BaseController
             // $news->syncTags($tags);
             return Redirect::to('admin/news');
         } else {
-            //return Redirect::back()->withInput()->withErrors('保存失败！');
+            return Redirect::back()->withInput()->withErrors('保存失败！');
         }
-
     }
 
     /**

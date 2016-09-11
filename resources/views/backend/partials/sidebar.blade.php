@@ -130,16 +130,6 @@
 
                                 <b class="arrow"></b>
                             </li>
-
-                            <li class="">
-                                <a href="javascript:void(0)">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    标签管理
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
                         </ul>
                     </li>
 

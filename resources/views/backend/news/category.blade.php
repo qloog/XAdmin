@@ -18,6 +18,9 @@
 @section('content')
     <div class="rows">
         <div class="col-md-8">
+            <div class="pull-left">
+                <a class="btn btn-primary btn-xs" href="{{ route('admin.news.category.create') }}">添加分类</a>
+            </div>
             <table id="example" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                 <thead>
                     <tr>
@@ -31,7 +34,7 @@
                 </thead>
                 <tbody>
                     @inject('cate', 'App\Services\CategoryService')
-                    @foreach ($category as $item)
+                    @foreach ($categories as $item)
                     <tr>
                         <th>{{ $item->id }}</th>
                         <th>{{ $item->name }}</th>
@@ -39,7 +42,7 @@
                         @if ($item->pid === 0)
                             <span class="red">顶级分类</span>
                         @else
-                            @foreach($cate::getParents($selectCategory, $item->pid) as $v)
+                            @foreach($cate::getParents($selectCategory, $item->pid) as $key => $v)
                                 {{ $v['name']  . " >" }}
                             @endforeach
                         @endif
@@ -48,11 +51,8 @@
                         <th>{{ $item->updated_at }}</th>
                         <th>
                             <div class="hidden-sm hidden-xs action-buttons">
-                                <a class="green" href="{{ url('admin/news/1111/edit') }}">
+                                <a class="green" href="{{ url('admin/news/category/'.$item->id.'/edit') }}">
                                     <i class="ace-icon fa fa-pencil bigger-130"></i>
-                                </a>
-                                <a class="red" href="{{ url('admin/news/111') }}">
-                                    <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                 </a>
                             </div>
                         </th>
@@ -60,46 +60,8 @@
                     @endforeach
                 </tbody>
             </table>
-            {!! $category->render() !!}
+            {!! $categories->render() !!}
         </div>
-        <div class="col-md-4">
-                    <form class="form-horizontal" id="news_form" role="form" method="POST" action="{{ URL::to('admin/news/category') }}">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 分类名称 </label>
-                            <div class="col-sm-9">
-                                <input type="text" name="name" id="form-field-1" placeholder="分类名称" class="col-xs-10 col-sm-5" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 上级分类 </label>
-                            <div class="col-sm-9">
-                                <select name="pid">
-                                    <option value="0">顶级分类</option>
-                                    @foreach ($selectCategory as $item)
-                                    <option value="{{ $item['id'] }}">{{ $item['html'] }}{{ $item['name'] }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="clearfix form-actions">
-                            <div class="col-md-offset-3 col-md-10">
-                                <button class="btn btn-info" type="submit">
-                                    <i class="ace-icon fa fa-check bigger-110"></i>
-                                    保存
-                                </button>
-
-                                &nbsp; &nbsp; &nbsp;
-                                <button class="btn" type="reset">
-                                    <i class="ace-icon fa fa-undo bigger-110"></i>
-                                    重置
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
     </div>
 @endsection
 

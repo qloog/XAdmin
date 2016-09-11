@@ -15,7 +15,7 @@
                             <option value="">请选择</option>
                             @if(isset($selectCategory) && count($selectCategory))
                                 @foreach ($selectCategory as $item)
-                                <option value="{{ $item['id'] }}">{{ $item['html'] }}{{ $item['name'] }}</option>
+                                <option value="{{ $item['id'] }}" >{{ $item['html'] }}{{ $item['name'] }}</option>
                                 @endforeach
                             @endif
                         </select>
