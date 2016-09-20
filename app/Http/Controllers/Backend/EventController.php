@@ -27,7 +27,7 @@ class EventController extends BaseController
      */
     public function index()
     {
-        $event = $this->repository->paginate(config('custom.per_page'));
+        $event = $this->repository->orderBy('id', 'desc')->paginate(config('custom.per_page'));
         return view('backend.event.index', ['data' => $event]);
     }
 
