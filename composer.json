@@ -16,7 +16,6 @@
         "ender/laravel-ueditor": "0.8.*",
         "intervention/image": "^2.3",
         "thomaswelton/laravel-gravatar": "1.0.*",
-        "dingo/api": "1.0.x@dev",
         "maatwebsite/excel": "~2.0.0",
         "mews/captcha": "^2.1",
         "solarium/solarium": "^3.5",
