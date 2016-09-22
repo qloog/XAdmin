@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Repositories\Backend\Album\AlbumRepository;
+use App\Contracts\Repositories\Backend\AlbumRepository;
 
 class AlbumController extends BaseController
 {
@@ -20,8 +20,9 @@ class AlbumController extends BaseController
      */
     public function index()
     {
-        $album = $this->repository->getAll(config('custom.per_page'));
-        print_r($album->toArray());
+        $albums = $this->repository->paginate(config('custom.per_page'));
+
+        return view('backend.album.index', ['albums' => $albums]);
     }
 
     /**

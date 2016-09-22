@@ -28,6 +28,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(\App\Contracts\Repositories\Backend\PermissionRepository::class, \App\Repositories\Eloquent\Backend\PermissionRepositoryEloquent::class);
         $this->app->bind(\App\Contracts\Repositories\Backend\NewsRepository::class, \App\Repositories\Eloquent\Backend\NewsRepositoryEloquent::class);
         $this->app->bind(\App\Contracts\Repositories\Backend\NewsCategoryRepository::class, \App\Repositories\Eloquent\Backend\NewsCategoryRepositoryEloquent::class);
+        $this->app->bind(\App\Contracts\Repositories\Backend\AlbumRepository::class, \App\Repositories\Eloquent\Backend\AlbumRepositoryEloquent::class);
         //:end-bindings:
     }
 }

@@ -90,8 +90,10 @@ Route::group(['namespace' => 'Backend'], function ()
 
         //event
         Route::resource('event', 'EventController');
+
         //album
         Route::resource('album', 'AlbumController');
+
         //comment
         Route::resource('comment', 'CommentController');
 
@@ -115,32 +117,6 @@ Route::group(['namespace' => 'Backend'], function ()
 //        Route::resource('materials/audio', 'MaterialsAudioController');
     });
 });
-
-// api
-/*
-Route::group(['prefix' => 'api'], function ()
-{
-
-    Route::post('oauth/access_token', function() {
-            return Response::json(Authorizer::issueAccessToken());
-        });
-
-    $api = app('Dingo\Api\Routing\Router');
-    $api->version('v1', function ($api) {
-
-            $api->group(['protected' => true],function($api){
-                    //需要保护的路由
-                });
-
-            $api->get('users/{id}', 'App\Http\Controllers\Api\V1\UserController@show');
-            $api->get('users/test', 'App\Http\Controllers\Api\V1\UserController@index');
-
-            $api->get('users/get_token', 'App\Http\Controllers\Api\V1\AuthenticateController@authenticate');
-
-
-        });
-});
- */
 
 
 

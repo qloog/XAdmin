@@ -166,7 +166,7 @@
                         <b class="arrow"></b>
                         <ul class="submenu">
                             <li class="">
-                                <a href="/admin/user/index">
+                                <a href="/admin/album/index">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     相册列表
                                 </a>

@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * App\Models\Album
  *
  * @property integer $id
- * @property string $album_name 相册名
- * @property string $album_desc 相册描述
+ * @property string $name 相册名
+ * @property string $desc 相册描述
  * @property string $album_type 相册类型，比如：人物、家居等
  * @property string $cover_image 封面图片
  * @property integer $photo_count 照片数
@@ -48,9 +48,9 @@ class Album extends Model
      * @var array
      */
     protected $fillable = [
-        'album_name',
-        'album_desc',
-        'album_type',
+        'name',
+        'description',
+        'type',
         'cover_image',
         'photo_count',
         'user_id',
@@ -74,5 +74,16 @@ class Album extends Model
     public function user()
     {
         return $this->belongsTo('App\Models\User');
+    }
+
+    /**
+     * 获取图片全路径
+     *
+     * @param $value
+     * @return string
+     */
+    public function getCoverImageAttribute($value)
+    {
+        return get_image_url($value);
     }
 }

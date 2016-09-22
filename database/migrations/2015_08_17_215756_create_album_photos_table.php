@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAlbumPhotoTable extends Migration
+class CreateAlbumPhotosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,12 @@ class CreateAlbumPhotoTable extends Migration
      */
     public function up()
     {
-        Schema::create('album_photo', function (Blueprint $table) {
+        Schema::create('album_photos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('photo_name');
-            $table->string('photo_desc')->default('');
+            $table->string('name');
+            $table->string('description')->default('');
             $table->tinyInteger('display_order')->default(0)->comment = '图片显示顺序';
-            $table->string('photo_path')->default('')->comment = '图片地址';
+            $table->string('path')->default('')->comment = '图片地址';
             $table->integer('like_count')->default(0)->comment = '喜欢数/赞';
             $table->integer('view_count')->default(0)->comment = '浏览数';
             $table->integer('comment_count')->default(0)->comment = '评论数';
