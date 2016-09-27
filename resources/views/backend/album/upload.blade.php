@@ -3,9 +3,9 @@
 @section('title', '相册管理')
 
 @section('breadcrumb')
-        <li><i class="ace-icon fa fa-home home-icon"></i><a href="/admin/dashboard">主页</a></li>
-        <li>相册管理</li>
-        <li>列表</li>
+    <li><i class="ace-icon fa fa-home home-icon"></i><a href="/admin/dashboard">主页</a></li>
+    <li>相册管理</li>
+    <li>上传图片</li>
 @endsection
 
 @section('content')
@@ -13,23 +13,23 @@
         {{--@include('backend.album.search')--}}
     </div>
     <div class="pull-left">
-        <a class="btn btn-primary btn-xs" href="{{ route('admin.album.create') }}">添加相册</a>
+        <a class="btn btn-primary btn-xs" href="{{ route('admin.album.create') }}">上传图片</a>
     </div>
     <table id="example" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
         <thead>
-            <tr>
-                <th>id</th>
-                <th>封面</th>
-                <th>名称</th>
-                <th>照片数量</th>
-                <th>描述</th>
-                <th>创建时间</th>
-                <th>更新时间</th>
-                <th>操作</th>
-            </tr>
+        <tr>
+            <th>id</th>
+            <th>封面</th>
+            <th>名称</th>
+            <th>照片数量</th>
+            <th>描述</th>
+            <th>创建时间</th>
+            <th>更新时间</th>
+            <th>操作</th>
+        </tr>
         </thead>
         <tbody>
-            @foreach ($albums as $album)
+        @foreach ($albums as $album)
             <tr>
                 <td>{{ $album->id }}</td>
                 <td><img src="{{ $album->cover_image }}" /></td>
@@ -52,7 +52,7 @@
                     </div>
                 </td>
             </tr>
-            @endforeach
+        @endforeach
         </tbody>
     </table>
 

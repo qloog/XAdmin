@@ -93,6 +93,7 @@ Route::group(['namespace' => 'Backend'], function ()
 
         //album
         Route::resource('album', 'AlbumController');
+        Route::get('album/{id}/photos', ['as' => 'admin.album.photos', 'uses' => 'AlbumController@photos']);
 
         //comment
         Route::resource('comment', 'CommentController');

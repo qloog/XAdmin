@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * App\Models\Album
+ * App\Models\AlbumPhoto
  *
  * @property integer $id
  * @property string $name 相册名
@@ -31,7 +31,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Album whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class Album extends Model
+class AlbumPhoto extends Model
 {
     use SoftDeletes;
 
@@ -40,7 +40,7 @@ class Album extends Model
      *
      * @var string
      */
-    protected $table = 'albums';
+    protected $table = 'album_photos';
 
     /**
      * The attributes that are mass assignable.
@@ -48,12 +48,16 @@ class Album extends Model
      * @var array
      */
     protected $fillable = [
+        'album_id',
         'name',
         'description',
-        'type',
-        'cover_image',
-        'photo_count',
+        'display_order',
+        'path',
+        'like_count',
+        'view_count',
+        'comment_count',
         'user_id',
+        'deleted_at',
         'created_at',
         'updated_at'
     ];
@@ -77,11 +81,13 @@ class Album extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * 所属相册
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function photos()
+    public function album()
     {
-        return $this->hasMany('App\Models\AlbumPhoto');
+        return $this->belongsTo('App\Models\Album');
     }
 
     /**
@@ -90,7 +96,7 @@ class Album extends Model
      * @param $value
      * @return string
      */
-    public function getCoverImageAttribute($value)
+    public function getPathAttribute($value)
     {
         return get_image_url($value);
     }

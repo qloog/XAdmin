@@ -149,7 +149,7 @@ class UploadsManager
     /**
      * Return the last modified time
      * @param $path
-     * @return static
+     * @return Carbon
      */
     public function fileModified($path)
     {

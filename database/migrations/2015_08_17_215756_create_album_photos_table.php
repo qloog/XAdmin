@@ -14,6 +14,7 @@ class CreateAlbumPhotosTable extends Migration
     {
         Schema::create('album_photos', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('album_id')->default(0)->comment = '所属相册id';
             $table->string('name');
             $table->string('description')->default('');
             $table->tinyInteger('display_order')->default(0)->comment = '图片显示顺序';
@@ -34,6 +35,6 @@ class CreateAlbumPhotosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('album_photo');
+        Schema::drop('album_photos');
     }
 }

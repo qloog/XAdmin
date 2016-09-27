@@ -3,6 +3,7 @@
 namespace App\Repositories\Eloquent\Backend;
 
 use App\Exceptions\GeneralException;
+use App\Models\AlbumPhoto;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\Repositories\Backend\AlbumRepository;
@@ -30,5 +31,10 @@ class AlbumRepositoryEloquent extends BaseRepository implements AlbumRepository
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+    }
+
+    public function photos($albumId)
+    {
+        // return $this->model()->photos()->paginate();
     }
 }

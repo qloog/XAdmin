@@ -10,5 +10,7 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface AlbumRepository extends RepositoryInterface
 {
-    //
+
+    public function photos($albumId);
+
 }

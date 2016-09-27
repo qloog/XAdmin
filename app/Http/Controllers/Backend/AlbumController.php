@@ -11,9 +11,9 @@ class AlbumController extends BaseController
 {
     protected $album;
 
-    public function __construct(AlbumRepository $repository)
+    public function __construct(AlbumRepository $album)
     {
-        $this->album = $repository;
+        $this->album = $album;
     }
 
     /**
@@ -100,5 +100,19 @@ class AlbumController extends BaseController
         return redirect()
             ->route('admin.album.index')
             ->withSuccess('Post deleted.');
+    }
+
+    /**
+     * 上传图片
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function photos($id)
+    {
+
+        $album = $this->album->find($id);
+
+        return view('backend.album.upload', ['album' => $album]);
     }
 }
