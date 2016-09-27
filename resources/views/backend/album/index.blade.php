@@ -32,7 +32,7 @@
             @foreach ($albums as $album)
             <tr>
                 <td>{{ $album->id }}</td>
-                <td>{{ $album->cover_image }}</td>
+                <td><img src="{{ $album->cover_image }}" /></td>
                 <td>{{ $album->name }}</td>
                 <td>{{ $album->photo_count }}</td>
                 <td>{{ $album->description }}</td>
@@ -40,11 +40,11 @@
                 <td>{{ $album->updated_at }}</td>
                 <td>
                     <div class="hidden-sm hidden-xs action-buttons">
-                        <a class="green" href="{{ route('admin.auth.user.edit', [$album->id]) }}">
+                        <a class="green" href="{{ route('admin.album.edit', [$album->id]) }}">
                             <i class="ace-icon fa fa-pencil bigger-130"></i>编辑
                         </a>
                         <a class="green" href="{{ route('admin.auth.user.edit', [$album->id]) }}">
-                            <i class="ace-icon fa fa-pencil bigger-130"></i>上传图片
+                            <i class="ace-icon fa fa-upload bigger-130" aria-hidden="true"></i>上传图片
                         </a>
                         <!--<a class="red" href="#">
                             <i class="ace-icon fa fa-trash-o bigger-130"></i>
