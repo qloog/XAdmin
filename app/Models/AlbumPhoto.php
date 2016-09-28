@@ -49,7 +49,7 @@ class AlbumPhoto extends Model
      */
     protected $fillable = [
         'album_id',
-        'name',
+        'origin_name',
         'description',
         'display_order',
         'path',
@@ -88,16 +88,5 @@ class AlbumPhoto extends Model
     public function album()
     {
         return $this->belongsTo('App\Models\Album');
-    }
-
-    /**
-     * 获取图片全路径
-     *
-     * @param $value
-     * @return string
-     */
-    public function getPathAttribute($value)
-    {
-        return get_image_url($value);
     }
 }

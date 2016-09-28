@@ -2,8 +2,8 @@
 
 namespace App\Repositories\Eloquent\Backend;
 
-use App\Exceptions\GeneralException;
 use App\Models\AlbumPhoto;
+use Auth;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\Repositories\Backend\AlbumRepository;
@@ -33,8 +33,26 @@ class AlbumRepositoryEloquent extends BaseRepository implements AlbumRepository
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
-    public function photos($albumId)
+    /**
+     * 上传并存储照片
+     *
+     * @param       $albumId
+     * @param array $photo
+     * @return bool
+     */
+    public function storePhoto($albumId, array $photo = [])
     {
-        // return $this->model()->photos()->paginate();
+        if (!$albumId || !$photo) {
+            return false;
+        }
+
+        $photoModel = new AlbumPhoto();
+        $photoModel->origin_name = $photo['origin_name'];
+        $photoModel->path = $photo['image_path'];
+        $photoModel->album_id = $albumId;
+        $photoModel->user_id = Auth::id();
+        $ret = $photoModel->save();
+
+        return $ret ? true : false;
     }
 }

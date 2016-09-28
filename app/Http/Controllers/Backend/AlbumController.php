@@ -2,18 +2,24 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Services\UploadsManager;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Contracts\Repositories\Backend\AlbumRepository;
+use Illuminate\Support\Facades\Input;
+use Laracasts\Flash\Flash;
 use Redirect;
+use Symfony\Component\HttpFoundation\File\File;
 
 class AlbumController extends BaseController
 {
     protected $album;
+    protected $manage;
 
-    public function __construct(AlbumRepository $album)
+    public function __construct(AlbumRepository $album, UploadsManager $manager)
     {
         $this->album = $album;
+        $this->manage = $manager;
     }
 
     /**
@@ -113,6 +119,27 @@ class AlbumController extends BaseController
 
         $album = $this->album->find($id);
 
-        return view('backend.album.upload', ['album' => $album]);
+        $photos = $album->photos()->paginate(9);
+
+        return view('backend.album.photos', ['album' => $album, 'photos' => $photos]);
+    }
+
+    /**
+     * 保存图片
+     */
+    public function storePhoto()
+    {
+
+        $imageInfo = $this->manage->uploadImage(Input::file('file'));
+
+        $albumId = Input::get('id');
+
+        $ret = $this->album->storePhoto($albumId, $imageInfo);
+
+        if ($ret) {
+            return redirect()->to('admin/album/' . $albumId . '/photos')->withSuccess('保存成功');
+        } else {
+            return redirect()->to('admin/album/' . $albumId . '/photos')->withSuccess('保存失败');
+        }
     }
 }

@@ -94,6 +94,7 @@ Route::group(['namespace' => 'Backend'], function ()
         //album
         Route::resource('album', 'AlbumController');
         Route::get('album/{id}/photos', ['as' => 'admin.album.photos', 'uses' => 'AlbumController@photos']);
+        Route::post('album/upload', ['as' => 'admin.album.upload', 'uses' => 'AlbumController@storePhoto']);
 
         //comment
         Route::resource('comment', 'CommentController');
@@ -106,16 +107,14 @@ Route::group(['namespace' => 'Backend'], function ()
         Route::get('upload', 'UploadController@index');
 
         // Add the following routes
-        Route::post('upload/file', 'UploadController@uploadFile');
+        Route::post('upload/file', ['as' => 'admin.upload.file', 'uses' => 'UploadController@uploadFile']);
         Route::delete('upload/file', 'UploadController@deleteFile');
         Route::post('upload/folder', 'UploadController@createFolder');
         Route::delete('upload/folder', 'UploadController@deleteFolder');
-        Route::any('upload/image', 'UploadController@uploadImage');
+        Route::post('upload/image', ['as' => 'admin.upload.image', 'uses' => 'UploadController@uploadImage']);
 
         //material
         Route::resource('materials/single', 'MaterialsController');
-//        Route::resource('materials/multi', 'MaterialsMultiController');
-//        Route::resource('materials/audio', 'MaterialsAudioController');
     });
 });
 

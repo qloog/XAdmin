@@ -15,7 +15,7 @@ class CreateAlbumPhotosTable extends Migration
         Schema::create('album_photos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('album_id')->default(0)->comment = '所属相册id';
-            $table->string('name');
+            $table->string('origin_name');
             $table->string('description')->default('');
             $table->tinyInteger('display_order')->default(0)->comment = '图片显示顺序';
             $table->string('path')->default('')->comment = '图片地址';

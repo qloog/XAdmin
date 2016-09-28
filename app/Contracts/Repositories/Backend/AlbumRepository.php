@@ -11,6 +11,13 @@ use Prettus\Repository\Contracts\RepositoryInterface;
 interface AlbumRepository extends RepositoryInterface
 {
 
-    public function photos($albumId);
+    /**
+     * 保存相册图片
+     *
+     * @param       $albumId
+     * @param array $data
+     * @return mixed
+     */
+    public function storePhoto($albumId, array $data = []);
 
 }

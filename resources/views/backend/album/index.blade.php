@@ -43,12 +43,9 @@
                         <a class="green" href="{{ route('admin.album.edit', [$album->id]) }}">
                             <i class="ace-icon fa fa-pencil bigger-130"></i>编辑
                         </a>
-                        <a class="green" href="{{ route('admin.album.upload', [$album->id]) }}">
+                        <a class="blue" href="{{ url('admin/album/'.$album->id.'/photos') }}">
                             <i class="ace-icon fa fa-upload bigger-130" aria-hidden="true"></i>上传图片
                         </a>
-                        <!--<a class="red" href="#">
-                            <i class="ace-icon fa fa-trash-o bigger-130"></i>
-                        </a>-->
                     </div>
                 </td>
             </tr>

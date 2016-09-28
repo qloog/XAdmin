@@ -4,8 +4,9 @@ return [
     'per_page' => 10,
     'uploads' => [
         'storage' => 'local',
-        'webpath' => '/uploads',
+        'web_path' => '/uploads',
         'images'  => '/uploads/images'
     ],
-    'default_image' => '/uploads/images/default_image.jpg'
+    'default_image' => '/uploads/images/default_image.jpg',
+    'static_domain' => ''
 ];

@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Dflydev\ApacheMimeTypes\PhpRepository;
 use Illuminate\Support\Facades\Storage;
 use Auth;
+use Symfony\Component\HttpFoundation\File\File;
 
 class UploadsManager
 {
@@ -229,7 +230,7 @@ class UploadsManager
 
     /**
      * 上传图片,返回图片的相对路径
-     * @param      $file
+     * @param File  $file
      * @param int  $width
      * @param null $height
      * @return string
@@ -239,11 +240,12 @@ class UploadsManager
         if (!is_object($file)) {
             return '';
         }
+
         $allowed_extensions = ["png", "jpg", "gif"];
         if ($file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions)) {
             return ['error' => 'You may only upload png, jpg or gif.'];
         }
-        //$fileName        = $file->getClientOriginalName();
+        $fileName        = $file->getClientOriginalName();
         $extension       = $file->getClientOriginalExtension() ?: 'png';
         $folderName      = rtrim(config('custom.uploads.images'), '/') . '/' . date("Ym", time()) .'/'.date("d", time());
         $destinationPath = public_path() . '/' . $folderName;
@@ -264,6 +266,10 @@ class UploadsManager
             //save to db
             Image::create(['image_name' => $safeNameWithoutExt, 'image_path' => $folderName .'/'. $safeName, 'user_id' => Auth::user()->id]);
         }
-        return $safeNameWithoutExt;
+        return [
+            'origin_name' => $fileName,
+            'extension' => $extension,
+            'image_path' => $folderName .'/'. $safeName
+        ];
     }
 }
