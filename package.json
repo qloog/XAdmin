@@ -2,12 +2,8 @@
   "private": true,
   "devDependencies": {
     "gulp": "^3.9.0",
-    "laravel-elixir": "^3.4.2",
-    "react": "^0.14.1",
-    "react-dom": "^0.14.1"
+    "laravel-elixir": "^3.4.2"
   },
   "dependencies": {
-    "react-bootstrap": "^0.27.3",
-    "react-datagrid": "^1.2.15"
   }
 }

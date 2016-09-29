@@ -33,8 +33,7 @@ var paths = {
     'datatables': 'resources/assets/bower/datatables',
     'datatables_plugins': 'resources/assets/bower/datatables-plugins',
     'jquery_file_upload': 'resources/assets/bower/jquery-file-upload',
-    'jquery_validate': 'resources/assets/bower/jquery-validate',
-    'react': 'resources/assets/bower/react'
+    'jquery_validate': 'resources/assets/bower/jquery-validate'
 };
 
 /**
@@ -95,10 +94,6 @@ gulp.task("copyfiles", function() {
 
     gulp.src(paths.jquery_validate + '/dist/additional-methods.js')
         .pipe(gulp.dest('resources/assets/js/'));
-
-    //copy react
-    gulp.src(paths.react + '/react.js').pipe(gulp.dest('resources/assets/js'));
-    gulp.src(paths.react + '/react-dom.js').pipe(gulp.dest('resources/assets/js'));
 });
 
 /**
