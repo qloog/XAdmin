@@ -1,122 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-        <title>@yield('title') - 管理后台</title>
-        <meta name="keywords" content="@yield('keywords')">
-        <meta name="description" content="@yield('description')">
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@yield('title') - 管理后台</title>
+    <meta name="keywords" content="@yield('keywords')">
+    <meta name="description" content="@yield('description')">
 
-        <!-- bootstrap & fontawesome -->
-        <link href="{{ asset('css/bootstrap.min.css?v=3.4.0') }}" rel="stylesheet">
-        <link href="{{ asset('font-awesome/css/font-awesome.css?v=4.3.0') }}" rel="stylesheet">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="{{ asset('css/ionicons.min.css') }}">
 
-        <!-- page specific plugin styles -->
-        <link rel="stylesheet" href="{{ asset('css/jquery-ui.custom.min.css') }}" />
-        @yield('styles')
+    @yield('styles')
 
-        <!-- text fonts -->
-        {{--<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300" />--}}
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('css/AdminLTE.min.css') }}">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+           folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="{{ asset('css/skins/_all-skins.min.css') }}">
 
-        <!-- ace styles -->
-        <link rel="stylesheet" href="{{ asset('css/ace.min.css') }}" class="ace-main-stylesheet" id="main-ace-style" />
-
-        <!--[if lte IE 9]>
-            <link rel="stylesheet" href="{{ asset('css/ace-part2.min.css') }}" class="ace-main-stylesheet" />
-        <![endif]-->
-
-        <!--[if lte IE 9]>
-          <link href="{{ asset('css/ace-ie.min.css') }}" rel="stylesheet">
-        <![endif]-->
-
-        <!-- inline styles related to this page -->
-
-        <!-- ace settings handler -->
-        <script src="{{ asset('js/ace-extra.min.js') }}"></script>
-
-        <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
-
-        <!--[if lte IE 8]>
-        <script src="{{ asset('js/html5shiv.min.js') }}"></script>
-        <script src="{{ asset('js/respond.min.js') }}"></script>
-        <![endif]-->
-</head>
-
-<body class="no-skin">
-        @include('backend.partials.nav')
-
-        <div class="main-container" id="main-container">
-            <script type="text/javascript">
-                try{ace.settings.check('main-container' , 'fixed')}catch(e){}
-            </script>
-
-            @include('backend.partials.sidebar')
-
-            <div class="main-content">
-                <div class="main-content-inner">
-                    <div class="breadcrumbs" id="breadcrumbs">
-                        <script type="text/javascript">
-                            try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
-                        </script>
-
-                        <ul class="breadcrumb">
-                            @yield('breadcrumb')
-                        </ul><!-- /.breadcrumb -->
-
-                        {{--<div class="nav-search" id="nav-search">--}}
-                            {{--<form class="form-search">--}}
-                                {{--<span class="input-icon">--}}
-                                    {{--<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off">--}}
-                                    {{--<i class="ace-icon fa fa-search nav-search-icon"></i>--}}
-                                {{--</span>--}}
-                            {{--</form>--}}
-                        {{--</div><!-- /.nav-search -->--}}
-                    </div>
-
-                    <div class="page-content">
-                        @include('backend.partials.setting_box')
-                        @include('flash::message')
-                        @include('backend.partials.errors')
-                        @include('backend.partials.success')
-                        {{--<div class="page-header">--}}
-                            {{--<h1>--}}
-                                {{--UI Elements--}}
-                                {{--<small>--}}
-                                    {{--<i class="ace-icon fa fa-angle-double-right"></i>--}}
-                                    {{--Common UI Features &amp; Elements--}}
-                                {{--</small>--}}
-                            {{--</h1>--}}
-                        {{--</div><!-- /.page-header -->--}}
-
-                        <!-- example:  row begin -->
-                        @yield('content')
-                    </div><!-- /.page-content -->
-                </div>
-            </div><!-- /.main-content -->
-
-            @include('backend.partials.footer')
-
-            <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-                <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
-            </a>
-        </div><!-- /.main-container -->
-
-    <!-- basic scripts -->
-    <script src="{{ asset('js/jquery-2.1.1.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js?v=3.4.0') }}"></script>
-    <!--[if IE]>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+</head>
+<!--
+BODY TAG OPTIONS:
+=================
+Apply one or more of the following classes to get the
+desired effect
+|---------------------------------------------------------|
+| SKINS         | skin-blue                               |
+|               | skin-black                              |
+|               | skin-purple                             |
+|               | skin-yellow                             |
+|               | skin-red                                |
+|               | skin-green                              |
+|---------------------------------------------------------|
+|LAYOUT OPTIONS | fixed                                   |
+|               | layout-boxed                            |
+|               | layout-top-nav                          |
+|               | sidebar-collapse                        |
+|               | sidebar-mini                            |
+|---------------------------------------------------------|
+-->
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
 
-    <!-- page specific plugin scripts -->
-    <script src="{{ asset('js/jquery-ui.custom.min.js') }}"></script>
+    <!-- Header -->
+    @include('backend.layouts.partials.header')
 
-    <!-- ace scripts -->
-    <script src="{{ asset('js/ace-elements.min.js') }}"></script>
-    <script src="{{ asset('js/ace.min.js') }}"></script>
+    <!-- Sidebar -->
+    @include('backend.layouts.partials.sidebar')
 
-    <!-- inline scripts related to this page -->
-    @yield('scripts')
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                @yield('page_title')
+                <small>@yield('page_description')</small>
+            </h1>
+            <ol class="breadcrumb">
+                @yield('breadcrumb')
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Your Page Content Here -->
+            @include('backend.layouts.partials.errors')
+            @include('backend.layouts.partials.success')
+
+            @yield('content')
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Footer -->
+    @include('backend.layouts.partials.footer')
+
+    @include('backend.layouts.partials.control_sidebar')
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED JS SCRIPTS -->
+
+<!-- jQuery 2.2.3 -->
+<script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('js/app.min.js') }}"></script>
+
+<!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. Slimscroll is required when using the
+     fixed layout. -->
+@yield('scripts')
 </body>
 </html>

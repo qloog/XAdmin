@@ -2,6 +2,12 @@
 /node_modules
 .env
 /config/wechat.php
+
+/public/css
+/public/js
+/public/img
+/public/fonts
+/public/plugins
 /public/uploads
 /public/js/build
 /resources/assets/bower

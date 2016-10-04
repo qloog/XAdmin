@@ -10,26 +10,33 @@
 
 @section('content')
     <div class="row">
-        <div class="col-xs-12">
-            <!-- PAGE CONTENT BEGINS -->
-            {!! Form::model($permission, ['route' => ['admin.auth.permission.update', $permission->id], 'class' => 'form-horizontal', 'role' => 'form']) !!}
-            {!! Form::hidden('_method', 'PUT') !!}
-
-            @include('backend.permission._form')
-
-            <div class="well">
-                <div class="text-center">
-                    <a href="{{route('admin.auth.permission.index')}}" class="btn btn-info btn-xs">{{ trans('strings.return_button') }}</a>
-                    <input type="submit" class="btn btn-success btn-xs" value="{{ trans('strings.save_button') }}" />
-                    <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#modal-delete">删除</button>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">编辑权限</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <!-- form start -->
+                    {!! Form::model($permission, ['route' => ['admin.auth.permission.update', $permission->id], 'class' => 'form-horizontal', 'role' => 'form']) !!}
+                    {!! Form::hidden('_method', 'PUT') !!}
+                    <div class="box-body">
+                        @include('backend.permission._form')
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        {{--<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete">删除</button>--}}
+                        <a href="{{route('admin.auth.permission.index')}}" class="btn btn-info"><i class="fa fa-arrow-left"></i>{{ trans('strings.return_button') }}</a>
+                        <button type="submit" class="btn btn-success pull-right"><i class='fa fa-save'></i>&nbsp;&nbsp;{{ trans('strings.save_button') }}</button>
+                    </div>
+                    <!-- /.box-footer -->
+                    {!! Form::close() !!}
                 </div>
-                <div class="clearfix"></div>
-            </div><!--well-->
-            {!! Form::close() !!}
+            </div>
         </div>
 
         {{-- Confirm Delete --}}
-        @include('backend.partials.delete_modal', array('action' => route('admin.auth.permission.destroy', $permission->id)))
+        @include('backend.layouts.partials.delete_modal', array('action' => route('admin.auth.permission.destroy', $permission->id)))
     </div>
 @endsection
 

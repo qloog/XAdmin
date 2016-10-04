@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 
-@section('title', '新建用户')
+@section('title', '新建权限')
 
 @section('breadcrumb')
     <li>
@@ -17,19 +17,25 @@
 
 @section('content')
     <div class="row">
-        <div class="col-xs-12">
-            <!-- PAGE CONTENT BEGINS -->
-            {!! Form::open(['route' => 'admin.auth.permission.store', 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post']) !!}
-
-            @include('backend.permission._form')
-
-            <div class="well">
-                <div class="text-center">
-                    <a href="{{route('admin.auth.permission.index')}}" class="btn btn-info btn-xs">{{ trans('strings.return_button') }}</a>
-                    <input type="submit" class="btn btn-success btn-xs" value="{{ trans('strings.save_button') }}" />
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">添加权限</h3>
                 </div>
-                <div class="clearfix"></div>
-            </div><!--well-->
+                <!-- /.box-header -->
+                <!-- form start -->
+                {!! Form::open(['route' => 'admin.auth.permission.store', 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post']) !!}
+                <div class="box-body">
+                    @include('backend.permission._form')
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <a href="{{route('admin.auth.permission.index')}}" class="btn btn-info pull-left "><i class="fa fa-arrow-left"></i> {{ trans('strings.return_button') }}</a>
+                    <button type="submit" class="btn btn-success pull-right"><i class='fa fa-save'></i>&nbsp;&nbsp;{{ trans('strings.save_button') }}</button>
+                </div>
+                <!-- /.box-footer -->
+                {!! Form::close() !!}
+            </div>
         </div>
     </div>
 @endsection

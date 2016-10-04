@@ -126,4 +126,17 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
             throw new GeneralException('You must choose at least one role.');
         }
     }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function destroy($id)
+    {
+        $user = User::find($id);
+
+        $user->status = 0;
+
+        return $user->save();
+    }
 }

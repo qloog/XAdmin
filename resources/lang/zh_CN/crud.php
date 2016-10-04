@@ -47,7 +47,7 @@ return [
         'no_deleted_users' => 'No Deleted Users',
         'other_permissions' => 'Other Permissions',
         'restore_user' => 'Restore User',
-        'roles' => '拥有的角色',
+        'roles' => '角色',
         'total' => '个用户',
     ],
     /*

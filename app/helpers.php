@@ -61,7 +61,7 @@ if ( ! function_exists('get_image_url')) {
      */
     function get_image_url($imageName, $fullUrl = false)
     {
-        $image =  \Illuminate\Support\Facades\DB::table('images')->where('image_name', '=', $imageName)->first();
+        $image =  \Illuminate\Support\Facades\DB::table('images')->where('image_path', '=', $imageName)->first();
         $imagePath = $image ? $image->image_path : null;
         if ($fullUrl) {
             return $image ? get_static_domain() . $imagePath : get_static_domain() . config('custom.default_image');

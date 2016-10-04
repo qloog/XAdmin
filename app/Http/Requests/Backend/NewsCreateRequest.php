@@ -50,7 +50,7 @@ class NewsCreateRequest extends Request
             'meta_keyword' => $this->meta_keyword,
             'meta_description' => $this->meta_description,
             'summary'   => $this->summary,
-            'page_image' => $this->page_image ?: 'tmp',
+            'page_image' => $this->page_image ?: '',
             'content' => $this->ueditor,
             'views' => $this->views,
             'user_id' => Auth::user()->id,

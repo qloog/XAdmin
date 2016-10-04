@@ -1,351 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-        <title>管理后台 - @yield('title')</title>
-        <meta name="keywords" content="@yield('keywords')">
-        <meta name="description" content="@yield('description')">
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>登录 - 管理后台</title>
+	<meta name="keywords" content="@yield('keywords')">
+	<meta name="description" content="@yield('description')">
 
-        <!-- bootstrap & fontawesome -->
-        <link href="{{ asset('css/bootstrap.min.css?v=3.4.0') }}" rel="stylesheet">
-        <link href="{{ asset('font-awesome/css/font-awesome.css?v=4.3.0') }}" rel="stylesheet">
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<!-- Bootstrap 3.3.6 -->
+	<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+	<!-- Ionicons -->
+	<link rel="stylesheet" href="{{ asset('css/ionicons.min.css') }}">
 
-        <!-- page specific plugin styles -->
-        <link rel="stylesheet" href="{{ asset('css/jquery-ui.custom.min.css') }}" />
-        @yield('style')
+	<!-- Theme style -->
+	<link rel="stylesheet" href="{{ asset('css/AdminLTE.min.css') }}">
+	<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+          page. However, you can choose any other skin. Make sure you
+          apply the skin class to the body tag so the changes take effect.
+    -->
 
-        <!-- text fonts -->
-        {{--<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300" />--}}
+    <!-- iCheck -->
+	<link rel="stylesheet" href="{{ asset('plugins/iCheck/square/blue.css') }}">
 
-        <!-- ace styles -->
-        <link rel="stylesheet" href="{{ asset('css/ace.min.css') }}" class="ace-main-stylesheet" id="main-ace-style" />
-
-        <!--[if lte IE 9]>
-            <link rel="stylesheet" href="{{ asset('css/ace-part2.min.css') }}" class="ace-main-stylesheet" />
-        <![endif]-->
-
-        <!--[if lte IE 9]>
-          <link href="{{ asset('css/ace-ie.min.css') }}" rel="stylesheet">
-        <![endif]-->
-
-        <!-- inline styles related to this page -->
-
-        <!-- ace settings handler -->
-        <script src="{{ asset('js/ace-extra.min.js') }}"></script>
-
-        <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
-
-        <!--[if lte IE 8]>
-        <script src="{{ asset('js/html5shiv.min.js') }}"></script>
-        <script src="{{ asset('js/respond.min.js') }}"></script>
-        <![endif]-->
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
 </head>
+<body class="hold-transition login-page">
+<div class="login-box">
+	<div class="login-logo">
+		<a href="javascript:;">管理后台</a>
+	</div>
+	<!-- /.login-logo -->
+	<div class="login-box-body">
+		<p class="login-box-msg"></p>
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <strong>哎哟!</strong> 你输入的貌似有些问题.<br><br>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+		<form action="{{ url('/admin/login') }}" method="post">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+			<div class="form-group has-feedback">
+				<input type="email" name="email" class="form-control" placeholder="邮箱">
+				<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+			</div>
+			<div class="form-group has-feedback">
+				<input type="password" name="password" class="form-control" placeholder="密码">
+				<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+			</div>
+            <div class="form-group has-feedback">
+                <input type="text" name="captcha" class="form-control" style="width: 100px;">
+                &nbsp;&nbsp;&nbsp;
+                <img src="{!! captcha_src() !!}" class="captcha" title="看不清？点击换另一张" alt="验证码"
+                     style="margin-top: -57px;margin-left: 100px;height: 32px; cursor:pointer;" onclick="refreshCaptcha()"/>
+            </div>
+			<div class="row">
+				<div class="col-xs-8">
+					<div class="checkbox icheck">
+						<label>
+							<input type="checkbox" name="remember"> Remember Me
+						</label>
+					</div>
+				</div>
+				<!-- /.col -->
+				<div class="col-xs-4">
+					<button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
+				</div>
+				<!-- /.col -->
+			</div>
+		</form>
 
-<body class="login-layout">
-        <div class="main-container">
-        			<div class="main-content">
-        				<div class="row">
-        					<div class="col-sm-10 col-sm-offset-1">
-        						<div class="login-container">
-        							<div class="center">
-        								<h1>
-        									<i class="ace-icon fa fa-leaf green"></i>
-        									<span class="red">Ace</span>
-        									<span class="white" id="id-text2">Application</span>
-        								</h1>
-        								<h4 class="blue" id="id-company-text">&copy; Company Name</h4>
-        							</div>
+	</div>
+	<!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
 
-        							<div class="space-6"></div>
+<!-- jQuery 2.2.3 -->
+<script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<!-- iCheck -->
+<script src="{{ asset('plugins/iCheck/icheck.min.js') }}"></script>
+<script>
 
-        							<div class="position-relative">
-        								<div id="login-box" class="login-box visible widget-box no-border">
-        									<div class="widget-body">
-        										<div class="widget-main">
-        											<h4 class="header blue lighter bigger">
-        												<i class="ace-icon fa fa-coffee green"></i>
-        												Please Enter Your Information
-        											</h4>
-
-        											<div class="space-6"></div>
-													@if (count($errors) > 0)
-														<div class="alert alert-danger">
-															<strong>哎哟!</strong> 你输入的貌似有些问题.<br><br>
-															<ul>
-																@foreach ($errors->all() as $error)
-																	<li>{{ $error }}</li>
-																@endforeach
-															</ul>
-														</div>
-													@endif
-        											<form method="POST" action="{{ url('/admin/login') }}">
-        											<input type="hidden" name="_token" value="{{ csrf_token() }}">
-        												<fieldset>
-        													<label class="block clearfix">
-        														<span class="block input-icon input-icon-right">
-        															<input type="email" class="form-control" name="email" placeholder="邮箱" />
-        															<i class="ace-icon fa fa-user"></i>
-        														</span>
-        													</label>
-        													<label class="block clearfix">
-        														<span class="block input-icon input-icon-right">
-        															<input type="password" class="form-control" name="password" placeholder="密码" />
-        															<i class="ace-icon fa fa-lock"></i>
-        														</span>
-        													</label>
-															<label class="block clearfix">
-        														<span class="block input-icon input-icon-right">
-        															<input type="text" class="" name="captcha" style="width: 100px;"/> &nbsp;&nbsp; {!! captcha_img() !!}
-        														</span>
-															</label>
-        													<div class="space"></div>
-        													<div class="clearfix">
-        														<label class="inline">
-        															<input type="checkbox" class="ace" name="remember"/>
-        															<span class="lbl"> 记住我</span>
-        														</label>
-        														<button type="submit" class="width-35 pull-right btn btn-sm btn-primary">
-        															<i class="ace-icon fa fa-key"></i>
-        															<span class="bigger-110">登录</span>
-        														</button>
-        													</div>
-        													<div class="space-4"></div>
-        												</fieldset>
-        											</form>
-
-        											{{--<div class="social-or-login center">--}}
-        												{{--<span class="bigger-110">Or Login Using</span>--}}
-        											{{--</div>--}}
-
-        											{{--<div class="space-6"></div>--}}
-
-        											{{--<div class="social-login center">--}}
-        												{{--<a class="btn btn-primary">--}}
-        													{{--<i class="ace-icon fa fa-facebook"></i>--}}
-        												{{--</a>--}}
-
-        												{{--<a class="btn btn-info">--}}
-        													{{--<i class="ace-icon fa fa-twitter"></i>--}}
-        												{{--</a>--}}
-
-        												{{--<a class="btn btn-danger">--}}
-        													{{--<i class="ace-icon fa fa-google-plus"></i>--}}
-        												{{--</a>--}}
-        											{{--</div>--}}
-        										</div><!-- /.widget-main -->
-
-        										{{--<div class="toolbar clearfix">--}}
-        											{{--<div>--}}
-        												{{--<a href="#" data-target="#forgot-box" class="forgot-password-link">--}}
-        													{{--<i class="ace-icon fa fa-arrow-left"></i>--}}
-        													{{--I forgot my password--}}
-        												{{--</a>--}}
-        											{{--</div>--}}
-
-        											{{--<div>--}}
-        												{{--<a href="#" data-target="#signup-box" class="user-signup-link">--}}
-        													{{--I want to register--}}
-        													{{--<i class="ace-icon fa fa-arrow-right"></i>--}}
-        												{{--</a>--}}
-        											{{--</div>--}}
-        										{{--</div>--}}
-        									</div><!-- /.widget-body -->
-        								</div><!-- /.login-box -->
-
-        								<div id="forgot-box" class="forgot-box widget-box no-border">
-        									<div class="widget-body">
-        										<div class="widget-main">
-        											<h4 class="header red lighter bigger">
-        												<i class="ace-icon fa fa-key"></i>
-        												Retrieve Password
-        											</h4>
-
-        											<div class="space-6"></div>
-        											<p>
-        												Enter your email and to receive instructions
-        											</p>
-
-        											<form>
-        												<fieldset>
-        													<label class="block clearfix">
-        														<span class="block input-icon input-icon-right">
-        															<input type="email" class="form-control" placeholder="Email" />
-        															<i class="ace-icon fa fa-envelope"></i>
-        														</span>
-        													</label>
-
-        													<div class="clearfix">
-        														<button type="button" class="width-35 pull-right btn btn-sm btn-danger">
-        															<i class="ace-icon fa fa-lightbulb-o"></i>
-        															<span class="bigger-110">Send Me!</span>
-        														</button>
-        													</div>
-        												</fieldset>
-        											</form>
-        										</div><!-- /.widget-main -->
-
-        										<div class="toolbar center">
-        											<a href="#" data-target="#login-box" class="back-to-login-link">
-        												Back to login
-        												<i class="ace-icon fa fa-arrow-right"></i>
-        											</a>
-        										</div>
-        									</div><!-- /.widget-body -->
-        								</div><!-- /.forgot-box -->
-
-        								<div id="signup-box" class="signup-box widget-box no-border">
-        									<div class="widget-body">
-        										<div class="widget-main">
-        											<h4 class="header green lighter bigger">
-        												<i class="ace-icon fa fa-users blue"></i>
-        												New User Registration
-        											</h4>
-
-        											<div class="space-6"></div>
-        											<p> Enter your details to begin: </p>
-
-        											<form>
-        												<fieldset>
-        													<label class="block clearfix">
-        														<span class="block input-icon input-icon-right">
-        															<input type="email" class="form-control" placeholder="Email" />
-        															<i class="ace-icon fa fa-envelope"></i>
-        														</span>
-        													</label>
-
-        													<label class="block clearfix">
-        														<span class="block input-icon input-icon-right">
-        															<input type="text" class="form-control" placeholder="Username" />
-        															<i class="ace-icon fa fa-user"></i>
-        														</span>
-        													</label>
-
-        													<label class="block clearfix">
-        														<span class="block input-icon input-icon-right">
-        															<input type="password" class="form-control" placeholder="Password" />
-        															<i class="ace-icon fa fa-lock"></i>
-        														</span>
-        													</label>
-
-        													<label class="block clearfix">
-        														<span class="block input-icon input-icon-right">
-        															<input type="password" class="form-control" placeholder="Repeat password" />
-        															<i class="ace-icon fa fa-retweet"></i>
-        														</span>
-        													</label>
-
-        													<label class="block">
-        														<input type="checkbox" class="ace" />
-        														<span class="lbl">
-        															I accept the
-        															<a href="#">User Agreement</a>
-        														</span>
-        													</label>
-
-        													<div class="space-24"></div>
-
-        													<div class="clearfix">
-        														<button type="reset" class="width-30 pull-left btn btn-sm">
-        															<i class="ace-icon fa fa-refresh"></i>
-        															<span class="bigger-110">Reset</span>
-        														</button>
-
-        														<button type="button" class="width-65 pull-right btn btn-sm btn-success">
-        															<span class="bigger-110">Register</span>
-
-        															<i class="ace-icon fa fa-arrow-right icon-on-right"></i>
-        														</button>
-        													</div>
-        												</fieldset>
-        											</form>
-        										</div>
-
-        										<div class="toolbar center">
-        											<a href="#" data-target="#login-box" class="back-to-login-link">
-        												<i class="ace-icon fa fa-arrow-left"></i>
-        												Back to login
-        											</a>
-        										</div>
-        									</div><!-- /.widget-body -->
-        								</div><!-- /.signup-box -->
-        							</div><!-- /.position-relative -->
-
-        							<div class="navbar-fixed-top align-right">
-        								<br />
-        								&nbsp;
-        								<a id="btn-login-dark" href="#">Dark</a>
-        								&nbsp;
-        								<span class="blue">/</span>
-        								&nbsp;
-        								<a id="btn-login-blur" href="#">Blur</a>
-        								&nbsp;
-        								<span class="blue">/</span>
-        								&nbsp;
-        								<a id="btn-login-light" href="#">Light</a>
-        								&nbsp; &nbsp; &nbsp;
-        							</div>
-        						</div>
-        					</div><!-- /.col -->
-        				</div><!-- /.row -->
-        			</div><!-- /.main-content -->
-        		</div><!-- /.main-container -->
-
-        		<!-- basic scripts -->
-<!-- basic scripts -->
-    <script src="{{ asset('js/jquery-2.1.1.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js?v=3.4.0') }}"></script>
-    <!--[if IE]>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <![endif]-->
-
-    <!-- page specific plugin scripts -->
-    <script src="{{ asset('js/jquery-ui.custom.min.js') }}"></script>
-
-    <!-- ace scripts -->
-    <script src="{{ asset('js/ace-elements.min.js') }}"></script>
-    <script src="{{ asset('js/ace.min.js') }}"></script>
-
-    <!-- inline scripts related to this page -->
-    <script type="text/javascript">
-        jQuery(function($) {
-         $(document).on('click', '.toolbar a[data-target]', function(e) {
-            e.preventDefault();
-            var target = $(this).data('target');
-            $('.widget-box.visible').removeClass('visible');//hide others
-            $(target).addClass('visible');//show target
-         });
+    $(function () {
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%' // optional
         });
+    });
 
-
-
-        //you don't need this, just used for changing background
-        jQuery(function($) {
-         $('#btn-login-dark').on('click', function(e) {
-            $('body').attr('class', 'login-layout');
-            $('#id-text2').attr('class', 'white');
-            $('#id-company-text').attr('class', 'blue');
-
-            e.preventDefault();
-         });
-         $('#btn-login-light').on('click', function(e) {
-            $('body').attr('class', 'login-layout light-login');
-            $('#id-text2').attr('class', 'grey');
-            $('#id-company-text').attr('class', 'blue');
-
-            e.preventDefault();
-         });
-         $('#btn-login-blur').on('click', function(e) {
-            $('body').attr('class', 'login-layout blur-login');
-            $('#id-text2').attr('class', 'white');
-            $('#id-company-text').attr('class', 'light-blue');
-
-            e.preventDefault();
-         });
-
-        });
-    </script>
-
+    /**
+     * 刷新验证码
+     *
+     * @param obj
+     * @constructor
+    */
+    function refreshCaptcha(){
+        $('.captcha').attr('src', '/captcha/create' + '?t=' + Math.random());
+    }
+</script>
 </body>
 </html>

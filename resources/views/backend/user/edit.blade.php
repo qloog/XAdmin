@@ -2,6 +2,11 @@
 
 @section('title', '编辑用户')
 
+@section('styles')
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('plugins/select2/select2.min.css') }}">
+@endsection
+
 @section('breadcrumb')
     <li><i class="ace-icon fa fa-home home-icon"></i><a href="/admin/dashboard">主页</a></li>
     <li><a>用户管理</a></li>
@@ -10,55 +15,46 @@
 
 @section('content')
     <div class="row">
-        <div class="col-xs-12">
-            <!-- PAGE CONTENT BEGINS -->
-            {!! Form::model($user, ['route' => ['admin.auth.user.update', $user->id], 'class' => 'form-horizontal', 'role' => 'form']) !!}
-                {!! Form::hidden('_method', 'PUT') !!}
-
-                @include('backend.user._form')
-
-                <div class="form-group">
-                    <label class="col-lg-2 control-label">{{ trans('validation.attributes.active') }}</label>
-                    <div class="col-lg-1">
-                        <input type="checkbox" value="1" name="status" {{$user->status == 1 ? 'checked' : ''}} />
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">添加用户</h3>
                     </div>
-                </div><!--form control-->
-
-            <div class="well">
-                <div class="text-center">
-                    <a href="{{route('admin.auth.user.index')}}" class="btn btn-info btn-xs">{{ trans('strings.return_button') }}</a>
-                    <input type="submit" class="btn btn-success btn-xs" value="{{ trans('strings.save_button') }}" />
-                    <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#modal-delete">删除</button>
+                    <!-- /.box-header -->
+                    <!-- form start -->
+                    {!! Form::model($user, ['route' => ['admin.auth.user.update', $user->id], 'class' => 'form-horizontal', 'role' => 'form']) !!}
+                    {!! Form::hidden('_method', 'PUT') !!}
+                    <div class="box-body">
+                        @include('backend.user._form')
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        {{--<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete">删除</button>--}}
+                        <a href="{{route('admin.auth.user.index')}}" class="btn btn-info">{{ trans('strings.return_button') }}</a>
+                        <input type="submit" class="btn btn-success  pull-right" value="{{ trans('strings.save_button') }}" />
+                    </div>
+                    <!-- /.box-footer -->
+                    {!! Form::close() !!}
                 </div>
-                <div class="clearfix"></div>
-            </div><!--well-->
-            {!! Form::close() !!}
+            </div>
         </div>
 
         {{-- Confirm Delete --}}
-        @include('backend.partials.delete_modal', array('action' => route('admin.auth.user.destroy', $user->id)))
+        @include('backend.layouts.partials.delete_modal', array('action' => route('admin.auth.user.destroy', $user->id)))
     </div>
 @endsection
 
 @section('scripts')
-    {!! UEditor::js() !!}
-    <script src="{{ asset('js/jquery-file-upload/vendor/jquery.ui.widget.js') }}"></script>
-    <script src="{{ asset('js/jquery-file-upload/jquery.iframe-transport.js') }}"></script>
-    <script src="{{ asset('js/jquery-file-upload/jquery.fileupload.js') }}"></script>
-    <script src="{{ asset('js/bootstrap-tag.min.js') }}"></script>
-    <script type="text/javascript">
+    <!-- Select2 -->
+    <script src="{{ asset('plugins/select2/select2.full.min.js') }}"></script>
+    <script>
         $(function () {
-            $('#file').fileupload({
-                url: '/admin/upload/image',
-                type: 'POST',
-                dataType: 'json',
-                done: function (e, data) {
-                    $('#upload_image_preview').attr('src', data.result.image);
-                    $('#page_image').val(data.result.image);
-                }
+            $(".role-select").select2({
+                placeholder: "请选择至少一个角色"
             });
         });
-
     </script>
 @endsection
+
 

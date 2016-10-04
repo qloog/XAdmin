@@ -70,7 +70,6 @@ class NewsController extends BaseController
     public function store(NewsCreateRequest $request)
     {
         if ($news = $this->news->create($request->newsFillData())) {
-            // trim(Input::get('tags')) &&  $news->syncTags(array_map('trim', explode(',', Input::get('tags'))));
             return Redirect::to('admin/news');
         } else {
             return Redirect::back()->withInput()->withErrors('保存失败！');

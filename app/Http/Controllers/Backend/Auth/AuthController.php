@@ -7,7 +7,8 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Redirect;
+use Session;
 
 class AuthController extends Controller
 {
@@ -95,6 +96,20 @@ class AuthController extends Controller
                     $this->loginUsername() => $this->getFailedLoginMessage(),
                 ]
             );
+    }
+
+    /**
+     * logout and redirect to admin login page
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function getLogout()
+    {
+        Auth::logout();
+        Session::flush();
+
+        return Redirect::to($this->loginPath);
+
     }
 
 }

@@ -32,7 +32,7 @@ class RoleController extends BaseController
      */
     public function index()
     {
-        $roles = $this->roles->orderBy('id', 'desc')->paginate(15);
+        $roles = $this->roles->orderBy('id', 'desc')->paginate(10);
         return view('backend.role.index', compact('roles'));
     }
 
