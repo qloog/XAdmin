@@ -18,7 +18,7 @@ theme 基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Boots
 git clone https://github.com/qloog/laravel5-backend.git
 cd laravel5-backend
 composer install -vvv   //根据composer.json下载vendor包目录
-npm install //安装node依赖组件
+bower install -V//安装前端组件
 php artisan migrate //生成表结构
 php artisan db:seed //填充测试数据
 php artisan serve   //运行server
