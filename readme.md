@@ -95,11 +95,12 @@ open http://localhost:8000/admin/login  //用户名: admin@test.com, 密码: 123
 
 ## ScreenShot
 
-* UI: [ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Bootstrap)
+* UI: [AdminLTE](https://almsaeedstudio.com/themes/AdminLTE) (基于Bootstrap)
 
-![登录页面](http://www.lnmp100.com/static/uploads/2016/10/screenshot-login.png)
-![用户页面](http://www.lnmp100.com/static/uploads/2016/01/screenshot-role.jpg)
-![角色页面](http://www.lnmp100.com/static/uploads/2016/01/screenshot-newsadd.jpg)
+![登录页面](http://lnmp100.com/static/uploads/2016/10/screenshot-login.png)
+![角色页面](http://lnmp100.com/static/uploads/2016/01/screenshot-role.jpg)
+![添加新闻页面](http://lnmp100.com/static/uploads/2016/01/screenshot-newsadd.jpg)
+...
 
 
 ## issue
