@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Services\UploadsManager;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Contracts\Repositories\Backend\AlbumRepository;
@@ -119,7 +120,7 @@ class AlbumController extends BaseController
 
         $album = $this->album->find($id);
 
-        $photos = $album->photos()->paginate(9);
+        $photos = $album->photos()->paginate(100);
 
         return view('backend.album.photos', ['album' => $album, 'photos' => $photos]);
     }
@@ -136,10 +137,6 @@ class AlbumController extends BaseController
 
         $ret = $this->album->storePhoto($albumId, $imageInfo);
 
-        if ($ret) {
-            return redirect()->to('admin/album/' . $albumId . '/photos')->withSuccess('保存成功');
-        } else {
-            return redirect()->to('admin/album/' . $albumId . '/photos')->withSuccess('保存失败');
-        }
+        return JsonResponse::create($ret);
     }
 }

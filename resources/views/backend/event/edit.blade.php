@@ -1,10 +1,6 @@
 @extends('backend.layouts.master')
 
 @section('title', '编辑活动')
-@section('styles')
-<link rel="stylesheet" href="{{ asset('css/date-time/datepicker.min.css') }}" />
-{!! UEditor::css() !!}
-@endsection
 
 @section('breadcrumb')
         <li>
@@ -20,106 +16,43 @@
 @endsection
 
 @section('content')
-   <div class="row">
-        <div class="col-xs-12">
-            <!-- PAGE CONTENT BEGINS -->
-            <form class="form-horizontal" id="news_form" role="form" method="POST" action="{{ URL::to('admin/event/' . $id) }}" enctype="multipart/form-data">
-                <input name="_method" type="hidden" value="PUT">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                @include('backend.event._form')
-
-                <div class="clearfix form-actions">
-                    <div class="col-md-offset-3 col-md-10">
-                        <button class="btn btn-info" type="submit">
-                            <i class="ace-icon fa fa-check bigger-110"></i>
-                            保存
-                        </button>
-                        <button class="btn" type="button" onclick="javascript:history.go(-1);">
-                            <i class="ace-icon fa fa-undo bigger-110"></i>
-                            返回
-                        </button>
-                        <button type="button" class="btn btn-danger btn-md"
-                                data-toggle="modal" data-target="#modal-delete">
-                          <i class="fa fa-times-circle"></i>
-                          删除
-                        </button>
+    <div class="row">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">编辑活动</h3>
                     </div>
+                    <!-- /.box-header -->
+                    <!-- form start -->
+                    {!! Form::model($event, ['route' => ['admin.event.update', $event->id], 'class' => 'form-horizontal', 'role' => 'form','files' => true]) !!}
+                    {!! Form::hidden('_method', 'PUT') !!}
+
+                    <div class="box-body">
+                        @include('backend.event._form')
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <div class="clearfix form-actions">
+                            <div class="col-md-offset-3 col-md-10">
+                                <button class="btn btn-info" type="submit">
+                                    <i class="fa fa-save"></i>
+                                    保存
+                                </button>
+
+                                <button class="btn" type="reset">
+                                    <i class="fa fa-undo"></i>
+                                    重置
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-footer -->
+                    {!! Form::close() !!}
                 </div>
-            </form>
-    </div>
-
-        {{-- Confirm Delete --}}
-        <div class="modal fade" id="modal-delete" tabIndex="-1">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                  ×
-                </button>
-                <h4 class="modal-title">Please Confirm</h4>
-              </div>
-              <div class="modal-body">
-                <p class="lead">
-                  <i class="fa fa-question-circle fa-lg"></i>
-                  Are you sure you want to delete this post?
-                </p>
-              </div>
-              <div class="modal-footer">
-                <form method="POST" action="{{ route('admin.event.destroy', $id) }}">
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                  <input type="hidden" name="_method" value="DELETE">
-                  <button type="button" class="btn btn-default"
-                          data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-danger">
-                    <i class="fa fa-times-circle"></i> Yes
-                  </button>
-                </form>
-              </div>
             </div>
-          </div>
         </div>
-   </div>
+
+    </div>
 @endsection
-
-@section('scripts')
-{!! UEditor::js() !!}
-<script src="{{ asset('js/jquery-file-upload/vendor/jquery.ui.widget.js') }}"></script>
-<script src="{{ asset('js/jquery-file-upload/jquery.iframe-transport.js') }}"></script>
-<script src="{{ asset('js/jquery-file-upload/jquery.fileupload.js') }}"></script>
-<script src="{{ asset('js/date-time/bootstrap-datepicker.min.js') }}"></script>
-<script src="{{ asset('js/date-time/datepicker.zh-CN.js') }}"></script>
-<script type="text/javascript">
-    $(function () {
-        $('#file').fileupload({
-            url: '/admin/upload/image',
-            type: 'POST',
-            dataType: 'json',
-            done: function (e, data) {
-                $('#upload_image_preview').attr('src', data.result.image_url);
-                $('#event_image').val(data.result.image);
-            }
-        });
-
-        $('.input-daterange').datepicker({
-            autoclose:true,
-            format: 'yyyy-mm-dd',
-            todayHighlight: true,
-            language: 'zh-CN'
-        });
-
-    });
-
-    var ue = UE.getEditor('ueditor'); //用辅助方法生成的话默认id是ueditor
-    /* 自定义路由 */
-    /*
-    var serverUrl=UE.getOrigin()+'/ueditor/test'; //你的自定义上传路由
-    var ue = UE.getEditor('ueditor',{'serverUrl':serverUrl}); //如果不使用默认路由，就需要在初始化就设定这个值
-    */
-
-    ue.ready(function() {
-        ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');
-    });
-</script>
-@endsection
-

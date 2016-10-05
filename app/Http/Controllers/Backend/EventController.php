@@ -28,7 +28,7 @@ class EventController extends BaseController
     public function index()
     {
         $event = $this->repository->orderBy('id', 'desc')->paginate(config('custom.per_page'));
-        return view('backend.event.index', ['data' => $event]);
+        return view('backend.event.index', ['events' => $event]);
     }
 
     /**
@@ -78,7 +78,7 @@ class EventController extends BaseController
     public function edit($id)
     {
         $data = $this->repository->getFormFields($id);
-        return view('backend.event.edit', $data);
+        return view('backend.event.edit', ['event' => $data]);
     }
 
     /**

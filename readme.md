@@ -2,8 +2,10 @@
 
 [![Build Status](https://travis-ci.org/qloog/laravel5-backend.svg?branch=master)](https://travis-ci.org/qloog/laravel5-backend)
 
-此项目主要目的是为了搭建一套基本常用的后台系统，减少重复劳动。从而可以专注于自己业务的开发。
-theme 基于[ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Bootstrap)开发，[部分截图](#v011-截图)
+此项目主要目的是为了搭建一套基本常用的后台系统,减少重复劳动,从而可以专注于自己业务的开发。  
+Theme已从原来的 [ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) 升级为   
+[AdminLTE](https://almsaeedstudio.com/themes/AdminLTE/index2.html)  
+[部分截图](#v100-截图)
 
 ## Requirements
 
@@ -19,6 +21,7 @@ git clone https://github.com/qloog/laravel5-backend.git
 cd laravel5-backend
 composer install -vvv   //根据composer.json下载vendor包目录
 bower install -V//安装前端组件
+gulp //copy js/css/img 到public下
 php artisan migrate //生成表结构
 php artisan db:seed //填充测试数据
 php artisan serve   //运行server
@@ -46,19 +49,13 @@ open http://localhost:8000/admin/login  //用户名: admin@test.com, 密码: 123
    * [x] 添加新闻
        - [x] 增加 Ueditor
        - [x] 补齐表单字段及验证处理
-   * [x] 分类管理： 支持无限分类
-   * [ ] 标签管理
-
- - 单页管理
-  * [x] 分类管理
-  * [ ] 内容管理   待完善
 
  - 相册管理
-  * [ ] 相册列表
+  * [x] 相册列表
 
  - 活动管理
-  * [ ] 活动列表
-  * [ ] 添加活动
+  * [x] 活动列表
+  * [x] 添加活动
 
  - 评论管理
   * [ ] 评论列表
@@ -97,7 +94,7 @@ open http://localhost:8000/admin/login  //用户名: admin@test.com, 密码: 123
    可通过[Walle](https://walle-web.io/) 工具来部署
 
 
-## v0.1.1 截图
+## v1.0.0 截图
 
 * UI: [ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Bootstrap)
 

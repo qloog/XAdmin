@@ -38,12 +38,12 @@ class AlbumRepositoryEloquent extends BaseRepository implements AlbumRepository
      *
      * @param       $albumId
      * @param array $photo
-     * @return bool
+     * @return array
      */
     public function storePhoto($albumId, array $photo = [])
     {
         if (!$albumId || !$photo) {
-            return false;
+            return [];
         }
 
         $photoModel = new AlbumPhoto();
@@ -53,6 +53,6 @@ class AlbumRepositoryEloquent extends BaseRepository implements AlbumRepository
         $photoModel->user_id = Auth::id();
         $ret = $photoModel->save();
 
-        return $ret ? true : false;
+        return $ret ? $photo : [];
     }
 }

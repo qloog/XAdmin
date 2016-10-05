@@ -54,3 +54,27 @@
                         <input type="text" name="user_count" id="form-field-1" placeholder="100" class="col-xs-10 col-sm-5" value="{{ $user_count }}">
                     </div>
                 </div>
+
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/date-time/datepicker.min.css') }}" />
+    {!! UEditor::css() !!}
+@endsection
+
+@section('scripts')
+    {!! UEditor::js() !!}
+    {{--<script src="{{ asset('js/date-time/bootstrap-datepicker.min.js') }}"></script>--}}
+    {{--<script src="{{ asset('js/date-time/datepicker.zh-CN.js') }}"></script>--}}
+    <script type="text/javascript">
+
+        var ue = UE.getEditor('ueditor'); //用辅助方法生成的话默认id是ueditor
+        /* 自定义路由 */
+        /*
+         var serverUrl=UE.getOrigin()+'/ueditor/test'; //你的自定义上传路由
+         var ue = UE.getEditor('ueditor',{'serverUrl':serverUrl}); //如果不使用默认路由，就需要在初始化就设定这个值
+         */
+
+        ue.ready(function() {
+            ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');
+        });
+    </script>
+@endsection
