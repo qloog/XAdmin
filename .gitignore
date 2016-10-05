@@ -10,6 +10,8 @@
 /public/plugins
 /public/uploads
 /public/js/build
+/public/ueditor
+
 /resources/assets/bower
 
 .DS_Store
