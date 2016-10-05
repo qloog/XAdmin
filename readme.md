@@ -97,9 +97,9 @@ open http://localhost:8000/admin/login  //用户名: admin@test.com, 密码: 123
 
 * UI: [AdminLTE](https://almsaeedstudio.com/themes/AdminLTE) (基于Bootstrap)
 
-![登录页面](http://lnmp100.com/static/uploads/2016/10/screenshot-login.png)
-![角色页面](http://lnmp100.com/static/uploads/2016/01/screenshot-role.jpg)
-![添加新闻页面](http://lnmp100.com/static/uploads/2016/01/screenshot-newsadd.jpg)
+![登录页面](http://lnmp100.com/static/uploads/2016/10/screenshot-login.jpg)
+![角色页面](http://lnmp100.com/static/uploads/2016/10/screenshot-role.jpg)
+![添加新闻页面](http://lnmp100.com/static/uploads/2016/10/screenshot-newsadd.jpg)
 ...
 
 
