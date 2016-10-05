@@ -3,9 +3,8 @@
 [![Build Status](https://travis-ci.org/qloog/laravel5-backend.svg?branch=master)](https://travis-ci.org/qloog/laravel5-backend)
 
 此项目主要目的是为了搭建一套基本常用的后台系统,减少重复劳动,从而可以专注于自己业务的开发。  
-Theme已从原来的 [ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) 升级为   
-[AdminLTE](https://almsaeedstudio.com/themes/AdminLTE/index2.html)  
-[部分截图](#v100-截图)
+Theme已从原来的 [ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) 升级为 [AdminLTE](https://almsaeedstudio.com/themes/AdminLTE/index2.html)  
+[部分截图](#ScreenShot)
 
 ## Requirements
 
@@ -13,6 +12,8 @@ Theme已从原来的 [ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) 升
  - PHP 5.6.4+ with the following extensions: mbstring, pdo_mysql
  - MySQL
  - Composer
+ - Bower
+ - Gulp
 
 ## Installation
 
@@ -27,11 +28,6 @@ php artisan db:seed //填充测试数据
 php artisan serve   //运行server
 open http://localhost:8000/admin/login  //用户名: admin@test.com, 密码: 12345678
 ```
-
-## Command
-
-* 生成User model: `php artisan make:model Models/User`
-* 生成User Repository: `php artisan make:repository User`
 
 ## Features
 
@@ -48,7 +44,6 @@ open http://localhost:8000/admin/login  //用户名: admin@test.com, 密码: 123
    * [x] 新闻列表
    * [x] 添加新闻
        - [x] 增加 Ueditor
-       - [x] 补齐表单字段及验证处理
 
  - 相册管理
   * [x] 相册列表
@@ -80,6 +75,10 @@ open http://localhost:8000/admin/login  //用户名: admin@test.com, 密码: 123
 
    按照phpdoc规范写注释，自动生成代码文档 [phpDoc文档](https://www.phpdoc.org/docs/latest/getting-started/your-first-set-of-documentation.html)
 
+## Command
+
+* 生成User model: `php artisan make:model Models/User`
+* 生成User Repository: `php artisan make:repository User`
 
 ## 二次开发提示
 
@@ -94,13 +93,13 @@ open http://localhost:8000/admin/login  //用户名: admin@test.com, 密码: 123
    可通过[Walle](https://walle-web.io/) 工具来部署
 
 
-## v1.0.0 截图
+## ScreenShot
 
 * UI: [ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) (基于Bootstrap)
 
-![登录页面](http://www.lnmp100.com/static/uploads/2016/01/login-page_500.jpeg)
-![用户页面](http://www.lnmp100.com/static/uploads/2016/01/user-page_1000.jpeg)
-![角色页面](http://www.lnmp100.com/static/uploads/2016/01/role-page_1000.jpeg)
+![登录页面](http://www.lnmp100.com/static/uploads/2016/10/screenshot-login.png)
+![用户页面](http://www.lnmp100.com/static/uploads/2016/01/screenshot-role.jpg)
+![角色页面](http://www.lnmp100.com/static/uploads/2016/01/screenshot-newsadd.jpg)
 
 
 ## issue

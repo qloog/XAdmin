@@ -75,7 +75,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<div class="col-xs-8">
 					<div class="checkbox icheck">
 						<label>
-							<input type="checkbox" name="remember"> Remember Me
+							<input type="checkbox" name="remember"> 记住我
 						</label>
 					</div>
 				</div>
