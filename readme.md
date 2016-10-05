@@ -25,6 +25,7 @@ bower install -V//安装前端组件
 gulp //copy js/css/img 到public下
 php artisan migrate //生成表结构
 php artisan db:seed //填充测试数据
+php artisan vendor:publish --provider='Ender\UEditor\UEditorServiceProvider' //copy ueditor to public
 php artisan serve   //运行server
 open http://localhost:8000/admin/login  //用户名: admin@test.com, 密码: 12345678
 ```
