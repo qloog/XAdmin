@@ -14,17 +14,17 @@ class PermissionsTableSeeder extends Seeder
         DB::table('permissions')->delete();
 
         $permissionArr = array(
-            array('name' => '添加用户', 'slug' => 'add_user'),
-            array('name' => '删除用户', 'slug' => 'delete_user'),
-            array('name' => '添加活动', 'slug' => 'add_event'),
-            array('name' => '删除活动', 'slug' => 'delete_event')
+            array('name' => 'add_user', 'display_name' => '添加用户'),
+            array('name' => 'delete_user', 'display_name' => '删除用户'),
+            array('name' => 'add_news', 'display_name' => '添加新闻'),
+            array('name' => 'edit_news', 'display_name' => '编辑新闻')
         );
 
         foreach ($permissionArr as $perm) {
             $permission = \App\Models\Permission::create([
-                'permission_name'   => $perm['name'],
-                'permission_slug' => $perm['slug'],
-                'permission_description' => '角色说明...',
+                'name'   => $perm['name'],
+                'display_name' => $perm['display_name'],
+                'description' => '',
             ]);
 
             DB::insert('insert into permission_role (permission_id, role_id) values (?, ?)', [$permission->id, 1]);

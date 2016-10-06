@@ -14,17 +14,16 @@ class RolesTableSeeder extends Seeder
         DB::table('roles')->delete();
 
         $roleArr = array(
-            array('name' => '超级管理员', 'slug' => 'administrator'),
-            array('name' => '华北大区管理员', 'slug' => 'northern_admin'),
-            array('name' => '华东大区管理员', 'slug' => 'eastern_admin'),
-            array('name' => '华南大区管理员', 'slug' => 'south_admin')
+            array('name' => 'admin', 'display_name' => 'administrator', 'description' => '超级管理员'),
+            array('name' => 'news_admin', 'display_name' => '新闻管理', 'description' => '管理新闻'),
+            array('name' => 'user_admin', 'display_name' => '用户管理', 'description' => '管理用户'),
         );
 
         foreach ($roleArr as $role) {
             $role = \App\Models\Role::create([
-                'role_name'   => $role['name'],
-                'role_slug' => $role['slug'],
-                'role_description' => '角色说明...',
+                'name'   => $role['name'],
+                'display_name' => $role['display_name'],
+                'description' => 'description',
             ]);
 
             DB::insert('insert into role_user (role_id, user_id) values (?, ?)', [$role->id, 1]);
