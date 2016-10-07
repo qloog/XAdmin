@@ -2,6 +2,14 @@
 
 @section('title', '新闻管理')
 
+@section('page_title')
+    活动管理
+@endsection
+
+@section('page_description')
+    活动列表
+@endsection
+
 @section('breadcrumb')
         <li>
             <i class="ace-icon fa fa-home home-icon"></i>
@@ -63,7 +71,7 @@
                             <th>标题</th>
                             <th>开始时间</th>
                             <th>结束时间</th>
-                            <th>浏览量</th>
+                            <th>用户参与数</th>
                             <th>创建时间</th>
                             <th>更新时间</th>
                             {{--<th>发布人</th>--}}
@@ -73,21 +81,20 @@
                         <tbody>
                         @foreach ($events as $item)
                             <tr>
-                                <th>{{ $item->id }}</th>
-                                <th>{{ $item->title }}</th>
-                                <th>{{ $item->begin_time }}</th>
-                                <th>{{ $item->end_time }}</th>
-                                <th>{{ $item->user_count }}</th>
-                                <th>{{ $item->created_at }}</th>
-                                <th>{{ $item->updated_at }}</th>
-                                {{--<th>{{ $item->user['username'] }}</th>--}}
-                                <th>
+                                <td>{{ $item->id }}</td>
+                                <td>{{ $item->title }}</td>
+                                <td>{{ $item->begin_time }}</td>
+                                <td>{{ $item->end_time }}</td>
+                                <td>{{ $item->user_count }}</td>
+                                <td>{{ $item->created_at }}</td>
+                                <td>{{ $item->updated_at }}</td>
+                                <td>
                                     <div class="hidden-sm hidden-xs action-buttons">
                                         <a class="green" href="{{ url('admin/event/'.$item->id.'/edit') }}">
                                             <i class="fa fa-edit text-green"></i>
                                         </a>
                                     </div>
-                                </th>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>

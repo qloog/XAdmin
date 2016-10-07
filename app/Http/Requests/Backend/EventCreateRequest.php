@@ -46,10 +46,10 @@ class EventCreateRequest extends Request
         return [
             'title' => $this->title,
             'event_image' => $this->event_image,
-            'begin_time' => date('Y-m-d 00:00:00', strtotime($this->begin_time)),
-            'end_time' => date('Y-m-d 23:59:59', strtotime($this->end_time)),
+            'begin_time' => $this->begin_time,
+            'end_time' => $this->end_time,
             'content'   => $this->ueditor,
-            'user_count' => $this->user_count,
+            'user_count' => 0,
             'user_id' => Auth::user()->id
         ];
     }

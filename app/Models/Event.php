@@ -80,13 +80,8 @@ class Event extends Model
         return get_image_url($value);
     }
 
-    public function getBeginTimeAttribute($value)
+    public function getEventTimeAttribute($value)
     {
-        return date('Y-m-d', strtotime($value));
-    }
-
-    public function getEndTimeAttribute($value)
-    {
-        return date('Y-m-d', strtotime($value));
+        return $this->begin_time . ' 到 ' . $this->end_time;
     }
 }

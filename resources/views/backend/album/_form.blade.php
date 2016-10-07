@@ -56,7 +56,7 @@
                 maxFilePreviewSize: 10240,
                 @if(isset($album->cover_image))
                 initialPreview: [
-                    "<img src=" + page_img + " class='file-preview-image' />",
+                    "<img src=" + page_img + " class='file-preview-image' width='200px'/>",
                 ],
                 @endif
             }).on('fileuploaded', function (event, data, previewId, index) {

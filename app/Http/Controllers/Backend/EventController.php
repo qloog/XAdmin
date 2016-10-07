@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Jobs\EventFormFields;
-use App\Repositories\Backend\Event\EventRepository;
-
+use App\Contracts\Repositories\Backend\EventRepository;
 use App\Http\Requests;
 use App\Http\Requests\Backend\EventCreateRequest;
 use Illuminate\Http\Request;
@@ -38,9 +37,7 @@ class EventController extends BaseController
      */
     public function create()
     {
-        $data = $this->repository->getFields();
-
-        return view('backend.event.create', $data);
+        return view('backend.event.create');
     }
 
     /**
@@ -77,7 +74,8 @@ class EventController extends BaseController
      */
     public function edit($id)
     {
-        $data = $this->repository->getFormFields($id);
+        $data = $this->repository->find($id);
+
         return view('backend.event.edit', ['event' => $data]);
     }
 

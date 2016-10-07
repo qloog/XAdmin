@@ -1,80 +1,115 @@
                 <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right" for="title"> 活动标题 </label>
-                    <div class="col-sm-10">
-                        <input type="text" name="title" id="title" placeholder="标题" class="col-xs-10 col-sm-5" value="{{ $title }}">
+                    {!! Form::label('title', '活动标题', ['class' => 'col-sm-2 control-label']) !!}
+                    <div class="col-sm-5">
+                        {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => '标题']) !!}
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 活动时间 </label>
-                    <div class="col-sm-10">
-                    <div class="input-daterange input-group">
-                        <input type="text" name="begin_time" id="form-field-1" placeholder="开始时间" class="input-sm form-control" value="{{ $begin_time }}">
-                        <span class="input-group-addon">
-                            <i class="fa fa-exchange"></i>
-                        </span>
-                        <input type="text" name="end_time" id="form-field-1" placeholder="结束时间" class="input-sm form-control" value="{{ $end_time }}">
-                    </div>
-
+                    {!! Form::label('title', '活动时间', ['class' => 'col-sm-2 control-label']) !!}
+                    <div class="col-sm-5">
+                        {!! Form::text('event_time', null, ['class' => 'form-control', 'id' => 'event_time', 'placeholder' => '活动开始到结束时间']) !!}
+                        {!! Form::hidden('begin_time', null, ['id' => 'begin_time']) !!}
+                        {!! Form::hidden('end_time', null, ['id' => 'end_time']) !!}
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1"> 活动图 </label>
-                    <div class="col-sm-10">
+                    {!! Form::label('title', '活动图', ['class' => 'col-sm-2 control-label']) !!}
+                    <div class="col-sm-5">
                         <input type="file" name="file" id="file"  class="form-control" />
-                        <input type="hidden" name="event_image" id="event_image"  class="form-control" value="{{ !empty($event_image) ?$event_image: ''}}"/>
-                        <p></p>
-                        <img id="upload_image_preview" data-src="holder.js/200x200" class="img-rounded" alt="200x200"
-                        src="{{ !empty($event_image) ?$event_image: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNGYyZjk4MDhiYyB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE0ZjJmOTgwOGJjIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ0LjA0Njg3NSIgeT0iNzQuNSI+MTQweDE0MDwvdGV4dD48L2c+PC9nPjwvc3ZnPg==' }}"
-                        data-holder-rendered="true" style="width: 200px;">
+                        <input type="hidden" name="event_image" id="event_image"  value="{!! isset($event->event_image) ? $event->event_image : '' !!}" />
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1"> 摘要 </label>
-                    <div class="col-sm-10">
-                        <textarea name="summary" id="form-field-1-1" placeholder="简单描述" class="form-control">{{ $user_id }}</textarea>
+                    {!! Form::label('summary', '摘要', ['class' => 'col-sm-2 control-label']) !!}
+                    <div class="col-sm-5">
+                        {!! Form::textarea('summary', null, ['size' => '20x5', 'class' => 'form-control', 'placeholder' => '简单描述']) !!}
                     </div>
                 </div>
 
                 <div class="space-4"></div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right" for="form-field-tags">正文</label>
+                    {!! Form::label('content', '正文', ['class' => 'col-sm-2 control-label']) !!}
                     <input name="content" type="hidden" id="content">
-                    <div class="col-sm-10">
-                        {!! UEditor::content($content) !!}
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 浏览量 </label>
-                    <div class="col-sm-10">
-                        <input type="text" name="user_count" id="form-field-1" placeholder="100" class="col-xs-10 col-sm-5" value="{{ $user_count }}">
+                    <div class="col-sm-7">
+                        {!! isset($event->content) ? UEditor::content($event->content) : UEditor::content() !!}
                     </div>
                 </div>
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('css/date-time/datepicker.min.css') }}" />
     {!! UEditor::css() !!}
+    <!-- date-range-picker -->
+    <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/bootstrap-fileinput/css/fileinput.min.css') }}">
 @endsection
 
 @section('scripts')
     {!! UEditor::js() !!}
-    {{--<script src="{{ asset('js/date-time/bootstrap-datepicker.min.js') }}"></script>--}}
-    {{--<script src="{{ asset('js/date-time/datepicker.zh-CN.js') }}"></script>--}}
+    <!-- date-range-picker -->
+    <script src="{{ asset('plugins/daterangepicker/moment.min.js') }}"></script>
+    <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
+
+    <!-- bootstrap-fileinput -->
+    <script src="{{ asset('plugins/bootstrap-fileinput/js/plugins/canvas-to-blob.min.js') }}"></script>
+    <script src="{{ asset('plugins/bootstrap-fileinput/js/fileinput.min.js') }}"></script>
+    <script src="{{ asset('plugins/bootstrap-fileinput/js/locales/zh.js') }}"></script>
     <script type="text/javascript">
 
+        // ueditor
         var ue = UE.getEditor('ueditor'); //用辅助方法生成的话默认id是ueditor
         /* 自定义路由 */
         /*
          var serverUrl=UE.getOrigin()+'/ueditor/test'; //你的自定义上传路由
          var ue = UE.getEditor('ueditor',{'serverUrl':serverUrl}); //如果不使用默认路由，就需要在初始化就设定这个值
          */
-
         ue.ready(function() {
             ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');
+        });
+
+        // date
+        $('input[name="event_time"]').daterangepicker({
+            timePicker: true,
+            timePickerIncrement: 5,
+            timePicker24Hour: true,
+            timePickerSeconds: true,
+            autoUpdateInput: false,
+            locale: {
+                applyLabel: '应用',
+                cancelLabel: '清除'
+            }
+        });
+
+        $('input[name="event_time"]').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('YYYY-MM-DD HH:mm:ss') + ' 到 ' + picker.endDate.format('YYYY-MM-DD HH:mm:ss'));
+            $('#begin_time').val(picker.startDate.format('YYYY-MM-DD HH:mm:ss'));
+            $('#end_time').val(picker.endDate.format('YYYY-MM-DD HH:mm:ss'));
+        });
+
+        $('input[name="event_time"]').on('cancel.daterangepicker', function(ev, picker) {
+            $(this).val('');
+        });
+
+        // upload
+        var page_img = '{!! isset($event->event_image) ? $event->event_image : '' !!}';
+
+        $('#file').fileinput({
+            language: 'zh',
+            uploadUrl: "/admin/upload/image",
+            uploadExtraData: {_token: '{{ csrf_token() }}'},
+            initialCaption: "请选择一张封面图",
+            allowedFileExtensions: ["jpg", "jpeg", "png", "gif"],
+            maxFilePreviewSize: 10240,
+            @if(isset($event->event_image))
+            initialPreview: [
+                "<img src="+ page_img +" class='file-preview-image' width='200px' />",
+            ],
+            @endif
+        }).on('fileuploaded', function(event, data, previewId, index) {
+            var response = data.response;
+            $('#event_image').val(response.data.image_path);
         });
     </script>
 @endsection

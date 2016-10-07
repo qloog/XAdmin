@@ -114,15 +114,6 @@
                 var response = data.response;
                 $('#page_image').val(response.data.image_path);
             });
-//        //文件上传
-//        $('#file').fileupload({
-//            url: '/admin/upload/image',
-//            dataType: 'json',
-//            done: function (e, data) {
-//                $('#upload_image_preview').attr('src', data.result.image);
-//                $('#page_image').val(data.result.image);
-//            }
-//        });
 //
 //        //表单验证
 //        $('#news_form').validate({
