@@ -4,7 +4,7 @@ test:
 # ./vendor/bin/phpcs -h 查看帮助
 # ./vendor/bin/phpcs -p --standard=PSR2 --ignore=vendor 目录或文件名
 # wiki: https://github.com/squizlabs/PHP_CodeSniffer/wiki
-cs:
+phpcs:
     ./vendor/bin/phpcs -p --standard=PSR2 --ignore=vendor .
 
 git-pull:
