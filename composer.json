@@ -32,7 +32,8 @@
         "phpunit/phpunit": "~4.0",
         "phpspec/phpspec": "~2.4",
         "barryvdh/laravel-debugbar": "^2.0",
-        "barryvdh/laravel-ide-helper": "^2.1"
+        "barryvdh/laravel-ide-helper": "^2.1",
+        "squizlabs/php_codesniffer": "2.*"
     },
     "autoload": {
         "classmap": [
