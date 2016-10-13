@@ -47,7 +47,6 @@ open http://localhost:8001/admin/login  //用户名: admin@test.com, 密码: 123
  - 新闻管理
    * [x] 新闻列表
    * [x] 添加新闻
-       - [x] 增加 Ueditor
 
  - 相册管理
   * [x] 相册列表
@@ -70,6 +69,17 @@ open http://localhost:8001/admin/login  //用户名: admin@test.com, 密码: 123
    - [PSR4](http://www.php-fig.org/psr/psr-4/) Autoloading Standard
    - [PSR6](http://www.php-fig.org/psr/psr-6/) Caching Interface
    - [PSR7](http://www.php-fig.org/psr/psr-7/) HTTP Message Interface
+   
+## PHPcs检查代码规范
+
+```shell
+
+    // 文件
+    ./vendor/bin/phpcs -p --standard=PSR2 --ignore=vendor  /path/to/file
+    
+    // 目录 
+    ./vendor/bin/phpcs -p --standard=PSR2 --ignore=vendor  /path/to/dir
+```
 
 
 遵循PSR标准的代码格式化工具[php-cs-fixer](http://cs.sensiolabs.org/)。
