@@ -8,28 +8,30 @@ use Illuminate\Contracts\Auth\Guard;
 use Route;
 use URL;
 
-class AuthenticateAdmin {
+class AuthenticateAdmin
+{
     /**
      * The Guard implementation.
      *
      * @var Guard
      */
     protected $auth;
+
     /**
      * Create a new filter instance.
      *
      * @param  Guard $auth
-     * @return void
      */
     public function __construct(Guard $auth)
     {
         $this->auth = $auth;
     }
+
     /**
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \Closure $next
+     * @param  \Closure                 $next
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -44,8 +46,7 @@ class AuthenticateAdmin {
                         'message' => '没有权限操作'
                     ]
                 );
-            }
-            else {
+            } else {
                 return redirect()->guest('admin/login');
             }
         }
@@ -60,11 +61,11 @@ class AuthenticateAdmin {
                         'message' => '没有权限操作'
                     ]
                 );
-            }
-            else {
+            } else {
                 return view('backend.errors.401', compact('previousUrl'));
             }
         }
+
         return $next($request);
     }
 }
