@@ -1,10 +1,12 @@
-## Laravel5-Backend - base Laravel5.1(LTS)
+## Laravel5-Backend - base Laravel5.3
 
 [![Build Status](https://travis-ci.org/qloog/laravel5-backend.svg?branch=master)](https://travis-ci.org/qloog/laravel5-backend)
 
-此项目主要目的是为了搭建一套基本常用的后台系统,减少重复劳动,从而可以专注于自己业务的开发。  
+此项目主要目的是为了搭建一套常用的基础服务,从而可以专注于其他的业务开发。  
 Theme已从原来的 [ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) 升级为 [AdminLTE](https://almsaeedstudio.com/themes/AdminLTE/index2.html)  
 [部分截图](#ScreenShot)
+
+> 需要支持Laravel5.1的可以查看 [Laravel5-Backend - base Laravel5.1](https://github.com/qloog/laravel5-backend/tree/v0.3.0)
 
 ## Requirements
 
