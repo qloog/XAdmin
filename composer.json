@@ -59,8 +59,8 @@
             "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-install-cmd": [
-            "Illuminate\\Foundation\\ComposerScripts::postInstall"
-            "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+            "Illuminate\\Foundation\\ComposerScripts::postInstall",
+            "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
             "php artisan key:generate"
         ],
         "post-update-cmd": [
