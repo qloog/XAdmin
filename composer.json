@@ -60,6 +60,8 @@
         ],
         "post-install-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postInstall"
+            "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+            "php artisan key:generate"
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
