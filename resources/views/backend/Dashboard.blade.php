@@ -8,15 +8,12 @@
 @stop
 
 @section('breadcrumb')
-
-    <ol class="breadcrumb">
-        <li>
-            <a href="{{ url('admin/dashboard') }}">主页</a>
-        </li>
-        <li>
-            <a>仪表盘</a>
-        </li>
-    </ol>
+    <li>
+        <a href="{{ url('admin/dashboard') }}">主页</a>
+    </li>
+    <li>
+        <a>仪表盘</a>
+    </li>
 @endsection
 
 @section('content')
