@@ -27,31 +27,12 @@
 
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
-            <li class="header">菜单</li>
+            <li class="header">内容管理</li>
             <li @if(Request::is('admin/dashboard')) class="active" @endif>
                 <a href="/admin/dashboard">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
-            <li @if(Request::is('admin/auth/*')) class="treeview active" @else class="treeview" @endif>
-                <a href="#">
-                    <i class="fa fa-key"></i>
-                    <span>权限管理</span>
-                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                </a>
-                <ul class="treeview-menu">
-                    <li @if(Request::is('admin/auth/user*')) class="active" @endif>
-                        <a href="{{ route('admin.auth.user.index') }}"><i class="fa fa-user"></i> 用户管理</a>
-                    </li>
-                    <li @if(Request::is('admin/auth/role*')) class="active" @endif>
-                        <a href="{{ route('admin.auth.role.index') }}"><i class="fa fa-group"></i> 角色管理</a>
-                    </li>
-                    <li @if(Request::is('admin/auth/permission*')) class="active" @endif>
-                        <a href="{{ route('admin.auth.permission.index') }}"><i class="fa fa-flash"></i> 权限管理</a>
-                    </li>
-                </ul>
-            </li>
-
             <li @if(Request::is('admin/news*')) class="treeview active" @else class="treeview" @endif>
                 <a href="#">
                     <i class="fa fa-newspaper-o"></i>
@@ -113,6 +94,26 @@
                 <a href="/admin/upload">
                     <i class="fa fa-file-o"></i> <span>文件管理</span>
                 </a>
+            </li>
+
+            <li class="header">系统设置</li>
+            <li @if(Request::is('admin/auth/*')) class="treeview active" @else class="treeview" @endif>
+                <a href="#">
+                    <i class="fa fa-key"></i>
+                    <span>权限管理</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li @if(Request::is('admin/auth/user*')) class="active" @endif>
+                        <a href="{{ route('admin.auth.user.index') }}"><i class="fa fa-user"></i> 用户管理</a>
+                    </li>
+                    <li @if(Request::is('admin/auth/role*')) class="active" @endif>
+                        <a href="{{ route('admin.auth.role.index') }}"><i class="fa fa-group"></i> 角色管理</a>
+                    </li>
+                    <li @if(Request::is('admin/auth/permission*')) class="active" @endif>
+                        <a href="{{ route('admin.auth.permission.index') }}"><i class="fa fa-flash"></i> 权限管理</a>
+                    </li>
+                </ul>
             </li>
 
             <li class="header">帮助</li>
