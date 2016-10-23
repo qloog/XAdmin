@@ -23,16 +23,16 @@ Theme已从原来的 [ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) 升
 ```shell
 git clone https://github.com/qloog/laravel5-backend.git
 cd laravel5-backend
-composer install -vvv   //根据composer.json下载vendor包目录
-npm install     // install bower, gulp, laravel-elixir
-bower install -V//安装前端组件
-gulp //copy js/css/img 到public下
+composer install -vvv               // 根据composer.json下载vendor包目录
+npm install                         // install bower, gulp, laravel-elixir
+bower install -V                    // 安装前端组件
+npm run build                       // copy js/css/img 到public下
 php artisan vendor:publish --provider='Ender\UEditor\UEditorServiceProvider' //copy ueditor to public
-cp .env.example .env    //这里需要修改下数据库信息: host port database user password
-php artisan migrate //生成表结构
-php artisan db:seed //填充测试数据
-php artisan serve --port 8001   //运行server
-open http://localhost:8001/admin/login  //用户名: admin@test.com, 密码: 12345678
+cp .env.example .env                // 这里需要修改下数据库信息: host port database user password
+php artisan migrate                 // 生成表结构
+php artisan db:seed                 // 填充测试数据
+php artisan serve --port 8001       // 运行server
+open http://localhost:8001/admin/login  // 用户名: admin@test.com, 密码: 12345678
 ```
 
 ## Features

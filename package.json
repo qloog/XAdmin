@@ -6,5 +6,8 @@
     "laravel-elixir": "^3.4.2"
   },
   "dependencies": {
+  },
+  "scripts": {
+    "build": "gulp"
   }
 }
