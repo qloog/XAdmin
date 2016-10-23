@@ -51,7 +51,7 @@ Route::group(['namespace' => 'Backend'], function ()
         Route::resource('auth/permission', 'PermissionController', ['as' => 'auth']);
 
         //news
-        Route::resource('news/category', 'NewsCategoryController');
+        Route::resource('news/category', 'NewsCategoryController', ['as' => 'news']);
         Route::resource('news', 'NewsController');
 
         //event
