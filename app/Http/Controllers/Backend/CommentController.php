@@ -5,12 +5,11 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Redirect, Input;
 use App\Models\Comment;
-use App\Repositories\Backend\Comment\CommentRepository;
 
 class CommentController extends BaseController
 {
 
-    public function __construct(CommentRepository $repository)
+    public function __construct($repository = '')
     {
         $this->repository = $repository;
     }
@@ -22,11 +21,7 @@ class CommentController extends BaseController
      */
     public function index()
     {
-        $comments = $this->repository->getAll(config('custom.per_page'));
-        $comments = $comments->toArray();
-        $comments = $comments['data'];
-        return json_encode($comments);
-        return view('backend.comment.index')->withData($comments);
+
     }
 
     /**
@@ -46,10 +41,7 @@ class CommentController extends BaseController
      */
     public function store(Request $request)
     {
-        $data['type'] = 'photo';
-        $data['content'] = $request->input('content');
-        $ret =  $this->repository->create($data);
-        return json_encode($ret);
+
     }
 
     /**

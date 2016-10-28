@@ -62,6 +62,10 @@ Route::group(['namespace' => 'Backend'], function ()
         Route::get('album/{id}/photos', ['as' => 'album.photos', 'uses' => 'AlbumController@photos']);
         Route::post('album/upload', ['as' => 'album.upload', 'uses' => 'AlbumController@storePhoto']);
 
+        //forum
+        //Route::resource('topic/category', 'TopicCategoryController', ['as' => 'topic']);
+        Route::resource('topics', 'TopicController');
+
         //comment
         Route::resource('comment', 'CommentController');
 
