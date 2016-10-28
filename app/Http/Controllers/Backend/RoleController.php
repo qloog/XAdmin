@@ -88,7 +88,7 @@ class RoleController extends BaseController
             'backend.role.edit',
             [
                 'role' => $role,
-                'rolePermissions' => $role->perms->lists('id')->all(),
+                'rolePermissions' => $role->perms->pluck('id')->all(),
                 'permissions' => $this->permissions->all()
             ]
         );

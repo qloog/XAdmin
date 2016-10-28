@@ -101,7 +101,7 @@ class PermissionController extends BaseController
             [
                 'permission' => $permission,
                 'roles' => $this->roles->all(),
-                'permissionRoles' => $permission->roles->lists('id')->all()
+                'permissionRoles' => $permission->roles->pluck('id')->all()
             ]
         );
     }

@@ -107,7 +107,7 @@ class UserController extends BaseController
             'backend.user.edit',
             [
                 'user' => $user,
-                'userRoles' => $user->roles->lists('id')->all(),
+                'userRoles' => $user->roles->pluck('id')->all(),
                 'roles' => $this->roles->all()
             ]
         );
