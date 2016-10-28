@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Repositories\Eloquent\Backend;
+namespace App\Repositories\Eloquent;
 
 use App\Models\AlbumPhoto;
 use Auth;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Contracts\Repositories\Backend\AlbumRepository;
+use App\Contracts\Repositories\AlbumRepository;
 use App\Models\Album;
 
 /**

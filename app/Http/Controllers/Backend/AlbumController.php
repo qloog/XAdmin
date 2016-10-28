@@ -6,11 +6,10 @@ use App\Services\UploadsManager;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Contracts\Repositories\Backend\AlbumRepository;
+use App\Contracts\Repositories\AlbumRepository;
 use Illuminate\Support\Facades\Input;
 use Laracasts\Flash\Flash;
 use Redirect;
-use Symfony\Component\HttpFoundation\File\File;
 
 class AlbumController extends BaseController
 {

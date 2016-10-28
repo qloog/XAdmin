@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Services\CategoryService;
-use App\Contracts\Repositories\Backend\NewsCategoryRepository;
+use App\Contracts\Repositories\NewsCategoryRepository;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 

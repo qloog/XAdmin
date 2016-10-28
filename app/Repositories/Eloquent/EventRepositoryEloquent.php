@@ -1,16 +1,36 @@
 <?php
 
-namespace App\Repositories\Backend\Event;
+namespace App\Repositories\Eloquent;
 
+use App\Exceptions\GeneralException;
 use Prettus\Repository\Eloquent\BaseRepository;
+use Prettus\Repository\Criteria\RequestCriteria;
+use App\Contracts\Repositories\EventRepository;
 use App\Models\Event;
+use App\Models\User;
 
-class EventRepository extends BaseRepository
+/**
+ * Class EvnetRepositoryEloquent
+ * @package namespace App\Repositories\Eloquent\Backend;
+ */
+class EventRepositoryEloquent extends BaseRepository implements EventRepository
 {
-
+    /**
+     * Specify Model class name
+     *
+     * @return string
+     */
     public function model()
     {
-        return "App\\Models\\Event";
+        return Event::class;
+    }
+
+    /**
+     * Boot up the repository, pushing criteria
+     */
+    public function boot()
+    {
+        $this->pushCriteria(app(RequestCriteria::class));
     }
 
     public function getFields()
@@ -69,5 +89,16 @@ class EventRepository extends BaseRepository
     }
 
 
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function destroy($id)
+    {
+        $user = Event::find($id);
 
+        $user->status = 0;
+
+        return $user->save();
+    }
 }

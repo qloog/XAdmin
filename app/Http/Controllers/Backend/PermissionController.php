@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Contracts\Repositories\Backend\PermissionRepository;
-use App\Contracts\Repositories\Backend\RoleRepository;
+use App\Contracts\Repositories\PermissionRepository;
+use App\Contracts\Repositories\RoleRepository;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 

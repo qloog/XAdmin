@@ -7,9 +7,9 @@ use App\Http\Requests;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
-use App\Contracts\Repositories\Backend\UserRepository;
-use App\Contracts\Repositories\Backend\RoleRepository;
-use App\Contracts\Repositories\Backend\PermissionRepository;
+use App\Contracts\Repositories\UserRepository;
+use App\Contracts\Repositories\RoleRepository;
+use App\Contracts\Repositories\PermissionRepository;
 use Laracasts\Flash\Flash;
 
 class UserController extends BaseController

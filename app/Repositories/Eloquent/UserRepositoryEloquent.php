@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories\Eloquent\Backend;
+namespace App\Repositories\Eloquent;
 
 use App\Exceptions\GeneralException;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Contracts\Repositories\Backend\UserRepository;
+use App\Contracts\Repositories\UserRepository;
 use App\Models\User;
 
 /**

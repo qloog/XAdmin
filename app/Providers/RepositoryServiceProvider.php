@@ -23,13 +23,13 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(\App\Contracts\Repositories\Backend\UserRepository::class, \App\Repositories\Eloquent\Backend\UserRepositoryEloquent::class);
-        $this->app->bind(\App\Contracts\Repositories\Backend\RoleRepository::class, \App\Repositories\Eloquent\Backend\RoleRepositoryEloquent::class);
-        $this->app->bind(\App\Contracts\Repositories\Backend\PermissionRepository::class, \App\Repositories\Eloquent\Backend\PermissionRepositoryEloquent::class);
-        $this->app->bind(\App\Contracts\Repositories\Backend\NewsRepository::class, \App\Repositories\Eloquent\Backend\NewsRepositoryEloquent::class);
-        $this->app->bind(\App\Contracts\Repositories\Backend\NewsCategoryRepository::class, \App\Repositories\Eloquent\Backend\NewsCategoryRepositoryEloquent::class);
-        $this->app->bind(\App\Contracts\Repositories\Backend\AlbumRepository::class, \App\Repositories\Eloquent\Backend\AlbumRepositoryEloquent::class);
-        $this->app->bind(\App\Contracts\Repositories\Backend\EventRepository::class, \App\Repositories\Eloquent\Backend\EventRepositoryEloquent::class);
+        $this->app->bind(\App\Contracts\Repositories\UserRepository::class, \App\Repositories\Eloquent\UserRepositoryEloquent::class);
+        $this->app->bind(\App\Contracts\Repositories\RoleRepository::class, \App\Repositories\Eloquent\RoleRepositoryEloquent::class);
+        $this->app->bind(\App\Contracts\Repositories\PermissionRepository::class, \App\Repositories\Eloquent\PermissionRepositoryEloquent::class);
+        $this->app->bind(\App\Contracts\Repositories\NewsRepository::class, \App\Repositories\Eloquent\NewsRepositoryEloquent::class);
+        $this->app->bind(\App\Contracts\Repositories\NewsCategoryRepository::class, \App\Repositories\Eloquent\NewsCategoryRepositoryEloquent::class);
+        $this->app->bind(\App\Contracts\Repositories\AlbumRepository::class, \App\Repositories\Eloquent\AlbumRepositoryEloquent::class);
+        $this->app->bind(\App\Contracts\Repositories\EventRepository::class, \App\Repositories\Eloquent\EventRepositoryEloquent::class);
         //:end-bindings:
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Repositories\Eloquent\Backend;
+namespace App\Repositories\Eloquent;
 
 use App\Exceptions\GeneralException;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Contracts\Repositories\Backend\PermissionRepository;
-use App\Contracts\Repositories\Backend\RoleRepository;
+use App\Contracts\Repositories\PermissionRepository;
+use App\Contracts\Repositories\RoleRepository;
 use App\Models\Permission;
 
 /**

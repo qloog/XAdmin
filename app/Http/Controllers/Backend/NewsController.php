@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Contracts\Repositories\Backend\NewsRepository;
-use App\Contracts\Repositories\Backend\NewsCategoryRepository;
+use App\Contracts\Repositories\NewsRepository;
+use App\Contracts\Repositories\NewsCategoryRepository;
 use Illuminate\Support\Facades\Redirect;
 use App\Services\CategoryService;
 use App\Http\Requests\Backend\NewsCreateRequest;

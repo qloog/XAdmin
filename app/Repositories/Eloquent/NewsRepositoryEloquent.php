@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Repositories\Eloquent\Backend;
+namespace App\Repositories\Eloquent;
 
 use App\Exceptions\GeneralException;
 use App\Models\NewsCategory;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Contracts\Repositories\Backend\NewsCategoryRepository;
+use App\Contracts\Repositories\NewsRepository;
+use App\Models\News;
 
 /**
  * Class UserRepositoryEloquent
  * @package namespace App\Repositories\Eloquent\Backend;
  */
-class NewsCategoryRepositoryEloquent extends BaseRepository implements NewsCategoryRepository
+class NewsRepositoryEloquent extends BaseRepository implements NewsRepository
 {
     /**
      * Specify Model class name
@@ -21,7 +22,7 @@ class NewsCategoryRepositoryEloquent extends BaseRepository implements NewsCateg
      */
     public function model()
     {
-        return NewsCategory::class;
+        return News::class;
     }
 
     /**
@@ -41,7 +42,7 @@ class NewsCategoryRepositoryEloquent extends BaseRepository implements NewsCateg
      */
     public function create(array $input)
     {
-        if ($id = parent::create($input)) {
+        if ($id = News::create($input)) {
             return $id;
         }
         throw new GeneralException('There was a problem creating this news. Please try again.');
@@ -63,4 +64,5 @@ class NewsCategoryRepositoryEloquent extends BaseRepository implements NewsCateg
         }
         throw new GeneralException('There was a problem updating this user. Please try again.');
     }
+
 }
