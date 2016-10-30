@@ -17,6 +17,11 @@
  */
 Route::group(['namespace' => 'Frontend'], function ()
 {
+    // about login and logout
+    Route::auth();
+    Route::get('logout', 'Auth\LoginController@logout');
+
+    // business route
     Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);
     Route::get('/', ['as' => 'welcome', 'uses' => 'WelcomeController@index']);
 });
@@ -33,7 +38,7 @@ Route::group(['namespace' => 'Backend'], function ()
     {
         Route::get('login', 'Auth\LoginController@showLoginForm');
         Route::post('login', 'Auth\LoginController@login');
-        //Route::get('logout', 'Auth\AuthController@getLogout');
+        Route::get('logout', 'Auth\LoginController@logout');
     });
 
     // need to auth controller

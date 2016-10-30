@@ -152,7 +152,6 @@ return [
         /**
          * Custom Service Providers
          */
-        App\Providers\BackendServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Ender\UEditor\UEditorServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,

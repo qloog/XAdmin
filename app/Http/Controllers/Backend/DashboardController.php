@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\Page;
 use Auth;
 
-class DashboardController extends BaseController {
+class DashboardController extends BaseController
+{
 
 	/**
 	 * Display a listing of the resource.
