@@ -40,4 +40,8 @@ elixir(function(mix) {
         // bootstrap-fileinput
         .copy('resources/assets/bower/bootstrap-fileinput','public/plugins/bootstrap-fileinput')
 
+        // frontend
+        // semantic ui
+        .copy('resources/assets/bower/semantic','public/semantic')
+
 });

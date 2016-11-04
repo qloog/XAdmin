@@ -16,6 +16,7 @@
     "AdminLTE": "admin-lte#^2.3.6",
     "font-awesome": "^4.6.3",
     "Ionicons": "ionicons#^2.0.1",
-    "bootstrap-fileinput": "^4.3.5"
+    "bootstrap-fileinput": "^4.3.5",
+    "semantic": "^2.2.6"
   }
 }
