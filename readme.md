@@ -2,8 +2,8 @@
 
 [![Build Status](https://travis-ci.org/qloog/laravel5-backend.svg?branch=master)](https://travis-ci.org/qloog/laravel5-backend)
 
-此项目主要目的是为了搭建一套常用的基础服务,从而可以专注于其他的业务开发。  
-Theme已从原来的 [ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) 升级为 [AdminLTE](https://almsaeedstudio.com/themes/AdminLTE/index2.html)  
+此项目主要目的是为了搭建一套常用的基础服务,从而可以专注于其他的业务开发。
+Theme已从原来的 [ACE](http://responsiweb.com/themes/preview/ace/1.3.3/) 升级为 [AdminLTE](https://almsaeedstudio.com/themes/AdminLTE/index2.html)
 [部分截图](#ScreenShot)
 
 ## Requirements
@@ -26,12 +26,13 @@ npm install                         // install bower, gulp, laravel-elixir
 bower install -V                    // 安装前端组件
 npm run build                       // copy js/css/img 到public下
 php artisan vendor:publish --provider='Ender\UEditor\UEditorServiceProvider' //copy ueditor to public
-cp .env.example .env                // 这里需要修改下数据库信息: host port database user password
 php artisan migrate                 // 生成表结构
 php artisan db:seed                 // 填充测试数据
 php artisan serve --port 8001       // 运行server
 open http://localhost:8001/admin/login  // 用户名: admin@test.com, 密码: 12345678
 ```
+
+`vim .env`  修改为自己的数据库信息
 
 ## Features
 
@@ -69,7 +70,7 @@ open http://localhost:8001/admin/login  // 用户名: admin@test.com, 密码: 12
    - [PSR4](http://www.php-fig.org/psr/psr-4/) Autoloading Standard
    - [PSR6](http://www.php-fig.org/psr/psr-6/) Caching Interface
    - [PSR7](http://www.php-fig.org/psr/psr-7/) HTTP Message Interface
-   
+
 ## Code check and fix
 
 ### PHPCS 检查代码规范
@@ -77,7 +78,7 @@ open http://localhost:8001/admin/login  // 用户名: admin@test.com, 密码: 12
 ```shell
 // 单个文件, 可以快速查看某个文件符合PSR的情况
 ./vendor/bin/phpcs -p --standard=PSR2 --ignore=vendor  /path/to/file
-// 目录 
+// 目录
 ./vendor/bin/phpcs -p --standard=PSR2 --ignore=vendor  /path/to/dir
 ```
 
@@ -95,7 +96,7 @@ open http://localhost:8001/admin/login  // 用户名: admin@test.com, 密码: 12
 
 ## Command
 
-* 执行:  `php artisan make:repository Forum` 
+* 执行:  `php artisan make:repository Forum`
 
 结果包含:
 ```
