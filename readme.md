@@ -24,11 +24,12 @@ git clone https://github.com/qloog/laravel5-backend.git
 cd laravel5-backend
 
 // 安装后端依赖组件
-composer install -vvv               // 根据composer.json下载vendor包目录
+composer config -g repo.packagist composer https://packagist.phpcomposer.com    // 使用composer中国镜像
+composer install -vvv               // 根据composer.json下载依赖包到vendor目录
 
 
 // 安装前端依赖组件
-cnpm install                         // install bower, gulp, laravel-elixir
+cnpm install                        // install bower, gulp, laravel-elixir
 bower install -V                    // 安装前端组件
 npm run build                       // copy js/css/img 到public下
 php artisan vendor:publish --provider='Ender\UEditor\UEditorServiceProvider' //copy ueditor to public
