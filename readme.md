@@ -105,6 +105,9 @@ composer require friendsofphp/php-cs-fixer
 // 修复代码
 ./vendor/bin/php-cs-fixer fix app/Http/Controllers/Backend/UserController.php --level=psr2
 ```
+使用文档：
+ - https://github.com/FriendsOfPHP/PHP-CS-Fixer#usage
+ - http://0x1.im/blog/php/php-cs-fixer.html
 
 ## Code Document
 
