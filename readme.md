@@ -97,10 +97,17 @@ open http://localhost:8001/admin/login  // 用户名: admin@test.com, 密码: 12
 ### PHP-CS-FIXER 修复代码
 
 遵循PSR标准的代码格式化工具[php-cs-fixer](http://cs.sensiolabs.org/)。
-可通过composer安装：`composer require friendsofphp/php-cs-fixer`
+可通过composer安装：  
+
 ```shell
+// 安装
+composer require friendsofphp/php-cs-fixer
+// 修复代码
 ./vendor/bin/php-cs-fixer fix app/Http/Controllers/Backend/UserController.php --level=psr2
 ```
+使用文档：
+ - https://github.com/FriendsOfPHP/PHP-CS-Fixer#usage
+ - http://0x1.im/blog/php/php-cs-fixer.html
 
 ## Code Document
 
