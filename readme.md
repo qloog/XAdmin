@@ -48,29 +48,12 @@ open http://localhost:8001/admin/login  // 用户名: admin@test.com, 密码: 12
 
 ## Features
 
- - 用户登录
-    * [x] 后台登录
-    * [x] 增加验证码
-
- - 用户权限管理 RBAC (Role-Based Access Control)
-   * [x] 用户管理：新建、修改用户；
-   * [x] 角色管理：角色查看，角色分配权限；
-   * [x] 权限管理：权限查看、修改，增删
-
- - 新闻管理
-   * [x] 新闻列表
-   * [x] 添加新闻
-
- - 相册管理
-  * [x] 相册列表
-
- - 活动管理
-  * [x] 活动列表
-  * [x] 添加活动
-
- - 评论管理
-  * [ ] 评论列表
-  * [ ] 评论审核：先发后审、先审后发
+ - 用户管理(Done)
+ - 角色管理(Done)
+ - 权限管理(Role-Based Access Control)(Done)
+ - 菜单管理
+ - 操作管理
+ - 日志管理
 
 ## Coding Style
 
