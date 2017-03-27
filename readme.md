@@ -128,6 +128,29 @@ database/migrations/2016_10_28_121408_create_forums_table.php
 
  - 欢迎发 [issues](https://github.com/qloog/laravel5-backend/issues) 交流讨论
  - QQ交流群：32649336
+ 
+ ## Thanks
+ 
+ - Site
+ 	- [PHPHub](https://phphub.org/)
+ 	- [LaraBase](http://laravelbase.com/)
+ 	- [Laravel.So](http://laravel.so/)
+ 	- [Laravel 学院](http://laravelacademy.org/)
+ - Project
+ 	- [BootstrapCMS/CMS](https://github.com/BootstrapCMS/CMS)
+ 	- [yccphp/laravel-5-blog](https://github.com/yccphp/laravel-5-blog)
+ 	- [yuansir/laravel5-rbac-example](https://github.com/yuansir/laravel5-rbac-example)
+ 	- [rappasoft/laravel-5-boilerplate](https://github.com/rappasoft/laravel-5-boilerplate)
+ - PHP Package
+ 	- [zizaco/entrust](https://github.com/Zizaco/entrust)
+ 	- [orangehill/iseed](https://github.com/orangehill/iseed)
+ 	- [arcanedev/log-viewer](https://packagist.org/packages/arcanedev/log-viewer)
+ 	- [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)
+ 	- [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)
+ - Javascript Package
+  	- [admin-lte](http://github.com/almasaeed2010/AdminLTE)
+ 	- [sweetalert](https://github.com/t4t5/sweetalert)
+ 	- [ztree](https://github.com/uibox/ztree)
 
 ## License
 
